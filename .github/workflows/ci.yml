@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontend:
+    name: Frontend tests and build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: npm ci --prefix frontend
+
+      - name: Run frontend tests
+        run: npm --prefix frontend run test
+
+      - name: Build customer application
+        env:
+          VITE_CUSTOMER_URL: /
+        run: npm --prefix frontend run build --workspace @ma/customer
+
+      - name: Build admin application
+        env:
+          VITE_CUSTOMER_URL: /
+        run: npm --prefix frontend run build --workspace @ma/admin -- --mode cloud-demo
