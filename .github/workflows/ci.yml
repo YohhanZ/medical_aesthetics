@@ -101,3 +101,81 @@ jobs:
           python -m pytest -q
           tests/test_consultation_agent.py
           tests/test_consultation_gateway.py
+
+
+  publish:
+    name: Build and publish images
+    needs: [frontend, backend]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+
+    permissions:
+      contents: read
+      packages: write
+
+    env:
+      IMAGE_PREFIX: ghcr.io/yohhanz/medical-aesthetics
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          package-manager-cache: false
+
+      - name: Build frontend applications
+        env:
+          VITE_CUSTOMER_URL: /
+        run: |
+          npm ci --prefix frontend
+          npm --prefix frontend run build --workspace @ma/customer
+          npm --prefix frontend run build --workspace @ma/admin -- --mode cloud-demo
+
+      - name: Build Docker images
+        run: |
+          set -euo pipefail
+
+          SOURCE="https://github.com/$GITHUB_REPOSITORY"
+
+          docker build \
+            -f backend/sandbox/Dockerfile \
+            --label "org.opencontainers.image.source=$SOURCE" \
+            --label "org.opencontainers.image.revision=$GITHUB_SHA" \
+            -t medical-consultation-sandbox:local \
+            -t "${IMAGE_PREFIX}-sandbox:${GITHUB_SHA}" \
+            backend
+
+          docker build \
+            -f backend/deployment/Dockerfile \
+            --label "org.opencontainers.image.source=$SOURCE" \
+            --label "org.opencontainers.image.revision=$GITHUB_SHA" \
+            -t "${IMAGE_PREFIX}-api:${GITHUB_SHA}" \
+            backend
+
+          docker build \
+            -f deploy/cloud-demo/web.Dockerfile \
+            --label "org.opencontainers.image.source=$SOURCE" \
+            --label "org.opencontainers.image.revision=$GITHUB_SHA" \
+            -t "${IMAGE_PREFIX}-web:${GITHUB_SHA}" \
+            .
+
+      - name: Login to GHCR
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf '%s' "$GHCR_TOKEN" |
+            docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+
+      - name: Push Docker images
+        run: |
+          set -euo pipefail
+
+          docker push "${IMAGE_PREFIX}-sandbox:${GITHUB_SHA}"
+          docker push "${IMAGE_PREFIX}-api:${GITHUB_SHA}"
+          docker push "${IMAGE_PREFIX}-web:${GITHUB_SHA}"
+
+          echo "Published commit: $GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
