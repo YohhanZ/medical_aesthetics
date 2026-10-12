@@ -1,0 +1,2429 @@
+[
+  {
+    "knowledge_key": "catalog-hydration",
+    "category": "operational",
+    "title": "基础补水护理",
+    "content": "基础补水护理在晴园美学上海演示店安排60分钟。内容包括卸妆与温和清洁、外用保湿精华、保湿面膜、保湿收尾及体验沟通。服务方向是想了解外用保湿、换季日常护理或妆前护理的客户；不包含针剂、破皮或医疗仪器。演示单次价298元，演示常规价398元；按次体验，不要求办卡，不包含额外购买。可继续了解：这次更想了解护理过程，还是想比较清洁护理？",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "基础补水",
+        "基础补水护理",
+        "生活美容护理"
+      ],
+      "entities": [
+        {
+          "key": "hydration",
+          "kind": "Project",
+          "name": "基础补水护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活美容护理"
+        }
+      ],
+      "relations": [
+        {
+          "source": "hydration",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "questions": [
+        "基础补水护理是什么",
+        "基础补水护理多少钱",
+        "基础补水护理包括什么步骤"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-cleansing",
+    "category": "operational",
+    "title": "清洁护理",
+    "content": "清洁护理在晴园美学上海演示店安排50分钟。内容包括卸妆、分区清洁、清洁面膜、保湿收尾与日常洁面习惯沟通。服务方向是希望了解卸妆与日常清洁体验的客户；不包含针清、挤痘或疾病治疗。演示单次价258元，演示常规价328元；按次体验，不要求办卡，不包含额外购买。可继续了解：您更在意清洁的步骤，还是它和补水护理的区别？",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "清洁",
+        "清洁护理",
+        "生活美容护理"
+      ],
+      "entities": [
+        {
+          "key": "cleansing",
+          "kind": "Project",
+          "name": "清洁护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活美容护理"
+        }
+      ],
+      "relations": [
+        {
+          "source": "cleansing",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "questions": [
+        "清洁护理是什么",
+        "清洁护理多少钱",
+        "清洁护理包括什么步骤"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-relaxation",
+    "category": "operational",
+    "title": "舒缓护理",
+    "content": "舒缓护理在晴园美学上海演示店安排60分钟。内容包括先沟通触感和香味偏好，再温和清洁、外用保湿面膜、轻柔护理和结束反馈。服务方向是想体验更安静、少步骤的面部护理场景；不承诺治疗敏感、过敏或修复疾病。演示单次价338元，演示常规价428元；按次体验，不要求办卡，不包含额外购买。可继续了解：您想了解产品触感，还是整个到店体验？",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "舒缓",
+        "舒缓护理",
+        "生活美容护理"
+      ],
+      "entities": [
+        {
+          "key": "relaxation",
+          "kind": "Project",
+          "name": "舒缓护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活美容护理"
+        }
+      ],
+      "relations": [
+        {
+          "source": "relaxation",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "questions": [
+        "舒缓护理是什么",
+        "舒缓护理多少钱",
+        "舒缓护理包括什么步骤"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-assessment",
+    "category": "operational",
+    "title": "皮肤状态沟通",
+    "content": "皮肤状态沟通在晴园美学上海演示店安排30分钟。内容包括顾问倾听关注点、梳理已有护肤习惯、说明生活护理与医学咨询边界、整理下一步问题。服务方向是不确定项目、希望先把需求聊清楚的客户；不以照片或仪器读数在线诊断。演示单次价0元，演示常规价0元；按次体验，不要求办卡，不包含额外购买。可继续了解：可以先说一个最想了解的方向，比如补水、清洁或项目比较。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "皮肤检测",
+        "皮肤状态沟通",
+        "咨询服务"
+      ],
+      "entities": [
+        {
+          "key": "assessment",
+          "kind": "Project",
+          "name": "皮肤状态沟通"
+        },
+        {
+          "key": "consultation-category",
+          "kind": "Category",
+          "name": "咨询服务"
+        }
+      ],
+      "relations": [
+        {
+          "source": "assessment",
+          "target": "consultation-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "questions": [
+        "皮肤状态沟通是什么",
+        "皮肤状态沟通多少钱",
+        "皮肤状态沟通包括什么步骤"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-eye-care",
+    "category": "operational",
+    "title": "眼周护理",
+    "content": "眼周护理在晴园美学上海演示店安排45分钟。内容包括清洁、外用眼周护理产品、眼部面膜和轻柔结束沟通。服务方向是了解眼周日常保湿与护理触感；不含注射、眼部治疗或视力检查。演示单次价268元，演示常规价358元；按次体验，不要求办卡，不包含额外购买。可继续了解：想先看眼周护理和普通面部护理的区别吗？",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "眼周护理了解",
+        "眼周",
+        "生活护理"
+      ],
+      "questions": [
+        "眼周护理是什么",
+        "眼周护理多少钱",
+        "眼周护理包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "eye-care",
+          "kind": "Project",
+          "name": "眼周护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-eye-care",
+          "kind": "Concern",
+          "name": "眼周"
+        }
+      ],
+      "relations": [
+        {
+          "source": "eye-care",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "eye-care",
+          "target": "concern-eye-care",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-neck-care",
+    "category": "operational",
+    "title": "颈部护理",
+    "content": "颈部护理在晴园美学上海演示店安排45分钟。内容包括颈部清洁、外用保湿、颈膜、保湿收尾。服务方向是了解颈部日常护理；不含注射填充或仪器紧致。演示单次价258元，演示常规价328元；按次体验，不要求办卡，不包含额外购买。可继续了解：您想了解护理过程还是演示收费？",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "颈部护理了解",
+        "颈部",
+        "生活护理"
+      ],
+      "questions": [
+        "颈部护理是什么",
+        "颈部护理多少钱",
+        "颈部护理包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "neck-care",
+          "kind": "Project",
+          "name": "颈部护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-neck-care",
+          "kind": "Concern",
+          "name": "颈部"
+        }
+      ],
+      "relations": [
+        {
+          "source": "neck-care",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "neck-care",
+          "target": "concern-neck-care",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-hand-care",
+    "category": "operational",
+    "title": "手部护理",
+    "content": "手部护理在晴园美学上海演示店安排40分钟。内容包括手部清洁、外用手膜、保湿霜、日常手部护理沟通。服务方向是了解手部清洁与保湿；不含美甲或皮肤疾病处理。演示单次价188元，演示常规价238元；按次体验，不要求办卡，不包含额外购买。可继续了解：也可以把手部护理作为单独体验，不必搭配套餐。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "手部护理了解",
+        "手部",
+        "生活护理"
+      ],
+      "questions": [
+        "手部护理是什么",
+        "手部护理多少钱",
+        "手部护理包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "hand-care",
+          "kind": "Project",
+          "name": "手部护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-hand-care",
+          "kind": "Concern",
+          "name": "手部"
+        }
+      ],
+      "relations": [
+        {
+          "source": "hand-care",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "hand-care",
+          "target": "concern-hand-care",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-back-care",
+    "category": "operational",
+    "title": "背部护理",
+    "content": "背部护理在晴园美学上海演示店安排60分钟。内容包括背部表面清洁、护理膜、保湿收尾、触感反馈。服务方向是了解背部生活护理；不包含痘痘诊断、针清或治疗。演示单次价358元，演示常规价458元；按次体验，不要求办卡，不包含额外购买。可继续了解：想看单独背部护理，还是和身体放松体验比较？",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "背部护理了解",
+        "背部",
+        "生活护理"
+      ],
+      "questions": [
+        "背部护理是什么",
+        "背部护理多少钱",
+        "背部护理包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "back-care",
+          "kind": "Project",
+          "name": "背部护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-back-care",
+          "kind": "Concern",
+          "name": "背部"
+        }
+      ],
+      "relations": [
+        {
+          "source": "back-care",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "back-care",
+          "target": "concern-back-care",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-body-relaxation",
+    "category": "operational",
+    "title": "身体放松体验",
+    "content": "身体放松体验在晴园美学上海演示店安排75分钟。内容包括沟通力度与触感偏好、非医疗轻柔身体护理、休息及结束反馈。服务方向是了解放松体验；不声称减重、治病或缓解特定病症。演示单次价458元，演示常规价598元；按次体验，不要求办卡，不包含额外购买。可继续了解：您可以随时反馈力度，也可以选择不使用香氛。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "身体放松体验了解",
+        "身体放松",
+        "生活护理"
+      ],
+      "questions": [
+        "身体放松体验是什么",
+        "身体放松体验多少钱",
+        "身体放松体验包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "body-relaxation",
+          "kind": "Project",
+          "name": "身体放松体验"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-body-relaxation",
+          "kind": "Concern",
+          "name": "身体放松"
+        }
+      ],
+      "relations": [
+        {
+          "source": "body-relaxation",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "body-relaxation",
+          "target": "concern-body-relaxation",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-aroma-care",
+    "category": "operational",
+    "title": "芳香护理体验",
+    "content": "芳香护理体验在晴园美学上海演示店安排75分钟。内容包括选择香味或无香选项、轻柔生活护理、休息、反馈体验。服务方向是想了解环境和触感的客户；香氛不是医疗治疗。演示单次价458元，演示常规价598元；按次体验，不要求办卡，不包含额外购买。可继续了解：喜欢偏清新还是偏柔和的香味？也可以选无香。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "芳香护理体验了解",
+        "芳香",
+        "生活护理"
+      ],
+      "questions": [
+        "芳香护理体验是什么",
+        "芳香护理体验多少钱",
+        "芳香护理体验包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "aroma-care",
+          "kind": "Project",
+          "name": "芳香护理体验"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-aroma-care",
+          "kind": "Concern",
+          "name": "芳香"
+        }
+      ],
+      "relations": [
+        {
+          "source": "aroma-care",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "aroma-care",
+          "target": "concern-aroma-care",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-season-care",
+    "category": "operational",
+    "title": "换季护理沟通",
+    "content": "换季护理沟通在晴园美学上海演示店安排30分钟。内容包括梳理洁面、保湿与日常防护习惯，解释演示护理菜单，整理需要专业人员解答的问题。服务方向是先了解日常护肤，不用马上买产品或套餐。演示单次价0元，演示常规价0元；按次体验，不要求办卡，不包含额外购买。可继续了解：先从您现有的护理步骤聊起即可。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "换季护理沟通",
+        "换季",
+        "生活护理"
+      ],
+      "questions": [
+        "换季护理沟通是什么",
+        "换季护理沟通多少钱",
+        "换季护理沟通包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "season-care",
+          "kind": "Project",
+          "name": "换季护理沟通"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-season-care",
+          "kind": "Concern",
+          "name": "换季"
+        }
+      ],
+      "relations": [
+        {
+          "source": "season-care",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "season-care",
+          "target": "concern-season-care",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-makeup-cleanse",
+    "category": "operational",
+    "title": "卸妆清洁体验",
+    "content": "卸妆清洁体验在晴园美学上海演示店安排30分钟。内容包括卸妆、温和洁面、外用保湿收尾及体验沟通。服务方向是想了解日常卸妆流程；不包含深层治疗或医疗操作。演示单次价138元，演示常规价198元；按次体验，不要求办卡，不包含额外购买。可继续了解：想先了解带妆到店的安排吗？",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "卸妆清洁体验了解",
+        "卸妆",
+        "生活护理"
+      ],
+      "questions": [
+        "卸妆清洁体验是什么",
+        "卸妆清洁体验多少钱",
+        "卸妆清洁体验包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "makeup-cleanse",
+          "kind": "Project",
+          "name": "卸妆清洁体验"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-makeup-cleanse",
+          "kind": "Concern",
+          "name": "卸妆"
+        }
+      ],
+      "relations": [
+        {
+          "source": "makeup-cleanse",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "makeup-cleanse",
+          "target": "concern-makeup-cleanse",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-care-experience",
+    "category": "operational",
+    "title": "首次护理体验",
+    "content": "首次护理体验在晴园美学上海演示店安排70分钟。内容包括先用10分钟沟通关注点，再体验基础清洁与保湿护理，最后核对感受和下一步需求。服务方向是第一次到店、希望先体验单次护理；无需先办卡。演示单次价368元，演示常规价468元；按次体验，不要求办卡，不包含额外购买。可继续了解：可以先体验一次，再决定是否继续。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "首次护理体验沟通",
+        "首次护理",
+        "生活护理"
+      ],
+      "questions": [
+        "首次护理体验是什么",
+        "首次护理体验多少钱",
+        "首次护理体验包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "care-experience",
+          "kind": "Project",
+          "name": "首次护理体验"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活护理"
+        },
+        {
+          "key": "concern-care-experience",
+          "kind": "Concern",
+          "name": "首次护理"
+        }
+      ],
+      "relations": [
+        {
+          "source": "care-experience",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "care-experience",
+          "target": "concern-care-experience",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-routine-consultation",
+    "category": "operational",
+    "title": "日常护理需求沟通",
+    "content": "日常护理需求沟通在晴园美学上海演示店安排30分钟。内容包括聊清护理目标、现有习惯、希望投入的时间与预算，再介绍单次护理菜单。服务方向是不确定选什么项目的客户；不替代医学评估。演示单次价0元，演示常规价0元；按次体验，不要求办卡，不包含额外购买。可继续了解：先说最想了解的一个问题就好，不用填整份档案。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "日常护理需求沟通",
+        "日常护理",
+        "咨询服务"
+      ],
+      "questions": [
+        "日常护理需求沟通是什么",
+        "日常护理需求沟通多少钱",
+        "日常护理需求沟通包括什么步骤"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "routine-consultation",
+          "kind": "Project",
+          "name": "日常护理需求沟通"
+        },
+        {
+          "key": "consultation-category",
+          "kind": "Category",
+          "name": "咨询服务"
+        },
+        {
+          "key": "concern-routine-consultation",
+          "kind": "Concern",
+          "name": "日常护理"
+        }
+      ],
+      "relations": [
+        {
+          "source": "routine-consultation",
+          "target": "consultation-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "routine-consultation",
+          "target": "concern-routine-consultation",
+          "kind": "RELATED_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-ipl",
+    "category": "medical",
+    "title": "光子嫩肤咨询",
+    "content": "光子嫩肤通常指强脉冲光IPL方向，使用过滤后的宽谱光；它不是补水面膜，也不等于单一波长的激光。公开产品资料把IPL用于光嫩肤等皮肤外观相关方向。具体用途和结果取决于设备与评估，不能把一个名称理解为所有设备都能做同样的事。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价680元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://lumenis.com/aesthetics/products/m22/；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "光子嫩肤",
+        "光子嫩肤项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "ipl",
+          "kind": "Project",
+          "name": "光子嫩肤咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "ipl",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://lumenis.com/aesthetics/products/m22/"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "questions": [
+        "光子嫩肤咨询是什么",
+        "光子嫩肤咨询和其他项目区别",
+        "光子嫩肤咨询多少钱"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-rf",
+    "category": "medical",
+    "title": "射频紧致咨询",
+    "content": "射频类项目通过射频能量在组织中产生热作用，是能量类医学美容方向。热玛吉是其中的品牌名称，不是所有射频设备的通称。与光子侧重光能、超声侧重声能不同，射频使用射频能量；不能据此在线判定哪一种更适合个人。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价9800元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin；模拟科普复核不是医学批准，国外资料不是国内注册证明；品牌技术来源：https://ca.thermage.com/",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "热玛吉",
+        "射频类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "rf",
+          "kind": "Project",
+          "name": "射频紧致咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "rf",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin",
+        "https://ca.thermage.com/"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "questions": [
+        "射频紧致咨询是什么",
+        "射频紧致咨询和其他项目区别",
+        "射频紧致咨询多少钱"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-ultrasound",
+    "category": "medical",
+    "title": "超声紧致咨询",
+    "content": "超声类紧致项目使用声能作用于组织；射频类使用射频能量，两者不是同一种技术。超声刀、超声炮等市场名称不能代替具体设备型号、适用范围和专业评估。面部紧致、身体塑形也不能混用同一份设备说明。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价6800元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "超声",
+        "超声类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "ultrasound",
+          "kind": "Project",
+          "name": "超声紧致咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "ultrasound",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "questions": [
+        "超声紧致咨询是什么",
+        "超声紧致咨询和其他项目区别",
+        "超声紧致咨询多少钱"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-skin-injection",
+    "category": "medical",
+    "title": "水光类咨询",
+    "content": "水光类通常是注射方向，部分产品涉及透明质酸类成分；它与表面使用精华、面膜的补水护理不同。水光是市场用语，产品、组成和批准用途需要分别核对，也不能把用于容量填充的凝胶当成所有水光产品。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价1280元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://wjw.beijing.gov.cn/jyt2023/jytjksh/202604/t20260409_4577208.html；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "水光",
+        "水光类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "skin-injection",
+          "kind": "Project",
+          "name": "水光类咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "skin-injection",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://wjw.beijing.gov.cn/jyt2023/jytjksh/202604/t20260409_4577208.html"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "CN",
+      "questions": [
+        "水光类咨询是什么",
+        "水光类咨询和其他项目区别",
+        "水光类咨询多少钱"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-botulinum",
+    "category": "medical",
+    "title": "肉毒毒素咨询",
+    "content": "肉毒毒素类是药物注射方向，通过影响肌肉收缩来暂时改善某些表情纹的外观；它不是用来填充体积的填充剂。和透明质酸填充相比，作用方式不同，不能互相替代。品牌、适应证、风险及个人选择由专业人员核对。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价880元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "肉毒",
+        "肉毒毒素类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "botulinum",
+          "kind": "Project",
+          "name": "肉毒毒素咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "botulinum",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "questions": [
+        "肉毒毒素咨询是什么",
+        "肉毒毒素咨询和其他项目区别",
+        "肉毒毒素咨询多少钱"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-filler",
+    "category": "medical",
+    "title": "透明质酸填充咨询",
+    "content": "透明质酸填充剂属于注射填充方向，部分产品用于改善特定部位的容量或轮廓。它与外用保湿品、水光类注射、肉毒毒素的用途并不相同。注射涉及医疗风险，包括血管相关严重风险，不能因材料名称常见就认为零风险。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价1980元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "玻尿酸",
+        "透明质酸填充类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "filler",
+          "kind": "Project",
+          "name": "透明质酸填充咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "filler",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "questions": [
+        "透明质酸填充咨询是什么",
+        "透明质酸填充咨询和其他项目区别",
+        "透明质酸填充咨询多少钱"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-laser-overview",
+    "category": "medical",
+    "title": "激光项目咨询",
+    "content": "医用激光通过集中的光能作用于目标组织，不同设备用途不同。皮秒、长脉冲、点阵等名称涉及不同技术或作用方式，不能只用“激光”两个字决定项目。咨询时先明确关注点，再问设备名称、用途和恢复安排。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价980元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/radiation-emitting-products/surgical-and-therapeutic-products/medical-lasers；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "激光类项目了解",
+        "激光",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "激光项目咨询是什么",
+        "激光项目咨询和其他项目区别",
+        "激光项目咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "laser-overview",
+          "kind": "Project",
+          "name": "激光项目咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-laser-overview",
+          "kind": "Concern",
+          "name": "激光"
+        }
+      ],
+      "relations": [
+        {
+          "source": "laser-overview",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "laser-overview",
+          "target": "concern-laser-overview",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/radiation-emitting-products/surgical-and-therapeutic-products/medical-lasers"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-fractional-overview",
+    "category": "medical",
+    "title": "点阵项目咨询",
+    "content": "点阵是把能量作用区分成多个微小区域的方式，公开设备资料中有非剥脱点阵激光。点阵与光子IPL不是同一个技术标签；也不能把所有点阵项目视为同一恢复体验。设备、能量类型和是否剥脱应在面诊时核对。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价1880元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://lumenis.com/aesthetics/products/m22/；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "点阵类项目了解",
+        "点阵",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "点阵项目咨询是什么",
+        "点阵项目咨询和其他项目区别",
+        "点阵项目咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "fractional-overview",
+          "kind": "Project",
+          "name": "点阵项目咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-fractional-overview",
+          "kind": "Concern",
+          "name": "点阵"
+        }
+      ],
+      "relations": [
+        {
+          "source": "fractional-overview",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "fractional-overview",
+          "target": "concern-fractional-overview",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://lumenis.com/aesthetics/products/m22/"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-microneedling-overview",
+    "category": "medical",
+    "title": "微针项目咨询",
+    "content": "微针器械通过细小针体在皮肤形成微小穿刺，涉及医疗器械和组织作用。普通微针与射频微针并不相同，后者还结合射频能量。微针不是在家随意使用的护理步骤，也不能默认可用于导入任何精华或药物。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价980元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "微针类项目了解",
+        "微针",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "微针项目咨询是什么",
+        "微针项目咨询和其他项目区别",
+        "微针项目咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "microneedling-overview",
+          "kind": "Project",
+          "name": "微针项目咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-microneedling-overview",
+          "kind": "Concern",
+          "name": "微针"
+        }
+      ],
+      "relations": [
+        {
+          "source": "microneedling-overview",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "microneedling-overview",
+          "target": "concern-microneedling-overview",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-rf-microneedling-overview",
+    "category": "medical",
+    "title": "射频微针咨询",
+    "content": "射频微针结合微针穿刺与射频能量，不能简单理解为普通微针多加一点保湿。FDA公开安全信息报告过烧伤、瘢痕、脂肪丢失及神经损伤等严重并发症，设备和操作者经验需要专业核对。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价2280元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "射频微针类项目了解",
+        "射频微针",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "射频微针咨询是什么",
+        "射频微针咨询和其他项目区别",
+        "射频微针咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "rf-microneedling-overview",
+          "kind": "Project",
+          "name": "射频微针咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-rf-microneedling-overview",
+          "kind": "Concern",
+          "name": "射频微针"
+        }
+      ],
+      "relations": [
+        {
+          "source": "rf-microneedling-overview",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "rf-microneedling-overview",
+          "target": "concern-rf-microneedling-overview",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-hair-removal-overview",
+    "category": "medical",
+    "title": "激光脱毛咨询",
+    "content": "激光脱毛使用光能作用于毛囊相关目标。咨询需要讨论毛发颜色、皮肤状态、预期次数和可能风险，不能承诺一次永久完成。身体部位、设备和个人评估都会影响安排，报价也应明确对应部位。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价298元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-preparation；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "脱毛类项目了解",
+        "脱毛",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "激光脱毛咨询是什么",
+        "激光脱毛咨询和其他项目区别",
+        "激光脱毛咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "hair-removal-overview",
+          "kind": "Project",
+          "name": "激光脱毛咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-hair-removal-overview",
+          "kind": "Concern",
+          "name": "脱毛"
+        }
+      ],
+      "relations": [
+        {
+          "source": "hair-removal-overview",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "hair-removal-overview",
+          "target": "concern-hair-removal-overview",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.aad.org/public/cosmetic/hair-removal/laser-hair-removal-preparation"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-contouring-overview",
+    "category": "medical",
+    "title": "体形管理咨询",
+    "content": "非侵入体形项目可能使用冷、热、光或声能改变特定部位的外观，与减重治疗不同。FDA明确此类项目不治疗肥胖，也不会带来减重的健康获益。单次体验不保证达到期望外观，必须核对具体设备与部位。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。虚构项目演示起价1680元，仅用于报价界面讲解；不同范围另行说明，不作为真实报价或治疗安排。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "体形相关项目了解",
+        "体形",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "体形管理咨询是什么",
+        "体形管理咨询和其他项目区别",
+        "体形管理咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "contouring-overview",
+          "kind": "Project",
+          "name": "体形管理咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-contouring-overview",
+          "kind": "Concern",
+          "name": "体形"
+        }
+      ],
+      "relations": [
+        {
+          "source": "contouring-overview",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "contouring-overview",
+          "target": "concern-contouring-overview",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/non-invasive-body-contouring-technologies"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-pigment-consultation",
+    "category": "medical",
+    "title": "色素困扰咨询",
+    "content": "色素困扰要先区分具体问题，而不是看到“斑”就选择同一台设备。公开设备资料列有不同的光、激光模块与用途。面诊时可询问问题判断、设备选择依据、可能风险和预期，不在线给个人定祛斑方案。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://lumenis.com/aesthetics/products/m22/；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "色素困扰咨询入口",
+        "色素",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "色素困扰咨询是什么",
+        "色素困扰咨询和其他项目区别",
+        "色素困扰咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "pigment-consultation",
+          "kind": "Project",
+          "name": "色素困扰咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-pigment-consultation",
+          "kind": "Concern",
+          "name": "色素"
+        }
+      ],
+      "relations": [
+        {
+          "source": "pigment-consultation",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "pigment-consultation",
+          "target": "concern-pigment-consultation",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://lumenis.com/aesthetics/products/m22/"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-scar-consultation",
+    "category": "medical",
+    "title": "瘢痕困扰咨询",
+    "content": "瘢痕相关咨询先沟通位置、外观目标与既往体验，再由专业人员评估。微针等部分器械有特定获准用途，但不能由“瘢痕”一个词直接选择操作或承诺消除。沟通时应同时了解恢复安排与风险。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "瘢痕困扰咨询入口",
+        "瘢痕",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "瘢痕困扰咨询是什么",
+        "瘢痕困扰咨询和其他项目区别",
+        "瘢痕困扰咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "scar-consultation",
+          "kind": "Project",
+          "name": "瘢痕困扰咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-scar-consultation",
+          "kind": "Concern",
+          "name": "瘢痕"
+        }
+      ],
+      "relations": [
+        {
+          "source": "scar-consultation",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "scar-consultation",
+          "target": "concern-scar-consultation",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-texture-consultation",
+    "category": "medical",
+    "title": "肤质困扰咨询",
+    "content": "肤质是一个宽泛的关注方向，外用生活护理与能量或注射医疗项目是不同路径。先说想了解的外观目标，再核对项目技术、设备与产品，不把“肤质改善”当成效果保证。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://lumenis.com/aesthetics/products/m22/；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "肤质困扰咨询入口",
+        "肤质",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "肤质困扰咨询是什么",
+        "肤质困扰咨询和其他项目区别",
+        "肤质困扰咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "texture-consultation",
+          "kind": "Project",
+          "name": "肤质困扰咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-texture-consultation",
+          "kind": "Concern",
+          "name": "肤质"
+        }
+      ],
+      "relations": [
+        {
+          "source": "texture-consultation",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "texture-consultation",
+          "target": "concern-texture-consultation",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://lumenis.com/aesthetics/products/m22/"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "catalog-fine-line-consultation",
+    "category": "medical",
+    "title": "细纹困扰咨询",
+    "content": "细纹相关方向包括不同的能量或注射技术。肉毒毒素关注肌肉收缩相关的表情纹，填充剂关注特定的容量与轮廓，两者不是同一种项目。具体细纹类型与个人选择仍需面诊。上海演示店设置40分钟项目沟通，咨询演示收费0元。先聊关注方向，再说明技术、产品和设备核对问题，讨论费用组成和可能风险；当天可以只咨询、不做治疗。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more；模拟科普复核不是医学批准，国外资料不是国内注册证明",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "细纹困扰咨询入口",
+        "细纹",
+        "医学美容咨询"
+      ],
+      "questions": [
+        "细纹困扰咨询是什么",
+        "细纹困扰咨询和其他项目区别",
+        "细纹困扰咨询多少钱"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification"
+      ],
+      "handoff_reasons": [
+        "个人医学评估",
+        "门店实际供给未核验"
+      ],
+      "entities": [
+        {
+          "key": "fine-line-consultation",
+          "kind": "Project",
+          "name": "细纹困扰咨询"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        },
+        {
+          "key": "concern-fine-line-consultation",
+          "kind": "Concern",
+          "name": "细纹"
+        }
+      ],
+      "relations": [
+        {
+          "source": "fine-line-consultation",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        },
+        {
+          "source": "fine-line-consultation",
+          "target": "concern-fine-line-consultation",
+          "kind": "RELATED_TO"
+        }
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global"
+    }
+  },
+  {
+    "knowledge_key": "consultation-process",
+    "category": "operational",
+    "title": "首次咨询怎么进行",
+    "content": "首次到店可预留40分钟：前10分钟聊清关注点和预算，中间20分钟介绍相关方向、查看菜单和费用，最后10分钟整理问题与下一步意向。生活护理可另选单次体验；医美方向转专业面诊。线上先提交咨询申请，门店确认时间后才算预约确认。不确定项目也能先来聊，不要求当天消费。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "咨询流程",
+        "第一次到店",
+        "顺序"
+      ],
+      "questions": [
+        "首次咨询怎么进行？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-store-information",
+    "category": "operational",
+    "title": "演示门店与营业安排",
+    "content": "晴园美学上海花园体验店是本地虚构门店，营业设定为每天10:00–20:00，最后一组咨询19:00开始。店内设接待区、独立沟通室与生活护理室，可选择安静沟通。地点为上海演示街区，不能实际导航或到店；这是美丽田园项目的产品演示，所有预约仅模拟。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "门店",
+        "营业时间",
+        "上海",
+        "在哪",
+        "地址"
+      ],
+      "questions": [
+        "演示门店与营业安排？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-care-prices",
+    "category": "operational",
+    "title": "生活护理演示价格表",
+    "content": "基础补水护理60分钟，体验298元、常规398元；清洁护理50分钟，体验258元、常规328元；舒缓护理60分钟，体验338元、常规428元；眼周护理45分钟268元；手部护理40分钟188元；背部护理60分钟358元；芳香放松75分钟458元。均为上海虚构门店单次演示价格，没有强制搭配，不是美丽田园真实报价。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "价格",
+        "多少钱",
+        "预算",
+        "收费",
+        "补水",
+        "清洁"
+      ],
+      "questions": [
+        "生活护理演示价格表？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-hydration-cleansing",
+    "category": "operational",
+    "title": "补水和清洁怎么比较",
+    "content": "补水护理侧重外用保湿精华与保湿面膜，演示60分钟298元；清洁护理侧重卸妆、分区清洁与清洁面膜，演示50分钟258元。两者都以保湿收尾，不包含针清或注射。选择了解方向可以看更关心保湿步骤还是清洁体验，也可以只先咨询。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "补水",
+        "清洁",
+        "区别",
+        "比较"
+      ],
+      "questions": [
+        "补水和清洁怎么比较？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-300-budget",
+    "category": "operational",
+    "title": "300元预算如何了解护理",
+    "content": "按上海演示价，300元以内可比较补水298元、清洁258元、眼周268元和手部188元；价格分别对应单次护理，不要求办卡。补水与清洁更便于了解面部基础护理，眼周和手部是局部体验。不为凑预算拼套餐，可以先挑想了解的步骤，具体个人医疗问题另由专业人员处理。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "300",
+        "预算",
+        "便宜",
+        "单次"
+      ],
+      "questions": [
+        "300元预算如何了解护理？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-500-budget",
+    "category": "operational",
+    "title": "500元预算与套餐选择",
+    "content": "上海演示价500元以内有补水298元、舒缓338元、背部358元和芳香放松458元等单次体验。首次不必购买疗程或会员套餐，可以先了解一项内容；护理、医美咨询与医疗治疗分别说明，不把低价体验当成治疗套餐。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "500",
+        "预算",
+        "套餐",
+        "办卡"
+      ],
+      "questions": [
+        "500元预算与套餐选择？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-no-membership",
+    "category": "operational",
+    "title": "不办卡可以吗",
+    "content": "可以按次了解或体验，第一次不要求办卡、充值或购买套装。菜单里列出单次内容、时长和演示价；想先咨询也可以，咨询演示收费0元。顾问先回答问题，客户拒绝营销后停止邀约，不反复推销。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "办卡",
+        "充值",
+        "强制消费",
+        "推销",
+        "付款"
+      ],
+      "questions": [
+        "不办卡可以吗？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-appointment-fee",
+    "category": "operational",
+    "title": "预约与订金",
+    "content": "演示咨询预约不收订金、不需要先付款；提交前核对称呼、联系方式、门店、期望时间和关注方向，客户明确确认后才提交申请。申请处于待门店确认，具体是否可约以门店处理后的状态为准。聊天说想去不等于已完成预约。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "预约",
+        "订金",
+        "付款",
+        "是否收费"
+      ],
+      "questions": [
+        "预约与订金？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-arrival-preparation",
+    "category": "operational",
+    "title": "到店准备和带妆",
+    "content": "生活护理演示可以带妆到店，菜单已含卸妆和清洁。第一次可提前10分钟到店，穿着以舒适为主；不用在聊天里发送身份证、病历或照片。不确定方向可只带几个问题，正式身份与必要信息在门店合适的流程核实。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "到店准备",
+        "带妆",
+        "需要带什么",
+        "卸妆"
+      ],
+      "questions": [
+        "到店准备和带妆？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-duration",
+    "category": "operational",
+    "title": "午休和下班时间安排",
+    "content": "补水演示60分钟、清洁50分钟、手部40分钟；首次沟通可另预留10分钟。午休时间紧可以先做30分钟需求沟通，不把咨询和护理挤成同一时长。晚上营业设定至20:00，19:00最后咨询，实际时段需门店确认。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "多久",
+        "时长",
+        "午休",
+        "下班",
+        "时间"
+      ],
+      "questions": [
+        "午休和下班时间安排？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-first-not-sure",
+    "category": "operational",
+    "title": "不知道选哪个项目",
+    "content": "不确定项目时，先从希望了解的目标、想投入的时间和预算聊起。生活护理可先比较补水与清洁；想了解医美可先弄清技术、费用和面诊问题，不需要现在选定治疗。首次咨询演示收费0元、40分钟，可以先了解后再决定。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "不确定",
+        "第一次",
+        "选哪个",
+        "先咨询"
+      ],
+      "questions": [
+        "不知道选哪个项目？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-split-care-medical",
+    "category": "operational",
+    "title": "生活美容与医疗美容区别",
+    "content": "本演示中生活护理是清洁、外用保湿、面膜等体验，不包括破皮注射或医疗设备治疗。医美咨询讨论能量类、注射类等医学方向，需要另核对机构、医生、产品设备和个人评估。两条路径都可以先了解，不把普通护理宣传成医疗疗效。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "美容",
+        "医美",
+        "区别",
+        "护理"
+      ],
+      "questions": [
+        "生活美容与医疗美容区别？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-customer-choice",
+    "category": "operational",
+    "title": "只了解不预约",
+    "content": "当然可以，先把问题聊清楚就好。无需留联系方式或预约，顾问继续回答当前关注的方向；客户明确拒绝预约或推销后停止邀请。之后想继续，也可以从刚才的话题接着问。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "先了解",
+        "不预约",
+        "推销",
+        "拒绝"
+      ],
+      "questions": [
+        "只了解不预约？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-bundle-choice",
+    "category": "operational",
+    "title": "清洁和补水能一起体验吗",
+    "content": "演示中可以分别了解，也可以询问门店安排连续两项；清洁50分钟258元、补水60分钟298元，分开按单次菜单说明。不给出先后治疗方案，也不把两项相加就当自动套餐或折扣。客户确认前可删掉不需要的项，安排需门店核实。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "补水",
+        "清洁",
+        "一起",
+        "套餐"
+      ],
+      "questions": [
+        "清洁和补水能一起体验吗？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-care-expectations",
+    "category": "operational",
+    "title": "护理一次能有什么效果",
+    "content": "生活护理演示主要帮助客户了解清洁、保湿产品触感与服务过程，可以在结束后反馈体验。不会承诺一次祛斑、去皱、治痘、永久紧致或治疗过敏。是否继续以实际感受和专业说明为依据，无需现场买疗程。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "护理效果",
+        "一次",
+        "体验",
+        "疗程"
+      ],
+      "questions": [
+        "护理一次能有什么效果？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-aftercare-questions",
+    "category": "operational",
+    "title": "医美面诊应该问什么",
+    "content": "先问具体项目技术、医生与机构资质、产品和设备名称及批准用途，再问预计费用包含什么、可能风险、恢复安排与出现问题的联系渠道。价格要明确是咨询费、项目费还是附加费用。不需要在普通聊天提交病历；个体医疗情况在专业面诊沟通。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "面诊",
+        "医生",
+        "注意事项",
+        "问什么",
+        "恢复",
+        "风险"
+      ],
+      "questions": [
+        "医美面诊应该问什么？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-medical-fees",
+    "category": "operational",
+    "title": "医美演示报价菜单",
+    "content": "上海虚构场景：医美项目咨询40分钟收费0元；光子演示起价680元，水光类1280元，肉毒毒素类880元，透明质酸填充1980元，射频紧致9800元，超声紧致6800元，射频微针2280元。均是虚构价格，用于产品演示，不代表实际治疗报价，也不包含剂量、发数、支数或治疗授权。报价范围和额外费用应在面诊后单独列清。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "医美价格",
+        "多少钱",
+        "光子",
+        "水光",
+        "热玛吉",
+        "超声",
+        "玻尿酸",
+        "收费"
+      ],
+      "questions": [
+        "医美演示报价菜单？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-provider-team",
+    "category": "operational",
+    "title": "演示接待团队",
+    "content": "上海演示场景由虚构顾问林予、沈乔负责需求沟通，前台周宁核对申请和到店记录，店长陈禾负责运营协调；医学咨询角色许澄解释项目资料与专业面诊问题。以上人员与岗位均为演练设定，没有真实执业资格或真实医生可约承诺。顾问不会替客户选择治疗或确认意向。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "顾问",
+        "医生",
+        "接待",
+        "人员"
+      ],
+      "questions": [
+        "演示接待团队？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-rebooking",
+    "category": "operational",
+    "title": "变更时间与取消",
+    "content": "演示申请可以查看状态；门店提出新时间后，需要客户再次接受，接受之前保留原安排。客户取消需在预约记录明确确认，聊天中随口提到取消不会自动执行。取消不产生真实扣款或退款，已到店记录不能当成尚未到店的预约取消。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "改约",
+        "取消",
+        "变更时间"
+      ],
+      "questions": [
+        "变更时间与取消？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-intention-change",
+    "category": "operational",
+    "title": "到店还能换想了解的项目吗",
+    "content": "可以，到店后顾问先保留最初意向，再记录新的沟通方向；不确定也可以继续比较。新增意向版本要给客户审阅、本人确认或拒绝，顾问不能代确认。咨询意向确认不等于治疗同意、合同签署或付款。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "换项目",
+        "到店",
+        "意向",
+        "确认"
+      ],
+      "questions": [
+        "到店还能换想了解的项目吗？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-followup",
+    "category": "operational",
+    "title": "咨询之后怎么跟进",
+    "content": "演示中顾问可以提出站内回访计划，客户逐次同意后才安排；可以拒绝、取消或暂停，暂停只能由客户恢复。反馈保存在本人关联记录中，不代表已打电话或发短信，也不默认同意外部联系。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "回访",
+        "跟进",
+        "咨询之后"
+      ],
+      "questions": [
+        "咨询之后怎么跟进？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-privacy",
+    "category": "operational",
+    "title": "普通咨询需要留联系方式吗",
+    "content": "普通问题不用留手机号、姓名或病历，可以直接提问。只有准备提交咨询申请时才进入联系方式核验和内容确认；联系方式与业务记录本地加密保存，不发给回答模型。门店人员只能按授权查看关联记录。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "隐私",
+        "联系方式",
+        "留手机",
+        "个人信息"
+      ],
+      "questions": [
+        "普通咨询需要留联系方式吗？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-products",
+    "category": "operational",
+    "title": "护理用什么产品",
+    "content": "补水演示采用虚构的晴园水润系列外用精华与保湿面膜，清洁演示采用虚构晴园净澈系列卸妆、洁面与清洁面膜。产品名是场景设定，没有真实品牌注册或功效证明；菜单提供触感和步骤说明，不宣称医药作用或给出成分疗效。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "产品",
+        "精华",
+        "面膜",
+        "什么品牌",
+        "补水",
+        "清洁"
+      ],
+      "questions": [
+        "护理用什么产品？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-objection-expensive",
+    "category": "operational",
+    "title": "觉得价格高怎么聊",
+    "content": "可以先把单次服务包含的步骤和时长看清楚，再比较不同菜单；不要求因为来咨询就购买。上海演示补水298元、清洁258元、手部188元，有不同价格的了解入口。客户只想先了解时，继续答疑，不用限时优惠或制造焦虑推动购买。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "太贵",
+        "贵",
+        "便宜",
+        "价格",
+        "预算"
+      ],
+      "questions": [
+        "觉得价格高怎么聊？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-compare-energy",
+    "category": "medical",
+    "title": "光子、射频和超声有什么区别",
+    "content": "光子IPL使用光能，射频使用射频能量，超声使用声能，技术类型不同。光子与射频、超声并不是补水护理的不同名字。比较时先明确关注方向，再核对具体设备与用途；不能仅凭名称比较谁更强、谁更适合个人。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://lumenis.com/aesthetics/products/m22/、https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin；仅模拟科普复核",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "光子",
+        "热玛吉",
+        "射频",
+        "超声",
+        "区别",
+        "比较"
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://lumenis.com/aesthetics/products/m22/",
+        "https://www.aad.org/public/cosmetic/younger-looking/firm-sagging-skin"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "stage": "comparison",
+      "questions": [
+        "光子、射频和超声有什么区别？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-compare-water-filler",
+    "category": "medical",
+    "title": "水光和玻尿酸填充的区别",
+    "content": "水光类与透明质酸填充都可能涉及透明质酸相关材料，但用途与制剂不同。水光是注射护理的市场名称；填充剂关注特定部位的容量或轮廓，不能看到“玻尿酸”就把两者互换。具体产品和用途需逐一核对。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://wjw.beijing.gov.cn/jyt2023/jytjksh/202604/t20260409_4577208.html、https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more；仅模拟科普复核",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "水光",
+        "玻尿酸",
+        "填充",
+        "区别"
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://wjw.beijing.gov.cn/jyt2023/jytjksh/202604/t20260409_4577208.html",
+        "https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "stage": "comparison",
+      "questions": [
+        "水光和玻尿酸填充的区别？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-compare-toxin-filler",
+    "category": "medical",
+    "title": "肉毒毒素和填充的区别",
+    "content": "肉毒毒素是影响肌肉收缩的药物方向，填充剂是容量或轮廓相关材料方向；它们不是同一种注射项目。两者都需专业评估与风险说明，不根据聊天给出联合方案。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more；仅模拟科普复核",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "肉毒",
+        "填充",
+        "玻尿酸",
+        "区别"
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/consumers/consumer-updates/dermal-filler-dos-and-donts-wrinkles-lips-and-more"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "stage": "comparison",
+      "questions": [
+        "肉毒毒素和填充的区别？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-compare-hydration-water",
+    "category": "medical",
+    "title": "补水护理和水光的区别",
+    "content": "补水护理是外用清洁、精华和面膜的生活护理；水光类是注射方向，涉及皮肤穿刺和具体产品。两者不只是价格不同，服务路径、风险和资质要求也不同。想先了解外用保湿不必跳到注射项目。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://wjw.beijing.gov.cn/jyt2023/jytjksh/202604/t20260409_4577208.html；仅模拟科普复核",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "补水",
+        "水光",
+        "区别"
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://wjw.beijing.gov.cn/jyt2023/jytjksh/202604/t20260409_4577208.html"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "stage": "comparison",
+      "questions": [
+        "补水护理和水光的区别？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-compare-ipl-laser",
+    "category": "medical",
+    "title": "光子和激光的区别",
+    "content": "光子IPL是强脉冲光方向，激光是另一种光技术；M22平台包含IPL和不同激光模块，平台名不等于单一项目。比较要核对具体模块和用途，不能把光子、皮秒、点阵当成同义词。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://lumenis.com/aesthetics/products/m22/、https://www.fda.gov/radiation-emitting-products/surgical-and-therapeutic-products/medical-lasers；仅模拟科普复核",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "光子",
+        "激光",
+        "点阵",
+        "皮秒",
+        "区别"
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://lumenis.com/aesthetics/products/m22/",
+        "https://www.fda.gov/radiation-emitting-products/surgical-and-therapeutic-products/medical-lasers"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "stage": "comparison",
+      "questions": [
+        "光子和激光的区别？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-compare-needle-rf",
+    "category": "medical",
+    "title": "微针和射频微针的区别",
+    "content": "普通微针通过针体形成微小穿刺；射频微针还通过针体输送射频能量。后者不是无风险的升级护理，FDA提示过严重并发症，选择前要专业核对设备、用途与风险。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准；公开科普来源：https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices、https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication；仅模拟科普复核",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "微针",
+        "射频微针",
+        "区别"
+      ],
+      "review_scope": "demo_education",
+      "source_type": "authoritative_medical",
+      "source_urls": [
+        "https://www.fda.gov/medical-devices/aesthetic-cosmetic-devices/microneedling-devices",
+        "https://www.fda.gov/medical-devices/safety-communications/potential-risks-certain-uses-radiofrequency-rf-microneedling-fda-safety-communication"
+      ],
+      "source_date": "2026-10-12",
+      "jurisdiction": "global",
+      "stage": "comparison",
+      "questions": [
+        "微针和射频微针的区别？"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-01",
+    "category": "communication",
+    "title": "倾听目标",
+    "content": "先问客户想了解的一个方向，再回答具体内容；避免上来询问一串资料。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "倾听目标"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-02",
+    "category": "communication",
+    "title": "预算沟通",
+    "content": "引用当前演示价和具体服务内容，按客户预算比较单次菜单，不强推套餐。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "预算沟通"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-03",
+    "category": "communication",
+    "title": "价格异议",
+    "content": "认可客户需要比较，拆解包含内容与时间，保留只咨询不购买的选择。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "价格异议"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-04",
+    "category": "communication",
+    "title": "首次犹豫",
+    "content": "先解释到店怎么聊、是否收费与需要多久，不用治疗效果作保证。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "首次犹豫"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-05",
+    "category": "communication",
+    "title": "轻邀请",
+    "content": "仅在客户表达兴趣时问是否想了解预约流程，拒绝后停止邀请。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "轻邀请"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-06",
+    "category": "communication",
+    "title": "换项目",
+    "content": "先接住新的关注点，再比较相关内容，保留最初意向和新意向。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "换项目"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-07",
+    "category": "communication",
+    "title": "医疗边界",
+    "content": "普通科普讲清技术区别，个人风险或适合性交给专业人员，不给处方或剂量。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "医疗边界"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-08",
+    "category": "communication",
+    "title": "时间顾虑",
+    "content": "清楚区分沟通时间与护理时间，不承诺未知的实时可约时段。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "时间顾虑"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-09",
+    "category": "communication",
+    "title": "朋友同行",
+    "content": "可以介绍沟通区场景，各人的资料与申请独立处理，不复用别人的同意。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "朋友同行"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "demo-sales-10",
+    "category": "communication",
+    "title": "回访礼貌",
+    "content": "先获得逐次同意，暂停后不继续邀约，不把站内回访等同电话授权。",
+    "source": "晴园美学虚构门店演示设定；非美丽田园实际供给、报价、人员或医疗批准",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "回访礼貌"
+      ]
+    }
+  }
+]

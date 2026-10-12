@@ -1,0 +1,40 @@
+import type { Answer, Project, VisitorSession } from "../types";
+export const project: Project = {
+  id: "11111111-1111-4111-8111-111111111111",
+  key: "hydration",
+  category: "care",
+  title: "基础补水护理",
+  summary: "模拟公开目录，具体供给由门店核实。",
+  description: "补水与保湿护理了解入口，非真实供给。",
+  topics: ["补水", "保湿"],
+  image_url: "/images/hydration-care-v2.jpg",
+  image_alt: "AI 场景示意",
+  image_provenance: "AI 示意",
+  detail_url: "/#project/11111111-1111-4111-8111-111111111111",
+  source: "合成公开资料",
+  version: 1,
+  simulated: true,
+  valid_until: "2030-01-01T00:00:00Z",
+};
+export const session: VisitorSession = {
+  visitor_id: "visitor-one",
+  store_id: "store-one",
+  store_code: "store-one",
+  store_name: "模拟门店",
+  simulated: true,
+  csrf_token: "synthetic-csrf",
+};
+export const answer: Answer = {
+  message_id: "message",
+  run_id: "run",
+  thread_id: "thread-one",
+  answer: "可先了解护理流程。",
+  intent: "information",
+  funnel_stage: "needs",
+  mode: "generated",
+  projects: [project],
+  evidence: [],
+  handoff_reason: "",
+  handoff: null,
+  action: null,
+};

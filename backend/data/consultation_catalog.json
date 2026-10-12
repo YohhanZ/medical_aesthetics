@@ -1,0 +1,809 @@
+[
+  {
+    "knowledge_key": "catalog-hydration",
+    "category": "operational",
+    "title": "模拟目录：基础补水护理",
+    "content": "【模拟目录，非真实供给】基础补水护理在本地目录中归入“生活美容护理”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。具体服务内容与注意事项需要门店提供已批准的说明，不能据目录名称推断效果。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "基础补水",
+        "基础补水护理",
+        "生活美容护理"
+      ],
+      "entities": [
+        {
+          "key": "hydration",
+          "kind": "Project",
+          "name": "基础补水护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活美容护理"
+        }
+      ],
+      "relations": [
+        {
+          "source": "hydration",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-cleansing",
+    "category": "operational",
+    "title": "模拟目录：清洁护理",
+    "content": "【模拟目录，非真实供给】清洁护理在本地目录中归入“生活美容护理”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。具体服务内容与注意事项需要门店提供已批准的说明，不能据目录名称推断效果。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "清洁",
+        "清洁护理",
+        "生活美容护理"
+      ],
+      "entities": [
+        {
+          "key": "cleansing",
+          "kind": "Project",
+          "name": "清洁护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活美容护理"
+        }
+      ],
+      "relations": [
+        {
+          "source": "cleansing",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-relaxation",
+    "category": "operational",
+    "title": "模拟目录：舒缓护理",
+    "content": "【模拟目录，非真实供给】舒缓护理在本地目录中归入“生活美容护理”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。具体服务内容与注意事项需要门店提供已批准的说明，不能据目录名称推断效果。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "舒缓",
+        "舒缓护理",
+        "生活美容护理"
+      ],
+      "entities": [
+        {
+          "key": "relaxation",
+          "kind": "Project",
+          "name": "舒缓护理"
+        },
+        {
+          "key": "care-category",
+          "kind": "Category",
+          "name": "生活美容护理"
+        }
+      ],
+      "relations": [
+        {
+          "source": "relaxation",
+          "target": "care-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-assessment",
+    "category": "operational",
+    "title": "模拟目录：皮肤状态沟通",
+    "content": "【模拟目录，非真实供给】皮肤状态沟通在本地目录中归入“咨询服务”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。具体服务内容与注意事项需要门店提供已批准的说明，不能据目录名称推断效果。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "皮肤检测",
+        "皮肤状态沟通",
+        "咨询服务"
+      ],
+      "entities": [
+        {
+          "key": "assessment",
+          "kind": "Project",
+          "name": "皮肤状态沟通"
+        },
+        {
+          "key": "consultation-category",
+          "kind": "Category",
+          "name": "咨询服务"
+        }
+      ],
+      "relations": [
+        {
+          "source": "assessment",
+          "target": "consultation-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-ipl",
+    "category": "operational",
+    "title": "模拟目录：光子嫩肤项目了解",
+    "content": "【模拟目录，非真实供给】光子嫩肤项目了解在本地目录中归入“医学美容咨询”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。本条不包含适应证、禁忌证、疗效或个人适合性判断，相关医学问题需审核资料与专业评估。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "光子嫩肤",
+        "光子嫩肤项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "ipl",
+          "kind": "Project",
+          "name": "光子嫩肤项目了解"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "ipl",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-rf",
+    "category": "operational",
+    "title": "模拟目录：射频类项目了解",
+    "content": "【模拟目录，非真实供给】射频类项目了解在本地目录中归入“医学美容咨询”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。本条不包含适应证、禁忌证、疗效或个人适合性判断，相关医学问题需审核资料与专业评估。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "热玛吉",
+        "射频类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "rf",
+          "kind": "Project",
+          "name": "射频类项目了解"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "rf",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-ultrasound",
+    "category": "operational",
+    "title": "模拟目录：超声类项目了解",
+    "content": "【模拟目录，非真实供给】超声类项目了解在本地目录中归入“医学美容咨询”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。本条不包含适应证、禁忌证、疗效或个人适合性判断，相关医学问题需审核资料与专业评估。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "超声",
+        "超声类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "ultrasound",
+          "kind": "Project",
+          "name": "超声类项目了解"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "ultrasound",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-skin-injection",
+    "category": "operational",
+    "title": "模拟目录：水光类项目了解",
+    "content": "【模拟目录，非真实供给】水光类项目了解在本地目录中归入“医学美容咨询”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。本条不包含适应证、禁忌证、疗效或个人适合性判断，相关医学问题需审核资料与专业评估。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "水光",
+        "水光类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "skin-injection",
+          "kind": "Project",
+          "name": "水光类项目了解"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "skin-injection",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-botulinum",
+    "category": "operational",
+    "title": "模拟目录：肉毒毒素类项目了解",
+    "content": "【模拟目录，非真实供给】肉毒毒素类项目了解在本地目录中归入“医学美容咨询”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。本条不包含适应证、禁忌证、疗效或个人适合性判断，相关医学问题需审核资料与专业评估。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "肉毒",
+        "肉毒毒素类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "botulinum",
+          "kind": "Project",
+          "name": "肉毒毒素类项目了解"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "botulinum",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "catalog-filler",
+    "category": "operational",
+    "title": "模拟目录：透明质酸填充类项目了解",
+    "content": "【模拟目录，非真实供给】透明质酸填充类项目了解在本地目录中归入“医学美容咨询”。这里只提供了解入口。门店是否提供、使用何种产品设备、操作人员、收费和可约时间都尚未核验。可以先说明希望了解的内容；不要求立即选定项目。本条不包含适应证、禁忌证、疗效或个人适合性判断，相关医学问题需审核资料与专业评估。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "玻尿酸",
+        "透明质酸填充类项目了解",
+        "医学美容咨询"
+      ],
+      "entities": [
+        {
+          "key": "filler",
+          "kind": "Project",
+          "name": "透明质酸填充类项目了解"
+        },
+        {
+          "key": "medical-category",
+          "kind": "Category",
+          "name": "医学美容咨询"
+        }
+      ],
+      "relations": [
+        {
+          "source": "filler",
+          "target": "medical-category",
+          "kind": "BELONGS_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "faq-first-visit",
+    "category": "operational",
+    "title": "第一次到店需要先确定项目吗？",
+    "content": "【模拟运营答复】第一次咨询可以先谈想了解的方向，不必预先确定细类项目。工作人员再补充信息，并记录意向变化；最初兴趣和到店确认的项目分别保留。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "第一次",
+        "首次",
+        "到店",
+        "项目未定"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-online-application",
+    "category": "operational",
+    "title": "在线预约就是预约成功了吗？",
+    "content": "【模拟运营答复】在线提交的是咨询申请。只有门店确认可约时间后才能称为已确认预约；收到申请编号不代表时段已锁定。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "预约",
+        "申请",
+        "成功",
+        "确认"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-optional-budget",
+    "category": "operational",
+    "title": "不想提供预算还能咨询吗？",
+    "content": "【模拟运营答复】可以继续了解。预算是可选的沟通信息，拒绝提供预算不等于拒绝咨询，也不能据此编造价格或催促成交。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "预算",
+        "不想提供"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-change-interest",
+    "category": "operational",
+    "title": "咨询途中能换项目吗？",
+    "content": "【模拟运营答复】可以更改想了解的方向。新问题优先回应；未经确认的旧意向不能继续用于申请。修改门店、时间或方向后，需要再次由客户明确确认。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "换项目",
+        "更改",
+        "修改",
+        "方向"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-choose-store",
+    "category": "operational",
+    "title": "门店怎么选择？",
+    "content": "【模拟运营答复】先选择实际希望咨询的门店，再读取该门店已审核的公开资料。不同门店不能默认共享供给、价格或客户记录；模拟上海与模拟杭州是隔离演练门店。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "门店",
+        "上海",
+        "杭州",
+        "选择"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-price-components",
+    "category": "operational",
+    "title": "能告诉我具体价格和套餐吗？",
+    "content": "【模拟运营答复】本地没有真实已核验报价，因此不报价格、套餐或折扣。后续有效报价应明确项目、门店、包含内容与有效期；也不承诺线上咨询中不存在的优惠。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "价格",
+        "多少钱",
+        "套餐",
+        "收费",
+        "折扣"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-appointment-information",
+    "category": "operational",
+    "title": "咨询申请需要哪些信息？",
+    "content": "【模拟运营答复】申请草稿应列出门店、咨询方向和期望时间；涉及联系信息时应说明用途。客户查看并明确确认之后才可提交。暂不提供联系方式时仍可以浏览和提问。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "申请",
+        "信息",
+        "联系方式"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-withdraw-interest",
+    "category": "operational",
+    "title": "暂时不想预约可以吗？",
+    "content": "【模拟运营答复】可以，只了解项目也可以。客户拒绝或撤回到店意愿后应停止邀约，不能把浏览、提问或过去的意向当作本次确认。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "不预约",
+        "暂时",
+        "撤回",
+        "拒绝"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-store-hours",
+    "category": "operational",
+    "title": "门店营业时间和地址是什么？",
+    "content": "【模拟运营答复】本地模拟目录没有真实门店地址或营业时间。应由门店核验后发布具体位置和营业时间；当前不编造地图地址或全天营业承诺。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "营业",
+        "地址",
+        "位置",
+        "几点"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-provider-qualification",
+    "category": "operational",
+    "title": "可以指定医生或设备品牌吗？",
+    "content": "【模拟运营答复】可以说明希望了解的人员或品牌，但本地没有真实已核验医生、执业资质、产品注册证或设备供给。不能保证指定人员或设备可用，需门店核验。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "医生",
+        "资质",
+        "设备",
+        "品牌",
+        "注册证"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-complaint-channel",
+    "category": "operational",
+    "title": "咨询有疑问或想投诉怎么办？",
+    "content": "【模拟运营答复】可以提出需要人工处理的事项。系统应明确展示等待处理状态，不假称顾问已接通。真实投诉联系方式和机构处理时限尚未提供，不编造客服电话或处理承诺。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "投诉",
+        "人工",
+        "顾问",
+        "电话"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "faq-contract-payment",
+    "category": "operational",
+    "title": "能在线付款或直接签合同吗？",
+    "content": "【模拟运营答复】这一阶段只处理咨询，不生成付款、合同或退款承诺。客户如有这些实际业务需求，应交给门店核验并通过授权业务流程处理；咨询回答不是合同。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "付款",
+        "合同",
+        "退款",
+        "签约"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "strategy-answer-first",
+    "category": "communication",
+    "title": "先回答再了解需求",
+    "content": "【合成内部沟通策略，非公开医学证据】先直接回应问题，再询问一个与当前问题相关的可选追问；不在问候后连续索取电话、预算和身份。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "基础了解"
+      ],
+      "entities": [
+        {
+          "key": "answer-first",
+          "kind": "Strategy",
+          "name": "先回答再了解需求"
+        },
+        {
+          "key": "scenario-answer-first",
+          "kind": "Scenario",
+          "name": "基础了解"
+        }
+      ],
+      "relations": [
+        {
+          "source": "answer-first",
+          "target": "scenario-answer-first",
+          "kind": "APPLIES_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "strategy-compare-evidence",
+    "category": "communication",
+    "title": "比较项目时说明依据",
+    "content": "【合成内部沟通策略，非公开医学证据】只比较当前门店已审核的公开事实；没有证据时坦诚说明，不夸大效果或把热门项目等同于个人适合。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "项目比较"
+      ],
+      "entities": [
+        {
+          "key": "compare-evidence",
+          "kind": "Strategy",
+          "name": "比较项目时说明依据"
+        },
+        {
+          "key": "scenario-compare-evidence",
+          "kind": "Scenario",
+          "name": "项目比较"
+        }
+      ],
+      "relations": [
+        {
+          "source": "compare-evidence",
+          "target": "scenario-compare-evidence",
+          "kind": "APPLIES_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "strategy-price-concern",
+    "category": "communication",
+    "title": "回应价格顾虑",
+    "content": "【合成内部沟通策略，非公开医学证据】先解释现有报价是否有效、包含什么；没有报价则说明需核验。预算询问可拒绝，不能编造限时促销或名额。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "价格顾虑"
+      ],
+      "entities": [
+        {
+          "key": "price-concern",
+          "kind": "Strategy",
+          "name": "回应价格顾虑"
+        },
+        {
+          "key": "scenario-price-concern",
+          "kind": "Scenario",
+          "name": "价格顾虑"
+        }
+      ],
+      "relations": [
+        {
+          "source": "price-concern",
+          "target": "scenario-price-concern",
+          "kind": "APPLIES_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "strategy-invite-consent",
+    "category": "communication",
+    "title": "识别到店意愿",
+    "content": "【合成内部沟通策略，非公开医学证据】客户明确表示希望到店时再提出申请草稿；说明门店确认后才是预约成功。客户更改或拒绝时撤销旧草稿。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "预约意愿"
+      ],
+      "entities": [
+        {
+          "key": "invite-consent",
+          "kind": "Strategy",
+          "name": "识别到店意愿"
+        },
+        {
+          "key": "scenario-invite-consent",
+          "kind": "Scenario",
+          "name": "预约意愿"
+        }
+      ],
+      "relations": [
+        {
+          "source": "invite-consent",
+          "target": "scenario-invite-consent",
+          "kind": "APPLIES_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "strategy-respect-choice",
+    "category": "communication",
+    "title": "尊重拒绝和方向变化",
+    "content": "【合成内部沟通策略，非公开医学证据】拒绝预约后停止邀约，继续回答问题；不使用外貌羞辱、保证疗效或重复催促。方向变化后保留原始记录并确认最新意向。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "拒绝预约"
+      ],
+      "entities": [
+        {
+          "key": "respect-choice",
+          "kind": "Strategy",
+          "name": "尊重拒绝和方向变化"
+        },
+        {
+          "key": "scenario-respect-choice",
+          "kind": "Scenario",
+          "name": "拒绝预约"
+        }
+      ],
+      "relations": [
+        {
+          "source": "respect-choice",
+          "target": "scenario-respect-choice",
+          "kind": "APPLIES_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "strategy-handoff-honesty",
+    "category": "communication",
+    "title": "如实说明人工处理",
+    "content": "【合成内部沟通策略，非公开医学证据】涉及个人医疗评估、实际写入或缺少证据时说明具体原因，展示等待处理；不暗示已由医生完成判断或顾问正在实时接听。",
+    "source": "本项目合成咨询/运营资料，非美丽田园真实政策、报价或供给；仅本地演练",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "人工交接"
+      ],
+      "entities": [
+        {
+          "key": "handoff-honesty",
+          "kind": "Strategy",
+          "name": "如实说明人工处理"
+        },
+        {
+          "key": "scenario-handoff-honesty",
+          "kind": "Scenario",
+          "name": "人工交接"
+        }
+      ],
+      "relations": [
+        {
+          "source": "handoff-honesty",
+          "target": "scenario-handoff-honesty",
+          "kind": "APPLIES_TO"
+        }
+      ]
+    }
+  },
+  {
+    "knowledge_key": "medical-pending-light",
+    "category": "medical",
+    "title": "待审任务：光电类项目基础知识",
+    "content": "【资料采集任务，不是医学知识】光电类项目基础知识尚缺国内适用说明书、注册核验、权威原文及独立医学审核。本条不含诊疗建议、剂量、适合性或护理指令，禁止对客检索和模型出口。不能以模拟审批代替真实医学批准。",
+    "source": "待补充权威资料；无可用医学证据，不伪造来源",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "光电类项目基础知识"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "medical-pending-injectable",
+    "category": "medical",
+    "title": "待审任务：注射类项目基础知识",
+    "content": "【资料采集任务，不是医学知识】注射类项目基础知识尚缺国内适用说明书、注册核验、权威原文及独立医学审核。本条不含诊疗建议、剂量、适合性或护理指令，禁止对客检索和模型出口。不能以模拟审批代替真实医学批准。",
+    "source": "待补充权威资料；无可用医学证据，不伪造来源",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "注射类项目基础知识"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "medical-pending-risk",
+    "category": "medical",
+    "title": "待审任务：禁忌证与不良反应资料",
+    "content": "【资料采集任务，不是医学知识】禁忌证与不良反应资料尚缺国内适用说明书、注册核验、权威原文及独立医学审核。本条不含诊疗建议、剂量、适合性或护理指令，禁止对客检索和模型出口。不能以模拟审批代替真实医学批准。",
+    "source": "待补充权威资料；无可用医学证据，不伪造来源",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "禁忌证与不良反应资料"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "medical-pending-aftercare",
+    "category": "medical",
+    "title": "待审任务：治疗后护理与异常处理资料",
+    "content": "【资料采集任务，不是医学知识】治疗后护理与异常处理资料尚缺国内适用说明书、注册核验、权威原文及独立医学审核。本条不含诊疗建议、剂量、适合性或护理指令，禁止对客检索和模型出口。不能以模拟审批代替真实医学批准。",
+    "source": "待补充权威资料；无可用医学证据，不伪造来源",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "治疗后护理与异常处理资料"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  }
+]

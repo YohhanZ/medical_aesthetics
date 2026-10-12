@@ -1,0 +1,12 @@
+{
+  "name": "medical-aesthetics",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev:customer",
+    "dev:admin": "npm --prefix frontend run dev:admin",
+    "build": "npm --prefix frontend run build",
+    "test": "npm --prefix frontend run test"
+  }
+}

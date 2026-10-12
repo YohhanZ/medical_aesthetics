@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+psycopg[binary]
+pydantic-settings
+pytest
+httpx
+ruff
+mypy
+neo4j>=5.28,<6
+pymilvus>=2.5.16,<2.6
+langgraph>=1,<2
+cryptography>=46,<48

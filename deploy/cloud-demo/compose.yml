@@ -1,0 +1,179 @@
+name: medical-aesthetics-demo
+
+x-logging: &logging
+  driver: json-file
+  options: {max-size: "5m", max-file: "2"}
+x-common: &common
+  restart: unless-stopped
+  logging: *logging
+  security_opt: ["no-new-privileges:true"]
+  networks: [medical]
+  mem_swappiness: 0
+
+services:
+  postgres:
+    <<: *common
+    image: pgvector/pgvector:0.8.2-pg17
+    mem_limit: 160m
+    memswap_limit: 160m
+    cpus: 0.5
+    environment:
+      POSTGRES_DB: medical_demo
+      POSTGRES_USER: medical_demo
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set demo DB password}
+    command: ["postgres", "-c", "shared_buffers=32MB", "-c", "max_connections=40", "-c", "work_mem=2MB"]
+    volumes: ["postgres:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medical_demo -d medical_demo"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  neo4j:
+    <<: *common
+    image: neo4j:5.26
+    mem_limit: 576m
+    memswap_limit: 576m
+    cpus: 0.75
+    environment:
+      NEO4J_AUTH: neo4j/${GRAPH_PASSWORD:?Set demo graph password}
+      NEO4J_server_memory_heap_initial__size: 128m
+      NEO4J_server_memory_heap_max__size: 256m
+      NEO4J_server_memory_pagecache_size: 64m
+    volumes: ["neo4j:/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+  etcd:
+    <<: *common
+    image: quay.io/coreos/etcd:v3.5.5
+    mem_limit: 96m
+    memswap_limit: 96m
+    cpus: 0.25
+    command: ["etcd", "--advertise-client-urls=http://etcd:2379", "--listen-client-urls=http://0.0.0.0:2379", "--data-dir=/etcd", "--auto-compaction-mode=revision", "--auto-compaction-retention=1000", "--quota-backend-bytes=134217728", "--snapshot-count=10000", "--log-level=warn"]
+    volumes: ["etcd:/etcd"]
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  minio:
+    <<: *common
+    image: minio/minio:RELEASE.2023-03-20T20-16-18Z
+    mem_limit: 128m
+    memswap_limit: 128m
+    cpus: 0.3
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ACCESS_KEY:?Set demo object storage user}
+      MINIO_ROOT_PASSWORD: ${MINIO_SECRET_KEY:?Set demo object storage password}
+      GOMEMLIMIT: 96MiB
+    command: ["minio", "server", "/minio_data", "--console-address", ":9001"]
+    volumes: ["minio:/minio_data"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+  milvus:
+    <<: *common
+    image: milvusdb/milvus:v2.5.27
+    mem_limit: 896m
+    memswap_limit: 896m
+    cpus: 1.5
+    environment: {ETCD_ENDPOINTS: "etcd:2379", MINIO_ADDRESS: "minio:9000", GOMEMLIMIT: "384MiB", GOGC: "50"}
+    command: ["milvus", "run", "standalone"]
+    volumes: ["milvus:/var/lib/milvus", "./runtime/milvus.yaml:/milvus/configs/user.yaml:ro"]
+    depends_on:
+      etcd: {condition: service_healthy}
+      minio: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+  bootstrap:
+    <<: *common
+    restart: "no"
+    image: medical-aesthetics-api:demo-20261013-r2
+    profiles: [setup]
+    mem_limit: 512m
+    memswap_limit: 512m
+    cpus: 1
+    env_file: ["./runtime/bootstrap.env"]
+    command: ["python", "-m", "deployment.bootstrap"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      neo4j: {condition: service_healthy}
+      milvus: {condition: service_healthy}
+  worker:
+    <<: *common
+    image: medical-aesthetics-api:demo-20261013-r2
+    mem_limit: 320m
+    memswap_limit: 320m
+    cpus: 0.75
+    env_file: ["./runtime/worker.env"]
+    command: ["python", "-m", "deployment.worker"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      neo4j: {condition: service_healthy}
+      milvus: {condition: service_healthy}
+  api:
+    <<: *common
+    image: medical-aesthetics-api:demo-20261013-r2
+    mem_limit: 320m
+    memswap_limit: 320m
+    cpus: 1
+    group_add: ["${DOCKER_GID:?Set server Docker socket group}"]
+    env_file: ["./runtime/api.env"]
+    read_only: true
+    tmpfs: ["/tmp:rw,noexec,nosuid,nodev,size=16m,mode=1777"]
+    cap_drop: [ALL]
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      neo4j: {condition: service_healthy}
+      milvus: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8001/health/ready',timeout=5)"]
+      interval: 15s
+      timeout: 8s
+      retries: 12
+  web:
+    <<: *common
+    image: medical-aesthetics-web:demo-20261013-r2
+    mem_limit: 48m
+    memswap_limit: 48m
+    cpus: 0.25
+    ports: ["80:80", "443:443", "8080:443"]
+    volumes: ["./runtime/acme:/var/www/acme:ro", "./runtime/letsencrypt:/etc/letsencrypt:ro"]
+    depends_on: {api: {condition: service_healthy}}
+  challenge:
+    <<: *common
+    restart: "no"
+    image: medical-aesthetics-web:demo-20261013-r2
+    profiles: [tls]
+    mem_limit: 32m
+    memswap_limit: 32m
+    cpus: 0.1
+    ports: ["80:80"]
+    command: ["nginx", "-c", "/etc/nginx/acme.conf", "-g", "daemon off;"]
+    volumes: ["./runtime/acme:/var/www/acme:ro"]
+  certbot:
+    <<: *common
+    restart: "no"
+    image: certbot/certbot:v5.4.0
+    profiles: [tls]
+    mem_limit: 128m
+    memswap_limit: 128m
+    cpus: 0.5
+    volumes: ["./runtime/acme:/var/www/acme", "./runtime/letsencrypt:/etc/letsencrypt", "./runtime/certbot-work:/var/lib/letsencrypt", "./runtime/certbot-logs:/var/log/letsencrypt"]
+
+networks:
+  medical: {}
+volumes:
+  postgres: {}
+  neo4j: {}
+  etcd: {}
+  minio: {}
+  milvus: {}

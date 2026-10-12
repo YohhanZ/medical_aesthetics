@@ -1,0 +1,8 @@
+[
+  {"knowledge_key":"consultation-process","category":"operational","title":"模拟到店咨询流程","content":"【模拟运营资料】客户可以先描述想了解的方向，不必先确定具体项目。在线提交的是咨询申请；门店确认期望时间后才是已确认预约。到店再由工作人员补充资料与咨询意向。","source":"本项目合成运营样例，不代表美丽田园实际政策"},
+  {"knowledge_key":"project-undecided","category":"communication","title":"项目未定时的咨询引导","content":"【合成沟通策略】先回应客户的问题，询问最在意的体验或需求。客户不确定项目时，可以继续了解，也可以提出到店咨询意愿；允许拒绝，不要求立即选择项目或提交联系方式。","source":"本项目合成沟通策略，不冒充真实员工销售经验"},
+  {"knowledge_key":"pricing-boundary","category":"operational","title":"模拟价格咨询边界","content":"【模拟运营资料】没有已核验且有效的门店报价时，不提供具体价格、折扣或套餐承诺。说明需要门店确认项目、供给及有效报价；不得编造限时优惠或名额。","source":"本项目合成运营样例，真实报价尚未提供"},
+  {"knowledge_key":"booking-consent","category":"operational","title":"模拟预约申请确认","content":"【模拟运营资料】客户需查看并明确确认门店、咨询方向与期望时间。修改内容后重新确认；撤回意愿不生成申请。仅浏览项目或咨询价格不等于同意预约。","source":"本项目合成运营样例，不代表真实合同或机构规则"},
+  {"knowledge_key":"respect-refusal","category":"communication","title":"尊重拒绝与方向变化","content":"【合成沟通策略】客户表示暂不预约时停止邀请。客户更改方向时先回应新问题，不能把旧意向当成已确认选择。回答不承诺疗效、不用外貌羞辱制造焦虑。","source":"本项目合成沟通策略"},
+  {"knowledge_key":"medical-review-placeholder","category":"medical","title":"医学资料待审占位","content":"【待审占位，禁止检索和对客回答】尚未导入权威医学摘要、国内注册证或说明书。本条只验证医学内容的独立核验阻断，不包含治疗建议。","source":"无医学证据；待实际资料与独立医学审核"}
+]

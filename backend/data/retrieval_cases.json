@@ -1,0 +1,602 @@
+[
+  {
+    "question": "第一次了解医美，不做项目也能咨询吗？",
+    "expected_key": "qa-entry-01",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "护理咨询和医疗美容咨询有什么不同？",
+    "expected_key": "qa-entry-02",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "浏览服务必须提供手机号吗？",
+    "expected_key": "qa-entry-03",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "现在是人工在回复我吗？",
+    "expected_key": "qa-entry-04",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "我没有明确需求怎么开始？",
+    "expected_key": "qa-entry-05",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "同时想知道流程和价格能问吗？",
+    "expected_key": "qa-entry-06",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "用普通话描述问题可以吗？",
+    "expected_key": "qa-entry-07",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "只咨询会被要求购买吗？",
+    "expected_key": "qa-entry-08",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "非会员能用这个咨询入口吗？",
+    "expected_key": "qa-entry-09",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "聊天能替代医生面诊吗？",
+    "expected_key": "qa-entry-10",
+    "category": "entry",
+    "simulated": true
+  },
+  {
+    "question": "想先看看面部护理的类别",
+    "expected_key": "qa-project-01",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "我也想看身体护理介绍",
+    "expected_key": "qa-project-02",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "同类项目怎么有好多名字？",
+    "expected_key": "qa-project-03",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "想了解抗衰就必须做热玛吉吗？",
+    "expected_key": "qa-project-04",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "我想看色素相关项目入口",
+    "expected_key": "qa-project-05",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "痘痘咨询先不发照片可以吗？",
+    "expected_key": "qa-project-06",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "只想先了解毛孔相关资料",
+    "expected_key": "qa-project-07",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "模拟项目是不是门店实际有的？",
+    "expected_key": "qa-project-08",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "知道设备品牌就算核验了吗？",
+    "expected_key": "qa-project-09",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "我想先保留多个兴趣方向",
+    "expected_key": "qa-project-10",
+    "category": "project",
+    "simulated": true
+  },
+  {
+    "question": "项目对比需要哪些依据？",
+    "expected_key": "qa-compare-01",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "很多人做就适合我吗？",
+    "expected_key": "qa-compare-02",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "是不是价格越高越好？",
+    "expected_key": "qa-compare-03",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "进口就一定更安全吗？",
+    "expected_key": "qa-compare-04",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "跨店项目怎么收费不一样？",
+    "expected_key": "qa-compare-05",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "多个项目联合做会更好吗？",
+    "expected_key": "qa-compare-06",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "别人的前后对比能保证我的结果吗？",
+    "expected_key": "qa-compare-07",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "哪个项目最好？",
+    "expected_key": "qa-compare-08",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "给你预算就能制定方案吗？",
+    "expected_key": "qa-compare-09",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "广告说法怎么验证？",
+    "expected_key": "qa-compare-10",
+    "category": "compare",
+    "simulated": true
+  },
+  {
+    "question": "到店咨询要不要咨询费？",
+    "expected_key": "qa-price-01",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "看价格单要看什么内容？",
+    "expected_key": "qa-price-02",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "项目按什么单位计费？",
+    "expected_key": "qa-price-03",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "网上价格到店也一样吗？",
+    "expected_key": "qa-price-04",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "报价之外还有哪些费用？",
+    "expected_key": "qa-price-05",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "先锁住折扣可以吗？",
+    "expected_key": "qa-price-06",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "以前的优惠现在还有效吗？",
+    "expected_key": "qa-price-07",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "会员有没有专属价？",
+    "expected_key": "qa-price-08",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "能不能先支付一部分？",
+    "expected_key": "qa-price-09",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "可以发一份正式价格说明吗？",
+    "expected_key": "qa-price-10",
+    "category": "price",
+    "simulated": true
+  },
+  {
+    "question": "项目未定能先约咨询吗？",
+    "expected_key": "qa-booking-01",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "提到时间算确认预约吗？",
+    "expected_key": "qa-booking-02",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "提交前我要核对哪些内容？",
+    "expected_key": "qa-booking-03",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "改去另外一家店还能用旧确认吗？",
+    "expected_key": "qa-booking-04",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "预约草稿时间改了会直接提交吗？",
+    "expected_key": "qa-booking-05",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "期望时段可以选择晚上吗？",
+    "expected_key": "qa-booking-06",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "现在就过去能接待吗？",
+    "expected_key": "qa-booking-07",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "看到申请成功提示应该代表什么？",
+    "expected_key": "qa-booking-08",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "提交超时再点一次怎么办？",
+    "expected_key": "qa-booking-09",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "先约咨询后还能改兴趣吗？",
+    "expected_key": "qa-booking-10",
+    "category": "booking",
+    "simulated": true
+  },
+  {
+    "question": "访客对话怎么隔离？",
+    "expected_key": "qa-privacy-01",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "拿旧 thread_id 能继续聊天吗？",
+    "expected_key": "qa-privacy-02",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "基础咨询必须提供身份证姓名吗？",
+    "expected_key": "qa-privacy-03",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "聊天需要上传医疗档案吗？",
+    "expected_key": "qa-privacy-04",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "联系方式会进入模型提示词吗？",
+    "expected_key": "qa-privacy-05",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "任何员工都可以查看客户记录吗？",
+    "expected_key": "qa-privacy-06",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "去了另一家店会自动同步我的资料吗？",
+    "expected_key": "qa-privacy-07",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "上传的图片会变成展示案例吗？",
+    "expected_key": "qa-privacy-08",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "是否必须保留长期兴趣记忆？",
+    "expected_key": "qa-privacy-09",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "资料写错了怎么更正？",
+    "expected_key": "qa-privacy-10",
+    "category": "privacy",
+    "simulated": true
+  },
+  {
+    "question": "怎么查看准确导航位置？",
+    "expected_key": "qa-store-01",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "到店停车是否方便？",
+    "expected_key": "qa-store-02",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "陪同人员可以一起到店吗？",
+    "expected_key": "qa-store-03",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "行动不便到店需要什么安排？",
+    "expected_key": "qa-store-04",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "预约当天迟到如何处理？",
+    "expected_key": "qa-store-05",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "能比确认时间早一些来吗？",
+    "expected_key": "qa-store-06",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "假期营业时间跟平时一样吗？",
+    "expected_key": "qa-store-07",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "我想换一个顾问咨询",
+    "expected_key": "qa-store-08",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "外地客户能先在线了解吗？",
+    "expected_key": "qa-store-09",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "帮我查附近门店地址",
+    "expected_key": "qa-store-10",
+    "category": "store",
+    "simulated": true
+  },
+  {
+    "question": "医生资质怎么核验？",
+    "expected_key": "qa-professional-01",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "是否有有效注册证和说明书？",
+    "expected_key": "qa-professional-02",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "网上查到的医学资料能自动发布吗？",
+    "expected_key": "qa-professional-03",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "为什么不直接回答我能不能做？",
+    "expected_key": "qa-professional-04",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "备孕或哺乳时适合什么项目？",
+    "expected_key": "qa-professional-05",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "过敏体质适合哪些治疗？",
+    "expected_key": "qa-professional-06",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "服药期间能安排治疗吗？",
+    "expected_key": "qa-professional-07",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "之前有治疗记录怎么选项目？",
+    "expected_key": "qa-professional-08",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "年龄小可以做医美吗？",
+    "expected_key": "qa-professional-09",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "能承诺项目绝对安全吗？",
+    "expected_key": "qa-professional-10",
+    "category": "professional",
+    "simulated": true
+  },
+  {
+    "question": "治疗后的护理步骤是什么？",
+    "expected_key": "qa-after-01",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "治疗后异常应该由谁处理？",
+    "expected_key": "qa-after-02",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "帮我看治疗是否成功",
+    "expected_key": "qa-after-03",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "治疗后的随访时间如何确定？",
+    "expected_key": "qa-after-04",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "对结果有疑问想咨询",
+    "expected_key": "qa-after-05",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "你能读取历史治疗记录吗？",
+    "expected_key": "qa-after-06",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "到店后换方向如何记录？",
+    "expected_key": "qa-after-07",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "不同来源的注意事项不一致",
+    "expected_key": "qa-after-08",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "意向最终确定以后会覆盖旧记录吗？",
+    "expected_key": "qa-after-09",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "想安排后续专业咨询",
+    "expected_key": "qa-after-10",
+    "category": "after",
+    "simulated": true
+  },
+  {
+    "question": "想撤回咨询申请怎么处理？",
+    "expected_key": "qa-service-01",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "转人工后已经有顾问接单了吗？",
+    "expected_key": "qa-service-02",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "能只反馈服务问题吗？",
+    "expected_key": "qa-service-03",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "有申请编号就购买了项目吗？",
+    "expected_key": "qa-service-04",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "自动勾选确认可以吗？",
+    "expected_key": "qa-service-05",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "朋友能代我确认申请吗？",
+    "expected_key": "qa-service-06",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "可以把对话转给任何顾问吗？",
+    "expected_key": "qa-service-07",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "现在能直接处理资金交易吗？",
+    "expected_key": "qa-service-08",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "接口失败时为什么不能显示成功？",
+    "expected_key": "qa-service-09",
+    "category": "service",
+    "simulated": true
+  },
+  {
+    "question": "能看看别人的咨询或预约吗？",
+    "expected_key": "qa-service-10",
+    "category": "service",
+    "simulated": true
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "name": "medical-aesthetics-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "customer",
+    "admin"
+  ],
+  "scripts": {
+    "dev:customer": "npm run dev --workspace @ma/customer",
+    "dev:admin": "npm run dev --workspace @ma/admin",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "prettier": "^3.6.2",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8",
+    "vue-tsc": "^2.2.0"
+  }
+}

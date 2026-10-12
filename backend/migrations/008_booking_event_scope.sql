@@ -1,0 +1,16 @@
+ALTER TABLE appointment_event ADD COLUMN tenant_id uuid;
+ALTER TABLE appointment_event ADD COLUMN store_id uuid;
+ALTER TABLE appointment_event ADD COLUMN visitor_id uuid;
+UPDATE appointment_event e SET tenant_id=a.tenant_id,store_id=a.store_id,visitor_id=a.visitor_id FROM appointment a WHERE a.id=e.appointment_id;
+ALTER TABLE appointment_event ALTER COLUMN tenant_id SET NOT NULL;
+ALTER TABLE appointment_event ALTER COLUMN store_id SET NOT NULL;
+ALTER TABLE appointment_event ALTER COLUMN visitor_id SET NOT NULL;
+ALTER TABLE appointment_event ADD CONSTRAINT event_appointment_scope FOREIGN KEY(tenant_id,store_id,visitor_id,appointment_id) REFERENCES appointment(tenant_id,store_id,visitor_id,id);
+ALTER TABLE booking_outbox ADD COLUMN tenant_id uuid;
+ALTER TABLE booking_outbox ADD COLUMN store_id uuid;
+ALTER TABLE booking_outbox ADD COLUMN visitor_id uuid;
+UPDATE booking_outbox e SET tenant_id=a.tenant_id,store_id=a.store_id,visitor_id=a.visitor_id FROM appointment a WHERE a.id=e.appointment_id;
+ALTER TABLE booking_outbox ALTER COLUMN tenant_id SET NOT NULL;
+ALTER TABLE booking_outbox ALTER COLUMN store_id SET NOT NULL;
+ALTER TABLE booking_outbox ALTER COLUMN visitor_id SET NOT NULL;
+ALTER TABLE booking_outbox ADD CONSTRAINT outbox_appointment_scope FOREIGN KEY(tenant_id,store_id,visitor_id,appointment_id) REFERENCES appointment(tenant_id,store_id,visitor_id,id);

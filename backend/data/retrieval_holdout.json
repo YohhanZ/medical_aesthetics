@@ -1,0 +1,157 @@
+[
+  {
+    "question": "只看介绍先不留联系方式，行不行？",
+    "expected_key": "qa-entry-03",
+    "simulated": true
+  },
+  {
+    "question": "你现在是真人在说话还是机器人？",
+    "expected_key": "qa-entry-04",
+    "simulated": true
+  },
+  {
+    "question": "没选定具体项目能先约个咨询么",
+    "expected_key": "qa-booking-01",
+    "simulated": true
+  },
+  {
+    "question": "光子和热玛吉都关注，能一起安排吗",
+    "expected_key": "qa-compare-06",
+    "simulated": true
+  },
+  {
+    "question": "别人做了好看的案例，我也能一样吗",
+    "expected_key": "qa-compare-07",
+    "simulated": true
+  },
+  {
+    "question": "同项目为什么两家门店报的金额不同",
+    "expected_key": "qa-compare-05",
+    "simulated": true
+  },
+  {
+    "question": "只知道设备是进口的，就能说更安全吗",
+    "expected_key": "qa-compare-04",
+    "simulated": true
+  },
+  {
+    "question": "能承诺项目完全没风险吗",
+    "expected_key": "qa-professional-10",
+    "simulated": true
+  },
+  {
+    "question": "备孕阶段适合做哪一个项目",
+    "expected_key": "qa-professional-05",
+    "simulated": true
+  },
+  {
+    "question": "我有过敏史，帮我选择一个治疗",
+    "expected_key": "qa-professional-06",
+    "simulated": true
+  },
+  {
+    "question": "正在服药，能不能先暂停两天做项目",
+    "expected_key": "qa-professional-07",
+    "simulated": true
+  },
+  {
+    "question": "上次已经治疗过，这次能继续加项目吗",
+    "expected_key": "qa-professional-08",
+    "simulated": true
+  },
+  {
+    "question": "年龄还未成年能做吗",
+    "expected_key": "qa-professional-09",
+    "simulated": true
+  },
+  {
+    "question": "有中国注册证的具体型号说明吗",
+    "expected_key": "qa-professional-02",
+    "simulated": true
+  },
+  {
+    "question": "官网上的医学资料为何还需要审核",
+    "expected_key": "qa-professional-03",
+    "simulated": true
+  },
+  {
+    "question": "会员价是不是我也能享受",
+    "expected_key": "qa-price-08",
+    "simulated": true
+  },
+  {
+    "question": "活动过期了能给我延长优惠么",
+    "expected_key": "qa-price-07",
+    "simulated": true
+  },
+  {
+    "question": "能锁定最后一个折扣名额吗",
+    "expected_key": "qa-price-06",
+    "simulated": true
+  },
+  {
+    "question": "报价有没有其他隐藏收费",
+    "expected_key": "qa-price-05",
+    "simulated": true
+  },
+  {
+    "question": "刚确认了草稿，现在要改时间",
+    "expected_key": "qa-booking-05",
+    "simulated": true
+  },
+  {
+    "question": "想从上海改到杭州，要再确认吗",
+    "expected_key": "qa-booking-04",
+    "simulated": true
+  },
+  {
+    "question": "周末晚上这个时间是不是已经有空位",
+    "expected_key": "qa-booking-06",
+    "simulated": true
+  },
+  {
+    "question": "断网后重复点提交会不会重复申请",
+    "expected_key": "qa-booking-09",
+    "simulated": true
+  },
+  {
+    "question": "我说我周末有空，是不是已经预约成功",
+    "expected_key": "qa-booking-02",
+    "simulated": true
+  },
+  {
+    "question": "凭别人的对话编号能看到聊天吗",
+    "expected_key": "qa-privacy-01",
+    "simulated": true
+  },
+  {
+    "question": "退出了，还能靠旧thread_id打开对话吗",
+    "expected_key": "qa-privacy-02",
+    "simulated": true
+  },
+  {
+    "question": "手机号跟预约信息会给外部模型吗",
+    "expected_key": "qa-privacy-05",
+    "simulated": true
+  },
+  {
+    "question": "咨询照片是不是能直接拿去宣传",
+    "expected_key": "qa-privacy-08",
+    "simulated": true
+  },
+  {
+    "question": "有点治疗后的不适，你能确认是正常的吗",
+    "expected_key": "qa-after-02",
+    "simulated": true
+  },
+  {
+    "question": "护理说明跟网上文章冲突，应该信谁",
+    "expected_key": "qa-after-08",
+    "simulated": true
+  },
+  {
+    "question": "只想投诉服务，不要推荐项目给我",
+    "expected_key": "qa-service-03",
+    "simulated": true
+  }
+]

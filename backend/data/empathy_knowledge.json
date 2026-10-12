@@ -1,0 +1,866 @@
+[
+  {
+    "knowledge_key": "comfort-concern-1",
+    "category": "operational",
+    "title": "共情回应：concern（1）",
+    "content": "有顾虑很正常，不用急着做决定。\n\n你更想先了解哪一点？可以先把问题聊清楚。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "concern"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-concern-2",
+    "category": "operational",
+    "title": "共情回应：concern（2）",
+    "content": "听起来你还有些不放心，我们可以慢慢了解。\n\n你最在意的是哪一方面？不必现在就选项目。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "concern"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-budget-1",
+    "category": "operational",
+    "title": "共情回应：budget（1）",
+    "content": "预算上的压力值得被认真考虑，不用勉强自己。\n\n可以先了解内容，也可以暂时不消费。你希望先比较哪一项？",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "budget"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-budget-2",
+    "category": "operational",
+    "title": "共情回应：budget（2）",
+    "content": "价格让你有些犹豫，我们先按你的节奏来。\n\n不用为了这次咨询做购买决定，先把包含内容和费用看清楚就好。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "budget"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-sadness-1",
+    "category": "operational",
+    "title": "共情回应：sadness（1）",
+    "content": "听起来今天有些不好受，先不用考虑项目或预约。\n\n如果你愿意，可以说说今天最让你心累的事情；不想说也没关系。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "sadness"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-sadness-2",
+    "category": "operational",
+    "title": "共情回应：sadness（2）",
+    "content": "听起来最近不太轻松，你不需要马上振作或做决定。\n\n你愿意说说发生了什么，还是更想安静一会儿？",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "sadness"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-appearance-1",
+    "category": "operational",
+    "title": "共情回应：appearance（1）",
+    "content": "被外貌评价影响时，难受是可以理解的，别人的评价不定义你的价值。\n\n不需要通过改变外貌或消费证明自己。你愿意说说现在最在意的是什么吗？",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "appearance"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-appearance-2",
+    "category": "operational",
+    "title": "共情回应：appearance（2）",
+    "content": "听起来这些评价让你有些受伤，先不用急着改变自己。\n\n我们可以先聊你的感受，不把别人的审美当成必须达到的要求。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "appearance"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-frustration-1",
+    "category": "operational",
+    "title": "共情回应：frustration（1）",
+    "content": "听到你的不满了，我们先停下推销和邀约。\n\n你可以只问想了解的内容，也可以先结束对话。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "frustration"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-frustration-2",
+    "category": "operational",
+    "title": "共情回应：frustration（2）",
+    "content": "让你觉得被催促了，我们先放慢节奏。\n\n这次先不讨论购买或预约，你愿意继续提问或暂停都可以。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "frustration"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-pause-1",
+    "category": "operational",
+    "title": "共情回应：pause（1）",
+    "content": "好，我们先暂停，不用现在回复或做决定。\n\n想安静一会儿也没关系，等你愿意时再继续。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "pause"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-pause-2",
+    "category": "operational",
+    "title": "共情回应：pause（2）",
+    "content": "可以，我们先停在这里。\n\n我不会继续追问项目或催预约，你想继续时再说就好。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "pause"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-companionship-1",
+    "category": "operational",
+    "title": "共情回应：companionship（1）",
+    "content": "可以，我可以在这段对话里听你说说，先不谈项目或购买。\n\n你想从哪件事说起？不用一次说完。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "companionship"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-companionship-2",
+    "category": "operational",
+    "title": "共情回应：companionship（2）",
+    "content": "我在这段对话里听着，你可以按自己的节奏说。\n\n最近有什么让你想找个人聊聊的事情？",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "companionship"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-relief-1",
+    "category": "operational",
+    "title": "共情回应：relief（1）",
+    "content": "听到你感觉好些了，很好，我们仍可以慢慢来。\n\n你想继续刚才的话题，还是先休息一会儿？",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "relief"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-relief-2",
+    "category": "operational",
+    "title": "共情回应：relief（2）",
+    "content": "听起来现在轻松一些了，不需要马上做决定。\n\n可以按你的节奏继续，有想了解的问题再问就好。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "relief"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-general-1",
+    "category": "operational",
+    "title": "共情回应：general（1）",
+    "content": "你可以按自己的节奏来，不用急着做选择。\n\n我们可以先聊聊，也可以暂时不讨论项目。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "general"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "comfort-general-2",
+    "category": "operational",
+    "title": "共情回应：general（2）",
+    "content": "先照顾好自己的感受，不需要马上决定。\n\n你愿意说的部分就说，不想展开也没关系。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "public",
+      "topics": [
+        "共情回应",
+        "general"
+      ],
+      "stage": "awareness",
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation"
+      ],
+      "entities": [],
+      "relations": []
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-01",
+    "category": "communication",
+    "title": "内部共情场景：风险担忧",
+    "content": "【内部合成沟通策略】触发：客户担心风险但没有要求个人评估。回应：先接住顾虑，再回答有来源的一般风险；不保证安全或无痛。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "风险担忧"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-01",
+          "kind": "Strategy",
+          "name": "风险担忧"
+        },
+        {
+          "key": "empathy-scene-01",
+          "kind": "Scenario",
+          "name": "客户担心风险但没有要求个人评估"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-01",
+          "target": "empathy-scene-01",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-02",
+    "category": "communication",
+    "title": "内部共情场景：预算压力",
+    "content": "【内部合成沟通策略】触发：客户说预算紧张或负担不起。回应：认可预算限制，说明具体已发布费用，保留不消费的选择。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "预算压力"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-02",
+          "kind": "Strategy",
+          "name": "预算压力"
+        },
+        {
+          "key": "empathy-scene-02",
+          "kind": "Scenario",
+          "name": "客户说预算紧张或负担不起"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-02",
+          "target": "empathy-scene-02",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-03",
+    "category": "communication",
+    "title": "内部共情场景：外貌评价",
+    "content": "【内部合成沟通策略】触发：客户因被评价丑而难过。回应：尊重感受，不附和贬低，不以消费解决价值感。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "外貌评价"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-03",
+          "kind": "Strategy",
+          "name": "外貌评价"
+        },
+        {
+          "key": "empathy-scene-03",
+          "kind": "Scenario",
+          "name": "客户因被评价丑而难过"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-03",
+          "target": "empathy-scene-03",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-04",
+    "category": "communication",
+    "title": "内部共情场景：普通低落",
+    "content": "【内部合成沟通策略】触发：客户心情不好或想哭。回应：本地倾听，不贴心理疾病标签，不外发情绪正文。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "普通低落"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-04",
+          "kind": "Strategy",
+          "name": "普通低落"
+        },
+        {
+          "key": "empathy-scene-04",
+          "kind": "Scenario",
+          "name": "客户心情不好或想哭"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-04",
+          "target": "empathy-scene-04",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-05",
+    "category": "communication",
+    "title": "内部共情场景：关系困扰",
+    "content": "【内部合成沟通策略】触发：客户失恋并想找人聊聊。回应：普通倾听，不提医美来挽回关系，不向模型发送关系细节。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "关系困扰"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-05",
+          "kind": "Strategy",
+          "name": "关系困扰"
+        },
+        {
+          "key": "empathy-scene-05",
+          "kind": "Scenario",
+          "name": "客户失恋并想找人聊聊"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-05",
+          "target": "empathy-scene-05",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-06",
+    "category": "communication",
+    "title": "内部共情场景：工作疲惫",
+    "content": "【内部合成沟通策略】触发：客户觉得工作压力大很累。回应：温和回应，允许休息，不把美容消费作为情绪治疗。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "工作疲惫"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-06",
+          "kind": "Strategy",
+          "name": "工作疲惫"
+        },
+        {
+          "key": "empathy-scene-06",
+          "kind": "Scenario",
+          "name": "客户觉得工作压力大很累"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-06",
+          "target": "empathy-scene-06",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-07",
+    "category": "communication",
+    "title": "内部共情场景：销售反感",
+    "content": "【内部合成沟通策略】触发：客户生气并拒绝推销。回应：停止购买/预约邀请，继续仅回答客户主动提问。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "销售反感"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-07",
+          "kind": "Strategy",
+          "name": "销售反感"
+        },
+        {
+          "key": "empathy-scene-07",
+          "kind": "Scenario",
+          "name": "客户生气并拒绝推销"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-07",
+          "target": "empathy-scene-07",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-08",
+    "category": "communication",
+    "title": "内部共情场景：希望暂停",
+    "content": "【内部合成沟通策略】触发：客户不想说话想静静。回应：不追加问题，不自动推荐项目，不创建业务申请。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "希望暂停"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-08",
+          "kind": "Strategy",
+          "name": "希望暂停"
+        },
+        {
+          "key": "empathy-scene-08",
+          "kind": "Scenario",
+          "name": "客户不想说话想静静"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-08",
+          "target": "empathy-scene-08",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-09",
+    "category": "communication",
+    "title": "内部共情场景：需要陪聊",
+    "content": "【内部合成沟通策略】触发：客户希望有人听自己说。回应：本地普通对话支持，不冒充真人或心理咨询师。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "需要陪聊"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-09",
+          "kind": "Strategy",
+          "name": "需要陪聊"
+        },
+        {
+          "key": "empathy-scene-09",
+          "kind": "Scenario",
+          "name": "客户希望有人听自己说"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-09",
+          "target": "empathy-scene-09",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-10",
+    "category": "communication",
+    "title": "内部共情场景：状态改善",
+    "content": "【内部合成沟通策略】触发：客户表示感觉好一些了。回应：顺着客户节奏，不把情绪改善当购买意愿。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "状态改善"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-10",
+          "kind": "Strategy",
+          "name": "状态改善"
+        },
+        {
+          "key": "empathy-scene-10",
+          "kind": "Scenario",
+          "name": "客户表示感觉好一些了"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-10",
+          "target": "empathy-scene-10",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-11",
+    "category": "communication",
+    "title": "内部共情场景：医疗担忧",
+    "content": "【内部合成沟通策略】触发：客户说孕期或症状并担心项目。回应：本地共情后专业转接，不外发个人医疗信息或给个体方案。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "医疗担忧"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-11",
+          "kind": "Strategy",
+          "name": "医疗担忧"
+        },
+        {
+          "key": "empathy-scene-11",
+          "kind": "Scenario",
+          "name": "客户说孕期或症状并担心项目"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-11",
+          "target": "empathy-scene-11",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  },
+  {
+    "knowledge_key": "empathy-strategy-12",
+    "category": "communication",
+    "title": "内部共情场景：安全风险",
+    "content": "【内部合成沟通策略】触发：客户表达自伤或轻生危险。回应：优先本地安全回应，鼓励可信任的人和紧急帮助，停止营销；不提供方法或伪装人工已接通。客户感受不等于购买意愿；事实、医学判断、客户确认和权限分别验证。",
+    "source": "本项目合成客户沟通示例，独立模拟审核；不是心理诊断、治疗或真实员工服务记录",
+    "details": {
+      "audience": "internal",
+      "topics": [
+        "共情",
+        "安全风险"
+      ],
+      "entities": [
+        {
+          "key": "empathy-strategy-12",
+          "kind": "Strategy",
+          "name": "安全风险"
+        },
+        {
+          "key": "empathy-scene-12",
+          "kind": "Scenario",
+          "name": "客户表达自伤或轻生危险"
+        }
+      ],
+      "relations": [
+        {
+          "source": "empathy-strategy-12",
+          "target": "empathy-scene-12",
+          "kind": "APPLIES_TO"
+        }
+      ],
+      "allowed_actions": [
+        "answer",
+        "ask_clarification",
+        "stop_invitation",
+        "handoff"
+      ]
+    }
+  }
+]
