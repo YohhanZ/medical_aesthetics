@@ -104,6 +104,7 @@ jobs:
           tests/test_customer_memory.py
           tests/test_customer_login_gate.py
           tests/test_customer_catalog.py
+          tests/test_foundation.py
           tests/test_marketing.py
 
 
