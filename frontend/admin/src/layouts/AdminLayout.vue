@@ -9,6 +9,7 @@ import {
   Leaf,
   LogOut,
   Menu,
+  Sparkles,
   Settings2,
   Sprout,
   Users,
@@ -34,6 +35,7 @@ const links = [
   { path: "/followups", label: "回访管理", icon: CalendarDays },
   { path: "/projects", label: "项目目录", icon: Sprout },
   { path: "/knowledge", label: "知识管理", icon: BookOpen },
+  { path: "/marketing", label: "AI 营销创作", icon: Sparkles },
   { path: "/demo-materials", label: "演示资料", icon: BookOpen },
   { path: "/settings", label: "账号与门店", icon: Settings2 },
 ];

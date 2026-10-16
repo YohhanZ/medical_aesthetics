@@ -29,6 +29,8 @@ import { Conversation } from "./services/conversation";
 import type { Project } from "./types";
 import ConsultationPanel from "./components/ConsultationPanel.vue";
 import ProjectCard from "./components/ProjectCard.vue";
+import CustomerLogin from "./components/CustomerLogin.vue";
+import StorePicker from "./components/StorePicker.vue";
 let storage: Storage | undefined;
 try {
   storage = sessionStorage;
@@ -44,6 +46,9 @@ const visibleCount = ref(8);
 watch([category, search], () => {
   visibleCount.value = 8;
 });
+watch(category, (value) => {
+  if (chat.ready) void api.recordBehavior("category_view", value);
+});
 const filtered = computed(() =>
   filterProjects(chat.projects, category.value, search.value),
 );
@@ -51,7 +56,6 @@ const selected = ref<Project | null>(null),
   privacyOpen = ref(false),
   detailError = ref(""),
   detailBusy = ref(false);
-const storeChoice = ref("");
 const modalOpen = computed(() =>
   Boolean(
     selected.value ||
@@ -70,12 +74,6 @@ watch(modalOpen, async (value) => {
     document.querySelector<HTMLElement>(".modal .close-button")?.focus();
   } else previousFocus?.focus();
 });
-watch(
-  () => chat.session?.store_code,
-  (value) => {
-    storeChoice.value = value ?? "";
-  },
-);
 function closeModal() {
   detailEpoch++;
   selected.value = null;
@@ -103,7 +101,10 @@ async function openHashProject() {
   detailBusy.value = true;
   try {
     const project = await api.project(match[1]!);
-    if (epoch === detailEpoch) selected.value = project;
+    if (epoch === detailEpoch) {
+      selected.value = project;
+      void api.recordBehavior("project_view", project.id);
+    }
   } catch (error) {
     if (epoch === detailEpoch) detailError.value = errorText(error);
     await chat.refresh();
@@ -153,11 +154,30 @@ async function initialize() {
   );
   await openHashProject();
 }
-async function switchStore() {
+async function switchStore(code: string) {
   closeModal();
-  await chat.switchStore(storeChoice.value);
+  await chat.switchStore(code);
+}
+async function logout() {
+  if (chat.busy || chat.refreshing || chat.pending) return;
+  chat.refreshing = true;
+  closeModal();
+  try {
+    await api.customerLogout();
+    chat.refreshing = false;
+    await chat.reloadIdentity();
+  } catch (error) {
+    chat.error = errorText(error);
+  } finally {
+    chat.refreshing = false;
+  }
 }
 async function onFocus() {
+  if (!chat.customer) {
+    if (!chat.session && !chat.busy && !chat.refreshing)
+      await chat.reloadIdentity();
+    return;
+  }
   const detailWasOpen = Boolean(selected.value);
   if (detailWasOpen) {
     selected.value = null;
@@ -186,7 +206,14 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="site-shell" :inert="modalOpen || undefined">
+  <CustomerLogin
+    v-if="!chat.customer"
+    :api="api"
+    :chat="chat"
+    @connected="openHashProject()"
+    @reconnect="chat.reloadIdentity()"
+  />
+  <div v-else class="site-shell" :inert="modalOpen || undefined">
     <header class="site-header">
       <div class="header-inner">
         <a class="wordmark" href="#" aria-label="美丽田园首页"
@@ -197,6 +224,12 @@ onUnmounted(() => {
         <nav class="desktop-nav" aria-label="主导航">
           <a href="#consultation">专属咨询</a><a href="#explore">探索项目</a
           ><button @click="requestAppointment()">到店体验</button>
+          <button
+            :disabled="chat.busy || chat.refreshing || !!chat.pending"
+            @click="logout"
+          >
+            退出登录
+          </button>
         </nav>
         <button class="header-booking" @click="requestAppointment()">
           预约咨询 <ArrowUpRight :size="14" />
@@ -212,6 +245,11 @@ onUnmounted(() => {
       </div>
       <nav v-if="mobileMenu" class="mobile-nav" aria-label="移动端导航">
         <button @click="scrollTo('consultation')">专属咨询</button
+        ><button
+          :disabled="chat.busy || chat.refreshing || !!chat.pending"
+          @click="logout"
+        >
+          退出登录</button
         ><button @click="scrollTo('explore')">探索项目</button
         ><button
           @click="
@@ -290,36 +328,10 @@ onUnmounted(() => {
             ><span class="status-dot"></span> {{ chat.session.store_name
             }}{{ chat.session.simulated ? " · 模拟门店" : "" }}</span
           >
-          <div v-if="chat.stores.length > 1">
-            <label class="sr-only" for="store-choice">咨询门店</label
-            ><select
-              id="store-choice"
-              v-model="storeChoice"
-              :disabled="chat.busy || chat.refreshing"
-            >
-              <option
-                v-for="store in chat.stores"
-                :key="store.code"
-                :value="store.code"
-              >
-                {{ store.name }}
-              </option></select
-            ><button
-              :disabled="
-                chat.busy ||
-                chat.refreshing ||
-                storeChoice === chat.session.store_code
-              "
-              @click="switchStore()"
-            >
-              切换门店并新建对话
-            </button>
-          </div>
-          <small v-if="storeChoice !== chat.session.store_code"
-            >切换后原匿名凭据结束，旧门店对话无法继续访问。</small
-          >
+          <StorePicker :chat="chat" @switch="switchStore" />
         </div>
         <ConsultationPanel
+          :key="chat.session?.visitor_id ?? 'disconnected'"
           :chat="chat"
           :booking-api="api"
           @reconnect="initialize()"
@@ -566,7 +578,12 @@ onUnmounted(() => {
                 普通咨询由真实模型依据已发布公开资料回答。发送前去除联系方式，个人医疗、身份和业务记录转人工；外部模型仅接收允许外发的问题、必要公开追问及证据。
               </p>
               <p>
-                请勿在普通对话中填写病历、身份证、住址或合同。预约卡片中的称呼、手机号与意向保存在加密业务记录中，不发送给模型；需要先核验手机号、审阅草稿并明确确认，提交后仍待门店确认。模拟核验不发送真实短信，模拟资料不代表真实供给。数据保留与删除自助流程仍待接入。
+                请勿在普通对话中填写病历、身份证、住址或合同。预约卡片中的称呼、手机号与意向保存在加密业务记录中，不发送给模型；需要先核验手机号、审阅草稿并明确确认，提交后仍待门店确认。模拟核验不发送真实短信，模拟资料不代表真实供给。
+              </p>
+              <p>
+                客户账号用于延续同一门店的咨询。登录时可选择允许保存明确表达的咨询偏好，有效期为
+                90
+                天；偏好仅在本地用于沟通衔接，不发送给外部模型。普通页面不展示偏好明细或浏览记录。
               </p>
               <button class="primary-button" @click="closeModal()">
                 我知道了 <Check :size="16" />

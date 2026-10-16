@@ -13,6 +13,7 @@ COPY deployment/*.py /app/deployment/
 COPY migrations /app/migrations
 COPY data /app/data
 COPY scripts /app/scripts
+RUN mkdir -p /app/runtime/marketing && chown -R 65532:65532 /app/runtime
 USER 65532:65532
 ENTRYPOINT []
 CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001", "--no-access-log"]

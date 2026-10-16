@@ -7,6 +7,7 @@ from langgraph.checkpoint.base import BaseCheckpointSaver
 from psycopg.types.json import Jsonb
 
 from app.config import Settings
+from app.customer import RECALL, CustomerService, is_preference_statement, personalize_answer
 from app.db import PostgresRepository, transaction
 from app.domain import Actor, DomainError
 from app.model_gateway import fingerprint
@@ -57,6 +58,8 @@ class PostgresAgentStore:
         )
         if not row or a.kind != "visitor":
             raise DomainError("unauthenticated", 401)
+        if self.settings.customer_login_required:
+            CustomerService(repo, self.settings, a).require_account()
         ConversationService(repo).get(a, self.thread_id)
 
     def owns(self, repo: PostgresRepository, run_id: str, lease: str) -> None:
@@ -138,6 +141,12 @@ class PostgresAgentStore:
                 "INSERT INTO agent_message(id,run_id,role,content) VALUES(%s,%s,'user',%s)",
                 (str(uuid4()), run_id, question),
             )
+            customer = CustomerService(repo, self.settings, self.actor).account()
+            if customer and customer["memory_enabled"]:
+                repo.execute(
+                    "UPDATE agent_run SET customer_memory_generation=%s WHERE id=%s",
+                    (customer["memory_generation"], run_id),
+                )
             assert row
             return row
 
@@ -162,6 +171,10 @@ class PostgresAgentStore:
                 "SELECT snapshot FROM agent_memory WHERE thread_id=%s", (self.thread_id,)
             )
             snapshot = dict(memory["snapshot"]) if memory else {}
+            customer = CustomerService(repo, self.settings, self.actor)
+            snapshot["_customer_preferences"] = [
+                {"key": row["key"], "value": row["value"]} for row in customer.memories()
+            ]
             if not snapshot.get("first_topic"):
                 # Existing threads have no topic references yet. Resolve only their own public
                 # completed messages; 500 is the existing per-thread run limit.
@@ -203,6 +216,13 @@ class PostgresAgentStore:
     ) -> dict[str, Any]:
         with transaction(self.settings.database_url) as repo:
             self.owns(repo, run_id, lease)
+            customer = CustomerService(repo, self.settings, self.actor)
+            source = repo.one(
+                "SELECT content FROM agent_message WHERE run_id=%s AND role='user'",
+                (run_id,),
+            )
+            # Recheck consent/deletion after model or sandbox work, before returning memories.
+            repo.one("SELECT id FROM visitor WHERE id=%s FOR UPDATE", (self.actor.id,))
             if result["evidence_ids"]:
                 repo.all(
                     "SELECT id FROM knowledge_version WHERE id=ANY(%s::uuid[]) FOR SHARE",
@@ -237,6 +257,15 @@ class PostgresAgentStore:
                     "status": "waiting",
                     "connected": False,
                 }
+            if source:
+                personalize_answer(source["content"], result, customer.memories())
+                exportable = bool(
+                    exportable
+                    and not (
+                        RECALL.search(source["content"])
+                        or is_preference_statement(source["content"])
+                    )
+                )
             repo.execute(
                 "INSERT INTO agent_message(id,run_id,role,content) VALUES(%s,%s,'assistant',%s) "
                 "ON CONFLICT(run_id,role) DO NOTHING",
@@ -256,6 +285,20 @@ class PostgresAgentStore:
                 "UPDATE agent_run SET status='completed',result=%s WHERE id=%s",
                 (Jsonb(result), run_id),
             )
+            if source:
+                customer.capture(
+                    source["content"],
+                    self.thread_id,
+                    run_id,
+                    result["handoff_reason"]
+                    not in (
+                        "urgent_health",
+                        "emotional_crisis",
+                        "private_record",
+                        "unauthorized_request",
+                    ),
+                )
+            customer.behavior("consultation_started", self.thread_id)
             repo.audit(self.actor, "agent.completed", run_id, run_id)
         return result
 

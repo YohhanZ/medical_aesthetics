@@ -27,10 +27,16 @@ export interface PublicStore {
   code: string;
   name: string;
   simulated: boolean;
+  city?: string;
+  address?: string;
+  latitude?: number | null;
+  longitude?: number | null;
+  coordinate_system?: "WGS84";
 }
 export interface Thread {
   thread_id: string;
   created_at: string;
+  title?: string;
 }
 export interface Answer {
   message_id: string;
@@ -71,6 +77,8 @@ export interface Message {
   role: "user" | "assistant";
   text: string;
   result?: Answer;
+  /** Presentation hint for a newly received reply; never persisted with history. */
+  animate?: boolean;
 }
 export interface PendingMessage {
   message_id: string;

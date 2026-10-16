@@ -129,7 +129,7 @@ services:
     read_only: true
     tmpfs: ["/tmp:rw,noexec,nosuid,nodev,size=16m,mode=1777"]
     cap_drop: [ALL]
-    volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock", "marketing:/app/runtime/marketing:ro"]
     depends_on:
       postgres: {condition: service_healthy}
       neo4j: {condition: service_healthy}
@@ -139,6 +139,20 @@ services:
       interval: 15s
       timeout: 8s
       retries: 12
+  marketing-worker:
+    <<: *common
+    image: medical-aesthetics-api:demo-20261013-r2
+    mem_limit: 128m
+    memswap_limit: 128m
+    cpus: 0.25
+    read_only: true
+    cap_drop: [ALL]
+    env_file: ["./runtime/worker.env"]
+    command: ["python", "-m", "app.marketing_worker"]
+    volumes: ["marketing:/app/runtime/marketing"]
+    tmpfs: ["/tmp:rw,noexec,nosuid,nodev,size=8m,mode=1777"]
+    depends_on:
+      postgres: {condition: service_healthy}
   web:
     <<: *common
     image: medical-aesthetics-web:demo-20261013-r2
@@ -177,3 +191,4 @@ volumes:
   etcd: {}
   minio: {}
   milvus: {}
+  marketing: {}

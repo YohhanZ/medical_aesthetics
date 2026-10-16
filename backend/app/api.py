@@ -7,7 +7,7 @@ import psycopg
 from fastapi import Depends, FastAPI, Query, Request, Response
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
 
 from app.agent_repository import PostgresAgentStore
@@ -24,12 +24,20 @@ from app.catalog import CatalogService
 from app.config import Settings
 from app.consultation_agent import ConsultationAgent
 from app.consultation_cases import CaseCreate, CaseDecision, CaseRevision, ConsultationCases
+from app.customer import (
+    BehaviorInput,
+    CustomerCredentials,
+    CustomerService,
+    MemoryKey,
+    MemorySettings,
+)
 from app.db import PostgresRepository, transaction
 from app.demo_materials import DemoMaterials
 from app.domain import Actor, DomainError
 from app.followups import FollowupCreate, FollowupResponse, Followups, FollowupStaffAction
 from app.graph_adapter import Neo4jKnowledgeGraph
 from app.knowledge_types import KnowledgeDetails
+from app.marketing import MarketingInput, MarketingService, public_job
 from app.model_gateway import QwenEmbeddingGateway
 from app.retrieval import PostgresEvidenceReader, RetrievalService
 from app.sandbox_runtime import DockerRuntime, SandboxedConsultationAgent
@@ -87,7 +95,7 @@ def create_app(settings: Settings) -> FastAPI:
             )
         with transaction(settings.database_url) as repository:
             if not repository.one(
-                "SELECT name FROM schema_revision WHERE name='012_followups.sql'"
+                "SELECT name FROM schema_revision WHERE name='015_store_locations.sql'"
             ):
                 raise RuntimeError("Run migrations before starting API")
         yield
@@ -163,12 +171,18 @@ def create_app(settings: Settings) -> FastAPI:
     # Commit before a successful response or cookie can leave the server.
     Repo = Annotated[PostgresRepository, Depends(repository, scope="function")]
 
-    def visitor(request: Request, repo: Repo) -> Actor:
+    def guest_visitor(request: Request, repo: Repo) -> Actor:
         credential = request.cookies.get("ma_visitor", "")
         csrf = None
         if request.method not in ("GET", "HEAD"):
             csrf = request.headers.get("x-csrf-token", "")
         return IdentityService(repo, settings).authenticate(credential, "visitor", csrf)
+
+    def visitor(request: Request, repo: Repo) -> Actor:
+        actor = guest_visitor(request, repo)
+        if settings.customer_login_required:
+            CustomerService(repo, settings, actor).require_account()
+        return actor
 
     def staff(request: Request, repo: Repo) -> Actor:
         authorization = request.headers.get("authorization", "")
@@ -177,17 +191,28 @@ def create_app(settings: Settings) -> FastAPI:
         return IdentityService(repo, settings).authenticate(authorization[7:], "staff")
 
     Visitor = Annotated[Actor, Depends(visitor)]
+    GuestVisitor = Annotated[Actor, Depends(guest_visitor)]
     Staff = Annotated[Actor, Depends(staff)]
 
-    def agent_visitor(request: Request) -> Actor:
+    def resolve_agent_visitor(request: Request, require_customer: bool) -> Actor:
         # Close authentication transaction before model/graph/network calls.
         with transaction(settings.database_url) as repo:
             csrf = request.headers.get("x-csrf-token", "") if request.method == "POST" else None
-            return IdentityService(repo, settings).authenticate(
+            actor = IdentityService(repo, settings).authenticate(
                 request.cookies.get("ma_visitor", ""), "visitor", csrf
             )
+            if require_customer and settings.customer_login_required:
+                CustomerService(repo, settings, actor).require_account()
+            return actor
+
+    def agent_visitor(request: Request) -> Actor:
+        return resolve_agent_visitor(request, True)
+
+    def agent_guest(request: Request) -> Actor:
+        return resolve_agent_visitor(request, False)
 
     AgentVisitor = Annotated[Actor, Depends(agent_visitor)]
+    AgentGuest = Annotated[Actor, Depends(agent_guest)]
 
     @app.get("/api/stores/{store_id}/demo-materials")
     def read_demo_materials(
@@ -607,7 +632,8 @@ def create_app(settings: Settings) -> FastAPI:
     def public_stores(repo: Repo) -> dict[str, Any]:
         return {
             "items": repo.all(
-                "SELECT s.public_code AS code,s.name,s.simulated FROM store s "
+                "SELECT s.public_code AS code,s.name,s.simulated,s.city,s.address,"
+                "s.latitude,s.longitude,'WGS84' AS coordinate_system FROM store s "
                 "JOIN tenant t ON t.id=s.tenant_id WHERE s.active "
                 "AND (%s OR NOT(s.simulated OR t.simulated)) "
                 "ORDER BY EXISTS(SELECT 1 FROM knowledge_version k JOIN publication p "
@@ -618,9 +644,96 @@ def create_app(settings: Settings) -> FastAPI:
             )
         }
 
+    def customer_auth(
+        data: CustomerCredentials,
+        register: bool,
+        request: Request,
+        response: Response,
+        actor: Actor,
+    ) -> dict[str, Any]:
+        # Own transaction: failed-attempt counters must commit before raising an HTTP error.
+        with transaction(settings.database_url) as repo:
+            IdentityService(repo, settings).authenticate(
+                request.cookies.get("ma_visitor", ""),
+                "visitor",
+                request.headers.get("x-csrf-token", ""),
+            )
+            result = CustomerService(repo, settings, actor).authenticate(
+                data,
+                register,
+                request.client.host if request.client else "unknown",
+                request.state.request_id,
+            )
+        if "error" in result:
+            code = result["error"]
+            raise DomainError(
+                code,
+                429 if code == "login_throttled" else 401 if code == "invalid_credentials" else 409,
+            )
+        response.set_cookie(
+            "ma_visitor",
+            result.pop("credential"),
+            httponly=True,
+            secure=settings.cookie_secure,
+            samesite="strict",
+            max_age=settings.session_hours * 3600,
+            path="/",
+        )
+        response.set_cookie(
+            "ma_visitor_csrf",
+            result["csrf_token"],
+            secure=settings.cookie_secure,
+            samesite="strict",
+            max_age=settings.session_hours * 3600,
+            path="/",
+        )
+        return result
+
+    @app.post("/api/customer-accounts", status_code=201)
+    def register_customer(
+        data: CustomerCredentials,
+        request: Request,
+        response: Response,
+        actor: AgentGuest,
+    ) -> dict[str, Any]:
+        return customer_auth(data, True, request, response, actor)
+
+    @app.post("/api/customer-sessions")
+    def login_customer(
+        data: CustomerCredentials,
+        request: Request,
+        response: Response,
+        actor: AgentGuest,
+    ) -> dict[str, Any]:
+        return customer_auth(data, False, request, response, actor)
+
+    @app.get("/api/customer/me")
+    def customer_profile(actor: GuestVisitor, repo: Repo) -> dict[str, Any]:
+        return CustomerService(repo, settings, actor).profile()
+
+    @app.get("/api/customer/session")
+    def customer_identity(actor: GuestVisitor, repo: Repo) -> dict[str, Any]:
+        return CustomerService(repo, settings, actor).session()
+
+    @app.post("/api/customer/preferences")
+    def customer_preferences(data: MemorySettings, actor: Visitor, repo: Repo) -> dict[str, Any]:
+        return CustomerService(repo, settings, actor).settings_update(data)
+
+    @app.post("/api/customer/memories/{key}/forget")
+    def forget_memory(
+        key: MemoryKey | Literal["all"], actor: Visitor, repo: Repo
+    ) -> dict[str, str]:
+        CustomerService(repo, settings, actor).forget(key)
+        return {"status": "forgotten"}
+
+    @app.post("/api/customer/behaviors")
+    def customer_behavior(data: BehaviorInput, actor: Visitor, repo: Repo) -> dict[str, str]:
+        CustomerService(repo, settings, actor).behavior(data.event, data.target)
+        return {"status": "accepted"}
+
     @app.get("/api/visitor-sessions/current")
     def current_visitor(
-        response: Response, request: Request, actor: Visitor, repo: Repo
+        response: Response, request: Request, actor: GuestVisitor, repo: Repo
     ) -> dict[str, Any]:
         result = IdentityService(repo, settings).current_visitor(
             actor, request.cookies.get("ma_visitor_csrf", "")
@@ -644,17 +757,29 @@ def create_app(settings: Settings) -> FastAPI:
         return CatalogService(PostgresEvidenceReader(settings)).get(actor, str(project_id))
 
     @app.get("/api/threads")
-    def visitor_threads(actor: Visitor, repo: Repo) -> dict[str, Any]:
+    def visitor_threads(
+        actor: Visitor,
+        repo: Repo,
+        limit: Annotated[int, Query(ge=1, le=100)] = 20,
+        offset: Annotated[int, Query(ge=0, le=10000)] = 0,
+    ) -> dict[str, Any]:
         return {
             "items": repo.all(
-                "SELECT id AS thread_id,created_at FROM conversation WHERE tenant_id=%s "
-                "AND store_id=%s AND visitor_id=%s ORDER BY created_at DESC LIMIT 20",
-                (actor.tenant_id, actor.store_id, actor.id),
+                "SELECT c.id AS thread_id,c.created_at,COALESCE(("
+                "SELECT NULLIF(left(regexp_replace(btrim(m.content),'[[:space:]]+', ' ', 'g'),"
+                "24),'') FROM agent_message m JOIN agent_run r ON r.id=m.run_id "
+                "WHERE r.thread_id=c.id AND m.role='user' "
+                "ORDER BY r.created_at,r.id LIMIT 1),'新对话') AS title "
+                "FROM conversation c WHERE c.tenant_id=%s AND c.store_id=%s "
+                "AND c.visitor_id=%s ORDER BY c.created_at DESC,c.id DESC LIMIT %s OFFSET %s",
+                (actor.tenant_id, actor.store_id, actor.id, limit, offset),
             )
         }
 
     @app.post("/api/visitor-sessions/logout")
-    def logout(response: Response, request: Request, actor: Visitor, repo: Repo) -> dict[str, str]:
+    def logout(
+        response: Response, request: Request, actor: GuestVisitor, repo: Repo
+    ) -> dict[str, str]:
         IdentityService(repo, settings).revoke(actor)
         repo.audit(actor, "visitor.logout", actor.session_id, request.state.request_id)
         response.delete_cookie("ma_visitor", secure=settings.cookie_secure, samesite="strict")
@@ -683,6 +808,51 @@ def create_app(settings: Settings) -> FastAPI:
     @app.get("/api/staff/me")
     def staff_profile(actor: Staff, repo: Repo) -> dict[str, Any]:
         return IdentityService(repo, settings).profile(actor)
+
+    @app.get("/api/stores/{store_id}/marketing/options")
+    def marketing_options(store_id: UUID, actor: Staff, repo: Repo) -> dict[str, Any]:
+        return MarketingService(repo, settings, actor, str(store_id)).options()
+
+    @app.get("/api/stores/{store_id}/marketing/jobs")
+    def marketing_jobs(
+        store_id: UUID, actor: Staff, repo: Repo, offset: Annotated[int, Query(ge=0, le=10000)] = 0
+    ) -> dict[str, Any]:
+        return MarketingService(repo, settings, actor, str(store_id)).list(offset)
+
+    @app.post("/api/stores/{store_id}/marketing/jobs", status_code=201)
+    def marketing_create(
+        store_id: UUID, data: MarketingInput, actor: Staff, repo: Repo, request: Request
+    ) -> dict[str, Any]:
+        return MarketingService(repo, settings, actor, str(store_id)).create(
+            data, request.state.request_id
+        )
+
+    @app.get("/api/stores/{store_id}/marketing/jobs/{job_id}")
+    def marketing_job(store_id: UUID, job_id: UUID, actor: Staff, repo: Repo) -> dict[str, Any]:
+        return public_job(MarketingService(repo, settings, actor, str(store_id)).get(str(job_id)))
+
+    @app.get("/api/stores/{store_id}/marketing/jobs/{job_id}/asset")
+    def marketing_asset(store_id: UUID, job_id: UUID, actor: Staff, repo: Repo) -> FileResponse:
+        path, mime = MarketingService(repo, settings, actor, str(store_id)).asset(str(job_id))
+        return FileResponse(
+            path, media_type=mime, filename=path.name, headers={"X-Content-Type-Options": "nosniff"}
+        )
+
+    @app.post("/api/stores/{store_id}/marketing/jobs/{job_id}/cancel")
+    def marketing_cancel(
+        store_id: UUID, job_id: UUID, actor: Staff, repo: Repo, request: Request
+    ) -> dict[str, Any]:
+        return MarketingService(repo, settings, actor, str(store_id)).cancel(
+            str(job_id), request.state.request_id
+        )
+
+    @app.post("/api/stores/{store_id}/marketing/jobs/{job_id}/reconcile")
+    def marketing_reconcile(
+        store_id: UUID, job_id: UUID, actor: Staff, repo: Repo, request: Request
+    ) -> dict[str, Any]:
+        return MarketingService(repo, settings, actor, str(store_id)).reconcile(
+            str(job_id), request.state.request_id
+        )
 
     @app.get("/api/stores/{store_id}/knowledge")
     def list_knowledge(

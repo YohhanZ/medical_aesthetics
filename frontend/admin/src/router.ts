@@ -43,6 +43,11 @@ export const router = createRouter({
           meta: { title: "知识管理" },
         },
         {
+          path: "marketing",
+          component: () => import("./views/MarketingPage.vue"),
+          meta: { title: "AI 营销创作" },
+        },
+        {
           path: "demo-materials",
           component: () => import("./views/DemoMaterialsPage.vue"),
           meta: { title: "演示资料" },

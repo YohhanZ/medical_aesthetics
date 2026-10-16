@@ -47,11 +47,30 @@ def main() -> None:
         assert "/admin/assets/" in customer.get("/admin/").text
         stores = checked(customer.get("/api/public/stores"))
         assert stores["items"] and all(item["simulated"] for item in stores["items"])
+        assert all(item["coordinate_system"] == "WGS84" for item in stores["items"])
         session = checked(
             customer.post("/api/visitor-sessions", json={"store_code": "demo-shanghai"})
         )
         csrf = {"X-CSRF-Token": session["csrf_token"]}
         assert all(cookie.secure for cookie in customer.cookies.jar)
+        assert customer.get("/api/threads").status_code == 401
+        account_name, account_password = "release_" + uuid4().hex[:20], "Synthetic-" + uuid4().hex
+        identity = checked(
+            customer.post(
+                "/api/customer-accounts",
+                headers=csrf,
+                json={
+                    "username": account_name,
+                    "password": account_password,
+                    "bind_current": True,
+                    "enable_memory": True,
+                },
+            )
+        )
+        csrf = {"X-CSRF-Token": identity["csrf_token"]}
+        assert (
+            checked(customer.get("/api/customer/session"))["customer"]["username"] == account_name
+        )
         thread = checked(customer.post("/api/threads", headers=csrf, json={}))["thread_id"]
         base = f"/api/threads/{thread}"
         projects = checked(customer.get("/api/catalog/projects"))["items"]
@@ -156,7 +175,13 @@ def main() -> None:
 
             author = login("demo-author")
             assert staff.get(f"/api/stores/{STORE}/appointments", headers=author).status_code == 403
+            checked(staff.get(f"/api/stores/{STORE}/marketing/options", headers=author))
+            checked(staff.get(f"/api/stores/{STORE}/marketing/jobs", headers=author))
             operator = login("demo-operator")
+            assert (
+                staff.get(f"/api/stores/{STORE}/marketing/options", headers=operator).status_code
+                == 403
+            )
             checked(staff.get("/api/staff/me", headers=operator))
             assert (
                 staff.get(f"/api/stores/{OTHER_STORE}/appointments", headers=operator).status_code
@@ -186,7 +211,22 @@ def main() -> None:
             checked(staff.get("/api/staff/me", headers=consultant))
             checked(staff.post("/api/staff-sessions/logout", headers=consultant))
         with httpx.Client(base_url=args.base_url, timeout=20, trust_env=False) as other:
-            checked(other.post("/api/visitor-sessions", json={"store_code": "demo-shanghai"}))
+            guest = checked(
+                other.post("/api/visitor-sessions", json={"store_code": "demo-shanghai"})
+            )
+            assert other.get(base + "/messages").status_code == 401
+            checked(
+                other.post(
+                    "/api/customer-accounts",
+                    headers={"X-CSRF-Token": guest["csrf_token"]},
+                    json={
+                        "username": "release_other_" + uuid4().hex[:18],
+                        "password": "Synthetic-" + uuid4().hex,
+                        "bind_current": True,
+                        "enable_memory": True,
+                    },
+                )
+            )
             assert other.get(base + "/messages").status_code == 404
         medical = checked(
             customer.post(
@@ -196,8 +236,52 @@ def main() -> None:
             )
         )
         assert medical["mode"] == "handoff" and not medical["handoff"]["connected"]
+        checked(
+            customer.post(
+                base + "/messages",
+                headers=csrf,
+                json={
+                    "message_id": str(uuid4()),
+                    "question": "我通常周末方便到店",
+                },
+            )
+        )
+        memory_thread = checked(customer.post("/api/threads", headers=csrf, json={}))["thread_id"]
+        remembered = checked(
+            customer.post(
+                f"/api/threads/{memory_thread}/messages",
+                headers=csrf,
+                json={
+                    "message_id": str(uuid4()),
+                    "question": "你记得我的偏好吗",
+                },
+            )
+        )
+        assert "周末" in remembered["answer"] and remembered["mode"] == "fixed"
         checked(customer.post("/api/visitor-sessions/logout", headers=csrf))
         assert customer.get(base + "/messages").status_code == 401
+        guest = checked(
+            customer.post("/api/visitor-sessions", json={"store_code": "demo-shanghai"})
+        )
+        restored = checked(
+            customer.post(
+                "/api/customer-sessions",
+                headers={"X-CSRF-Token": guest["csrf_token"]},
+                json={
+                    "username": account_name,
+                    "password": account_password,
+                    "bind_current": False,
+                    "enable_memory": False,
+                },
+            )
+        )
+        assert restored["restored"] is True and restored["visitor_id"] == session["visitor_id"]
+        assert checked(customer.get(base + "/messages?recent=true"))["items"]
+        checked(
+            customer.post(
+                "/api/visitor-sessions/logout", headers={"X-CSRF-Token": restored["csrf_token"]}
+            )
+        )
         metadata.update(
             {
                 "https": "verified",
@@ -213,6 +297,9 @@ def main() -> None:
                 "cross_visitor_and_store": "denied",
                 "personal_medical": "handoff",
                 "logout": "denied",
+                "customer_login_restore": "passed",
+                "cross_thread_memory": "passed",
+                "marketing_permissions": "passed",
                 "input": "synthetic-only",
             }
         )

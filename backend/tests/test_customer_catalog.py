@@ -3,6 +3,7 @@ from uuid import uuid4
 
 import pytest
 from fastapi.testclient import TestClient
+from psycopg.errors import CheckViolation
 
 from app.catalog import CatalogService
 from app.config import Settings
@@ -10,7 +11,7 @@ from app.consultation_agent import ConsultationAgent
 from app.db import transaction
 from app.domain import Actor, DomainError
 from app.knowledge_import import import_dataset
-from app.seed import REVIEWER, STORE, TENANT
+from app.seed import REVIEWER, STORE, TENANT, seed_store_locations
 from app.services import KnowledgeService
 from tests.conftest import visitor_headers
 from tests.test_consultation_agent import FakeAnswer, agent, setup
@@ -50,7 +51,17 @@ def test_public_stores_excludes_disabled_and_production_simulation(
     client: TestClient, settings: Settings
 ) -> None:
     assert all(
-        set(row) == {"code", "name", "simulated"}
+        set(row)
+        == {
+            "code",
+            "name",
+            "simulated",
+            "city",
+            "address",
+            "latitude",
+            "longitude",
+            "coordinate_system",
+        }
         for row in client.get("/api/public/stores").json()["items"]
     )
     with transaction(settings.database_url) as repo:
@@ -61,6 +72,41 @@ def test_public_stores_excludes_disabled_and_production_simulation(
     production = settings.model_copy(update={"allow_simulated_data": False})
     with TestClient(create_app(production)) as restricted:
         assert restricted.get("/api/public/stores").json() == {"items": []}
+
+
+def test_public_store_locations_are_optional_and_demo_seed_preserves_edits(
+    client: TestClient, settings: Settings
+) -> None:
+    rows = client.get("/api/public/stores").json()["items"]
+    shanghai = next(row for row in rows if row["code"] == "demo-shanghai")
+    assert shanghai["latitude"] == 31.23 and shanghai["longitude"] == 121.47
+    assert shanghai["coordinate_system"] == "WGS84"
+    assert "模拟" in shanghai["address"] and shanghai["simulated"]
+    with transaction(settings.database_url) as repo:
+        repo.execute("UPDATE store SET latitude=31.1,longitude=121.1 WHERE id=%s", (STORE,))
+        seed_store_locations(repo)
+        assert repo.one("SELECT latitude FROM store WHERE id=%s", (STORE,))["latitude"] == 31.1
+        repo.execute(
+            "INSERT INTO store(id,tenant_id,public_code,name,simulated) VALUES(%s,%s,%s,%s,false)",
+            (str(uuid4()), TENANT, "without-location", "尚未配置位置的门店"),
+        )
+    missing = next(
+        row
+        for row in client.get("/api/public/stores").json()["items"]
+        if row["code"] == "without-location"
+    )
+    assert missing["latitude"] is None and missing["longitude"] is None
+
+
+@pytest.mark.parametrize("latitude,longitude", [(91, 0), (0, 181), (None, 1), (1, None)])
+def test_store_rejects_invalid_coordinate_pairs(
+    settings: Settings, latitude: float | None, longitude: float | None
+) -> None:
+    with pytest.raises(CheckViolation), transaction(settings.database_url) as repo:
+        repo.execute(
+            "UPDATE store SET latitude=%s,longitude=%s WHERE id=%s",
+            (latitude, longitude, STORE),
+        )
 
 
 def test_catalog_uses_approved_store_evidence_and_links_are_valid(

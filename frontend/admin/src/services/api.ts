@@ -53,6 +53,14 @@ export async function request<T>(
   }
 }
 const descriptions: Record<string, string> = {
+  marketing_image_unconfigured: "Kolors 生图接口未配置，请在服务端配置密钥。",
+  marketing_video_unconfigured: "万相视频接口尚未启用，请完成服务端配置。",
+  marketing_video_cost_required: "请先确认本次视频生成会消耗供应商额度。",
+  marketing_daily_limit: "当前门店今天的生成次数已达上限。",
+  marketing_key_conflict: "原请求内容不一致，请核实作品库，勿重复提交。",
+  marketing_state_conflict: "任务状态已变化，请刷新作品库后操作。",
+  marketing_asset_unavailable: "素材暂时无法读取，请核实权限或稍后重试。",
+  marketing_not_found: "作品不存在或不属于当前门店。",
   demo_materials_unavailable: "当前环境或门店没有开放演示资料。",
   followup_not_found: "回访计划不存在或不在当前授权门店。",
   followup_state_conflict: "回访版本或状态已变化，请刷新核实。",

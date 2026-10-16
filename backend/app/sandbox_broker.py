@@ -11,6 +11,7 @@ from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from app.agent_policy import GREETING, handoff_answer
 from app.consultation_agent import ConsultationAgent, State, validate_draft
 from app.consultation_gateway import QwenConsultationGateway
+from app.customer import preference_acknowledgement, recall_answer
 from app.domain import DomainError
 from app.graph_adapter import Neo4jKnowledgeGraph
 from app.model_gateway import GatewayError
@@ -323,6 +324,14 @@ class Broker:
                         + "”。你可以继续这个方向，或告诉我想换的话题。"
                         if labels
                         else "这段对话里还没有可确认的最初项目方向，你可以再告诉我想了解什么。"
+                    )
+                    expected = (
+                        recall_answer(
+                            self.plan["question"],
+                            self.plan["memory"].get("_customer_preferences", []),
+                        )
+                        or preference_acknowledgement(self.plan["question"])
+                        or expected
                     )
                 else:
                     expected = "你想了解哪方面的美容护理、项目或到店咨询？可以直接描述你的问题。"

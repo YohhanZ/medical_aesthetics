@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     allow_simulated_data: bool = False
     demo_medical_education: bool = False
     cookie_secure: bool = True
+    customer_login_required: bool = True
     allowed_origins: list[str] = Field(
         default_factory=lambda: ["http://127.0.0.1:5173", "http://127.0.0.1:5175"]
     )
@@ -46,6 +47,21 @@ class Settings(BaseSettings):
         default="qwen3.7-plus", validation_alias=AliasChoices("LLM_MODEL", "MA_CHAT_MODEL")
     )
     model_use_env_proxy: bool = True
+    marketing_image_api_key: SecretStr = SecretStr("")
+    marketing_video_api_key: SecretStr = SecretStr("")
+    marketing_video_enabled: bool = False
+    marketing_daily_limit: int = Field(default=10, ge=1, le=100)
+    marketing_media_root: str = "runtime/marketing"
+    marketing_max_asset_mb: int = Field(default=24, ge=1, le=100)
+    marketing_asset_hosts: list[str] = Field(
+        default_factory=lambda: [
+            "aliyuncs.com",
+            "siliconflow.cn",
+            "siliconflow.com",
+            "siliconflow.net",
+            "scdn.cn",
+        ]
+    )
     embedding_model: Literal["text-embedding-v4"] = "text-embedding-v4"
     model_export_hashes: list[str] = Field(default_factory=list)
     milvus_uri: str = "http://127.0.0.1:59531"

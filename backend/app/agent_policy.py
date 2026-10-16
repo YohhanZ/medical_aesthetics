@@ -3,6 +3,7 @@
 import re
 from typing import Any
 
+from app.customer import RECALL, is_preference_statement
 from app.emotion_support import (
     PERSONAL_LANGUAGE,
     acknowledges_safety,
@@ -21,6 +22,7 @@ def classify(
     crisis_pending: bool = False,
 ) -> dict[str, Any]:
     clean = redact_contacts(text).strip()
+    preference_statement = is_preference_statement(clean)
     # Only remove explicit refusals of an assessment, never symptoms or personal health facts.
     probe = re.sub(
         r"不(?:给我定|给我提供|需要(?:你)?(?:判断|提供)|要(?:你)?(?:判断|提供))"
@@ -51,7 +53,7 @@ def classify(
         reason = "emotional_crisis"
     elif crisis_pending and not acknowledges_safety(clean):
         reason = "emotional_crisis"
-    elif re.search(
+    elif not preference_statement and re.search(
         r"怀孕|哺乳|孕期|过敏|用药|病史|诊断|治疗方案|剂量|疼痛|出血|发热|肿胀|"
         r"抑郁症|焦虑症|抗抑郁|抗焦虑|心理疾病|失眠|"
         r"瘙痒|发痒|红疹|感染|我.*(疼|肿)|打完.*(肿|疼|怎么办|正常)|"
@@ -100,7 +102,9 @@ def classify(
     )
     if greeting and not reason:
         intent = "greeting"
-    elif not reason and re.search(r"(一开始|最初|最开始).*(方向|聊|项目)|最初聊", clean):
+    elif not reason and (
+        RECALL.search(clean) or re.search(r"(一开始|最初|最开始).*(方向|聊|项目)|最初聊", clean)
+    ):
         intent = "recall"
     elif not reason and re.search(r"Python|排序函数|编程|写代码|股票|天气预报", clean, re.I):
         intent = "clarify"
@@ -121,6 +125,8 @@ def classify(
         intent, stage = "support", "awareness"
     if reason == "emotional_crisis":
         intent, stage = "support", "awareness"
+    if preference_statement and not reason and intent != "decline":
+        intent, stage = "recall", "awareness"
     return {
         "question": projected if not reason and projected else clean,
         "intent": intent,
@@ -130,6 +136,10 @@ def classify(
 
 
 def public_question(text: str) -> str:
+    if RECALL.search(text) or is_preference_statement(text):
+        from app.model_gateway import GatewayError
+
+        raise GatewayError("consultation_export_denied")
     policy = classify(text, True)
     if policy["reason"] or re.search(r"Python|排序函数|编程|写代码|股票|天气预报", text, re.I):
         from app.model_gateway import GatewayError

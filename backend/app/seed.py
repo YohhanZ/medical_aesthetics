@@ -21,6 +21,27 @@ OPERATOR = "00000000-0000-4000-8000-000000000024"
 CONSULTANT = "00000000-0000-4000-8000-000000000025"
 
 
+def seed_store_locations(repo: Repository) -> None:
+    # City-level example points, never presented as real Beauty Farm branches.
+    for store_id, city, latitude, longitude in (
+        (STORE, "上海", 31.23, 121.47),
+        (OTHER_STORE, "杭州", 30.25, 120.15),
+    ):
+        repo.execute(
+            "UPDATE store SET city=%s,address=%s,latitude=%s,longitude=%s "
+            "WHERE id=%s AND tenant_id=%s AND simulated "
+            "AND latitude IS NULL AND longitude IS NULL",
+            (
+                city,
+                "城市级模拟位置，非真实门店地址，不可导航",
+                latitude,
+                longitude,
+                store_id,
+                TENANT,
+            ),
+        )
+
+
 def seed_consultant(repo: Repository, password: str) -> None:
     # New isolated simulated role; existing credentials and revoked grants remain unchanged.
     if repo.one("SELECT id FROM staff WHERE id=%s", (CONSULTANT,)):
@@ -63,6 +84,7 @@ def seed(settings: Settings, password: str) -> dict[str, Any]:
         if existing:
             seed_booking_operator(repo, password)
             seed_consultant(repo, password)
+            seed_store_locations(repo)
             return {"status": "already_seeded"}
         repo.execute(
             "INSERT INTO tenant(id,name,simulated) VALUES(%s,%s,true)",
@@ -77,6 +99,7 @@ def seed(settings: Settings, password: str) -> dict[str, Any]:
                 "VALUES(%s,%s,%s,%s,true)",
                 (store_id, TENANT, code, name),
             )
+        seed_store_locations(repo)
         for staff_id, username in [
             (AUTHOR, "demo-author"),
             (REVIEWER, "demo-reviewer"),

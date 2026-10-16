@@ -16,6 +16,7 @@ from app.agent_repository import AgentStore
 from app.catalog import CatalogService
 from app.consultation_gateway import AnswerGateway, Draft, QwenConsultationGateway
 from app.conversation_context import HISTORY_REFERENCE, PublicTopics
+from app.customer import PREFERENCES, preference_acknowledgement, recall_answer
 from app.domain import DomainError
 from app.emotion_support import detect_support
 from app.graph_adapter import Neo4jKnowledgeGraph
@@ -155,7 +156,15 @@ class ConsultationAgent:
             bool(memory.get("crisis_pending")),
         )
         support = detect_support(question)
-        pause_invitation = bool(support and support.pause_invitation)
+        remembered_pause = (
+            any(
+                row.get("key") == "communication"
+                and row.get("value") == PREFERENCES["communication"][0]
+                for row in memory.get("_customer_preferences", [])
+            )
+            and policy["intent"] != "visit_interest"
+        )
+        pause_invitation = bool(support and support.pause_invitation) or remembered_pause
         explicit = topics.match(policy["question"]) if not policy["reason"] else []
         if not first_topic:
             for source in memory.get("_initial_public_sources", []):
@@ -226,7 +235,8 @@ class ConsultationAgent:
         run_id = plan["run_id"]
         previous = plan["previous"]
         memory = plan["memory"]
-        pause_invitation = plan["pause_invitation"]
+        # Account preferences are re-read each turn; never copy them into thread memory.
+        pause_invitation = bool(plan["support"] and plan["support"].pause_invitation)
         policy = plan["policy"]
         question = plan["question"]
         first_topic = plan["first_topic"]
@@ -328,6 +338,12 @@ class ConsultationAgent:
             if state["intent"] == "support":
                 return {"answer": "", "mode": "fixed"}
             if state["intent"] == "recall":
+                personal = recall_answer(
+                    plan["question"],
+                    memory.get("_customer_preferences", []),
+                ) or preference_acknowledgement(plan["question"])
+                if personal:
+                    return {"answer": personal, "mode": "fixed"}
                 labels = topics.labels(first_topic["keys"]) if first_topic else []
                 answer = (
                     "我们最初聊的是“"

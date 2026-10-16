@@ -10,7 +10,15 @@ import { ApiError, errorText } from "../services/api";
 import AppointmentActions from "./AppointmentActions.vue";
 import CaseReviewPanel from "./CaseReviewPanel.vue";
 import FollowupPanel from "./FollowupPanel.vue";
+import RefinedSelect from "./RefinedSelect.vue";
 const props = defineProps<{ chat: Conversation; api: BookingApi }>();
+const projectOptions = computed(() => [
+  { value: "", label: "不确定项目，先咨询" },
+  ...props.chat.projects.map((project) => ({
+    value: project.id,
+    label: `${project.title}${project.simulated ? " · 模拟目录" : ""}`,
+  })),
+]);
 const booking = reactive(new Booking(markRaw(props.api))) as Booking;
 const form = reactive({
   name: "",
@@ -143,7 +151,7 @@ const states: Record<string, string> = {
   >
     <div class="booking-heading">
       <span>YOUR NEXT STEP</span>
-      <h3>把下一步，交给一次沟通。</h3>
+      <h3>填写到店预约信息</h3>
     </div>
     <p v-if="booking.state?.simulated_verification" class="booking-simulation">
       本地模拟核验 · 不发送真实短信 · 不代表真实门店可预约
@@ -242,14 +250,19 @@ const states: Record<string, string> = {
         </p>
         <form
           v-if="
-            booking.editing && booking.state.trigger_run_id && !booking.pending
+            (booking.editing || !booking.state.draft) &&
+            booking.state.trigger_run_id &&
+            !booking.pending
           "
           class="booking-form"
           @submit.prevent="save"
         >
-          <p>
-            预约信息只用于本次申请与门店联系，不发送给模型；先保存草稿，再核验与确认。
-          </p>
+          <div class="booking-intro booking-wide">
+            <p class="booking-store">
+              预约门店：{{ chat.session?.store_name }}
+            </p>
+            <p>项目未定也可以预约，填写后核对信息并核验手机号。</p>
+          </div>
           <label
             >怎么称呼您<input
               v-model="form.name"
@@ -257,6 +270,7 @@ const states: Record<string, string> = {
               maxlength="40"
               autocomplete="off"
               :disabled="disabled"
+              placeholder="请输入您的称呼"
           /></label>
           <label
             >预约联系手机号<input
@@ -278,20 +292,12 @@ const states: Record<string, string> = {
               :disabled="disabled"
           /></label>
           <label
-            >咨询方向<select
+            >咨询方向<RefinedSelect
               v-model="form.project_version_id"
+              label="咨询方向"
+              :options="projectOptions"
               :disabled="disabled"
-            >
-              <option value="">不确定项目，先咨询</option>
-              <option
-                v-for="project in chat.projects"
-                :key="project.id"
-                :value="project.id"
-              >
-                {{ project.title }}{{ project.simulated ? " · 模拟目录" : "" }}
-              </option>
-            </select></label
-          >
+          /></label>
           <label class="booking-wide"
             >想了解什么<textarea
               v-model="form.intention"
@@ -304,8 +310,9 @@ const states: Record<string, string> = {
           </label>
           <div class="booking-actions booking-wide">
             <button class="booking-primary" :disabled="disabled">
-              保存并审阅草稿</button
+              下一步：核对预约信息</button
             ><button
+              v-if="booking.state.draft"
               type="button"
               :disabled="disabled"
               @click="
@@ -313,22 +320,13 @@ const states: Record<string, string> = {
                 clearForm();
               "
             >
-              继续了解
+              返回预约草稿
             </button>
           </div>
+          <small class="booking-wide">
+            信息仅用于本次预约，不发送给模型。到店时间需门店确认。
+          </small>
         </form>
-        <button
-          v-else-if="
-            !booking.state.draft &&
-            booking.state.trigger_run_id &&
-            !booking.pending
-          "
-          class="booking-primary"
-          :disabled="disabled"
-          @click="edit"
-        >
-          在对话中完善预约信息
-        </button>
         <template v-if="booking.state.draft && !booking.editing">
           <article class="booking-summary">
             <h4>请审阅这份预约草稿</h4>
@@ -499,3 +497,57 @@ const states: Record<string, string> = {
     </template>
   </section>
 </template>
+
+<style scoped>
+.booking-panel .booking-heading h3 {
+  font-size: 20px;
+  line-height: 1.4;
+  margin: 5px 0 8px;
+}
+.booking-panel > .booking-simulation {
+  margin: 0;
+  line-height: 1.6;
+}
+.booking-panel .booking-form {
+  gap: 12px 14px;
+  margin: 12px 0 0;
+}
+.booking-intro p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #7b8971;
+}
+.booking-intro .booking-store {
+  color: #52634a;
+  margin-bottom: 2px;
+}
+.booking-panel .booking-form label {
+  gap: 5px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.booking-panel .booking-form input,
+.booking-panel .booking-form textarea {
+  padding: 10px 12px;
+  min-height: 44px;
+}
+.booking-panel .booking-form textarea {
+  line-height: 1.6;
+}
+.booking-form .booking-actions {
+  gap: 8px;
+  margin: 0;
+}
+.booking-form .booking-actions button {
+  min-height: 44px;
+  padding: 10px 16px;
+}
+.booking-form > small {
+  font-size: 10px;
+  line-height: 1.6;
+}
+.booking-panel .booking-refresh {
+  margin-top: 8px;
+}
+</style>

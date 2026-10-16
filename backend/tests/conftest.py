@@ -31,6 +31,7 @@ def settings() -> Settings:
         allow_simulated_data=True,
         demo_medical_education=False,
         cookie_secure=False,
+        customer_login_required=False,  # Existing anonymous compatibility contracts.
         allowed_origins=["http://localhost"],
         milvus_collection="ma_mock_test_256",
         model_api_key="test-only-not-a-real-key",
