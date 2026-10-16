@@ -1,5 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from datetime import timedelta
+from pathlib import Path
 from typing import Any
 from uuid import uuid4
 
@@ -296,12 +297,18 @@ def test_expired_and_disabled_principals_rejected(client: TestClient, settings: 
 
 
 def test_migration_and_seed_replay(settings: Settings) -> None:
+    with transaction(settings.database_url) as repo:
+        before = repo.all("SELECT name,checksum,applied_at FROM schema_revision ORDER BY name")
     migrate(settings.database_url)
     assert seed(settings, PASSWORD)["status"] == "already_seeded"
     with transaction(settings.database_url) as repo:
         row = repo.one("SELECT COUNT(*) AS count FROM knowledge_version")
         assert row and row["count"] == 6
-        assert repo.one("SELECT COUNT(*) AS count FROM schema_revision") == {"count": 12}
+        after = repo.all("SELECT name,checksum,applied_at FROM schema_revision ORDER BY name")
+        assert after == before
+        assert [row["name"] for row in after] == sorted(
+            path.name for path in (Path(__file__).parents[1] / "migrations").glob("*.sql")
+        )
 
 
 def test_concurrent_versions_are_unique(settings: Settings) -> None:
