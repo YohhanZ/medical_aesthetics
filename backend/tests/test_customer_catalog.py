@@ -8,6 +8,7 @@ from psycopg.errors import CheckViolation
 from app.catalog import CatalogService
 from app.config import Settings
 from app.consultation_agent import ConsultationAgent
+from app.consultation_gateway import Draft
 from app.db import transaction
 from app.domain import Actor, DomainError
 from app.knowledge_import import import_dataset
@@ -192,6 +193,67 @@ def test_project_link_requires_query_relevance_not_only_a_retrieved_citation(
     assert [row["key"] for row in service.projects(store.actor) if row["id"] in related] == [
         "hydration"
     ]
+
+
+@pytest.mark.parametrize("runtime_kind", ["inprocess", "docker"])
+@pytest.mark.parametrize("model_fails", [False, True])
+def test_body_area_switch_replaces_previous_project_in_answer_cards_and_memory(
+    client: TestClient, settings: Settings, model_fails: bool, runtime_kind: str
+) -> None:
+    from tests.test_demo_consultation import drain_demo
+
+    runtime = None
+    if runtime_kind == "docker":
+        from tests.test_sandbox import docker_runtime
+
+        runtime = docker_runtime(settings)
+    import_dataset(settings, Path(__file__).parents[1] / "data/demo_consultation.json")
+    drain_demo(settings)
+    store, _ = setup(client, settings)
+
+    class EvidenceAnswer(FakeAnswer):
+        def answer(self, *args, **kwargs):
+            super().answer(*args, **kwargs)
+            row = args[2][0]
+            return Draft.model_validate(
+                {
+                    "sections": [
+                        {
+                            "evidence_id": str(row["id"]),
+                            "quote": row["content"],
+                            "text": row["content"],
+                        }
+                    ]
+                }
+            )
+
+    model = EvidenceAnswer()
+    model.fail = model_fails
+    service = agent(store, settings, model)
+    if runtime is not None:
+        from app.sandbox_runtime import SandboxedConsultationAgent
+
+        service = SandboxedConsultationAgent(
+            store, service.injected_retrieval, model, runtime=runtime
+        )
+    first = service.send(str(uuid4()), "我想了解一下清洁项目")
+    assert [p["key"] for p in first["projects"]] == ["cleansing"]
+    message_id = str(uuid4())
+    switched = service.send(message_id, "背部项目有哪些")
+    assert "背部护理" in switched["answer"] and "清洁护理" not in switched["answer"]
+    assert [p["key"] for p in switched["projects"]] == ["back-care"]
+    assert [e["title"] for e in switched["evidence"]] == ["背部护理"]
+    assert switched["mode"] == ("evidence_fallback" if model_fails else "generated")
+    assert service.send(message_id, "背部项目有哪些") == switched
+    followup = service.send(str(uuid4()), "那多少钱？")
+    assert "358元" in followup["answer"] and "258元" not in followup["answer"]
+    assert [p["key"] for p in followup["projects"]] == ["back-care"]
+    with transaction(settings.database_url) as repo:
+        snapshot = repo.one(
+            "SELECT snapshot FROM agent_memory WHERE thread_id=%s", (store.thread_id,)
+        )["snapshot"]
+        assert snapshot["first_topic"]["keys"] == ["cleansing"]
+        assert snapshot["active_topic"]["keys"] == ["back-care"]
 
 
 def test_catalog_fails_closed_when_session_revoked_mid_metadata_read(

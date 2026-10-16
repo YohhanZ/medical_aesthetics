@@ -6,6 +6,8 @@ from typing import Any
 from app.agent_policy import classify, public_question
 from app.model_gateway import GatewayError
 
+GENERIC_TOPICS = {"生活美容护理", "生活护理", "医学美容咨询", "咨询服务", "医疗美容", "美容护理"}
+
 TOPIC_ALIASES = {
     "hydration": ["补水", "保湿", "水润"],
     "cleansing": ["清洁"],
@@ -49,14 +51,16 @@ class PublicTopics:
         for key, project in self.projects.items():
             name = re.sub(r"^(模拟目录[:：]|模拟了解目录[:：])", "", project["title"])
             short = re.sub(r"(项目了解|体验了解|方向咨询|了解|项目)$", "", name)
-            aliases = TOPIC_ALIASES.get(key, []) + [name, short]
+            # Scoped catalog topics include body areas (e.g. 背部), not only full
+            # service names. A new area must replace the previous active topic.
+            aliases = TOPIC_ALIASES.get(key, []) + [name, short] + project.get("topics", [])
             for alias in set(aliases):
-                if len(alias) >= 2:
+                if len(alias) >= 2 and alias not in GENERIC_TOPICS:
                     spans.extend(
                         (key, m.start(), m.end()) for m in re.finditer(re.escape(alias), text)
                     )
         matches = []
-        for key, start, end in spans:
+        for key, start, end in sorted(spans, key=lambda span: (span[1], -span[2], span[0])):
             if any(
                 other != key and left <= start and right >= end and right - left > end - start
                 for other, left, right in spans

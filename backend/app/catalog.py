@@ -3,16 +3,9 @@
 import re
 from typing import Any
 
+from app.conversation_context import PublicTopics
 from app.domain import Actor, DomainError
 from app.retrieval import EvidenceReader
-
-GENERIC_TOPICS = {"生活美容护理", "生活护理", "医学美容咨询", "咨询服务", "医疗美容", "美容护理"}
-PROJECT_ALIASES = {
-    "hydration": ["补水", "保湿", "水润"],
-    "cleansing": ["清洁"],
-    "relaxation": ["舒缓"],
-    "assessment": ["皮肤检测", "皮肤状态"],
-}
 
 
 class CatalogService:
@@ -69,18 +62,10 @@ class CatalogService:
         return project
 
     def related(self, actor: Actor, question: str, evidence_ids: list[str]) -> list[str]:
-        query = question.lower()
-        ranked = []
-        for project in self.projects(actor):
-            score = sum(
-                len(topic)
-                for topic in project["topics"] + PROJECT_ALIASES.get(project["key"], [])
-                if topic not in GENERIC_TOPICS and len(topic) >= 2 and topic.lower() in query
-            )
-            if score:
-                score += 10 if project["id"] in evidence_ids else 0
-                ranked.append((score, project["key"], project["id"]))
-        return [item[2] for item in sorted(ranked, key=lambda row: (-row[0], row[1]))[:3]]
+        topics = PublicTopics(self.projects(actor))
+        # Cards and retrieval must agree on explicit topics; a retrieved citation
+        # from another service cannot turn into a recommendation by itself.
+        return [topics.projects[key]["id"] for key in topics.match(question)]
 
 
 def related_query(question: str, previous: list[str]) -> str:
