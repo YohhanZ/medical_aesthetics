@@ -20,6 +20,7 @@ import type {
 } from "./booking";
 import type { CaseDecision, VisitCase } from "./cases";
 import type { Followup, FollowupResponse } from "./followups";
+import type { CustomerIdentity } from "./customer";
 
 export class ApiError extends Error {
   constructor(
@@ -34,7 +35,8 @@ export interface ConsultationApi {
   stores(): Promise<PublicStore[]>;
   current(): Promise<VisitorSession>;
   createSession(code: string): Promise<void>;
-  threads(): Promise<Thread[]>;
+  customerSession(): Promise<CustomerIdentity>;
+  threads(offset?: number): Promise<Thread[]>;
   newThread(): Promise<string>;
   history(thread: string, offset?: number): Promise<HistoryMessage[]>;
   send(thread: string, message: PendingMessage): Promise<Answer>;
@@ -96,6 +98,43 @@ export class ApiClient implements ConsultationApi {
     return (await this.request<{ items: PublicStore[] }>("/public/stores"))
       .items;
   }
+  customerSession() {
+    return this.request<CustomerIdentity>("/customer/session");
+  }
+  async customerAuth(
+    username: string,
+    password: string,
+    register: boolean,
+    bindCurrent: boolean,
+    enableMemory?: boolean,
+  ) {
+    const result = await this.request<{
+      csrf_token: string;
+      restored: boolean;
+    }>(register ? "/customer-accounts" : "/customer-sessions", {
+      username,
+      password,
+      bind_current: bindCurrent,
+      ...(enableMemory === undefined ? {} : { enable_memory: enableMemory }),
+    });
+    this.csrf = result.csrf_token;
+    return result;
+  }
+  async customerLogout() {
+    await this.request("/visitor-sessions/logout", {});
+    this.csrf = "";
+  }
+  async recordBehavior(
+    event: "project_view" | "category_view",
+    target: string,
+  ) {
+    // Analytics must never interrupt browsing or trigger an identity retry.
+    try {
+      await this.request("/customer/behaviors", { event, target }, false);
+    } catch {
+      /* Optional. */
+    }
+  }
   async current() {
     const session = await this.request<VisitorSession>(
       "/visitor-sessions/current",
@@ -110,8 +149,12 @@ export class ApiClient implements ConsultationApi {
     );
     this.csrf = session.csrf_token;
   }
-  async threads() {
-    return (await this.request<{ items: Thread[] }>("/threads")).items;
+  async threads(offset = 0) {
+    return (
+      await this.request<{ items: Thread[] }>(
+        offset ? `/threads?offset=${offset}` : "/threads",
+      )
+    ).items;
   }
   async newThread() {
     return (await this.request<{ thread_id: string }>("/threads", {}))
@@ -213,6 +256,13 @@ export class ApiClient implements ConsultationApi {
   }
 }
 const descriptions: Record<string, string> = {
+  customer_login_required: "请先登录客户账号。",
+  customer_already_logged_in: "当前身份已登录或已绑定，请刷新页面后重试。",
+  customer_name_unavailable: "这个账号名暂不可用，请换一个。",
+  binding_consent_required: "请确认将当前门店的匿名咨询记录绑定到你的账号。",
+  memory_consent_required: "注册前请勾选允许保存咨询偏好。",
+  invalid_credentials: "账号或密码不正确。",
+  login_throttled: "尝试次数较多，请 15 分钟后再试。",
   followup_not_found: "回访计划不存在或不属于当前对话。",
   followup_state_conflict: "回访状态已变化，请刷新后重新审阅。",
   followup_source_changed: "咨询意向已变化，请由门店重新安排回访。",

@@ -5,3 +5,6 @@ COPY deployment/*.py /app/deployment/
 COPY migrations /app/migrations
 COPY data /app/data
 COPY scripts /app/scripts
+USER 0
+RUN mkdir -p /app/runtime/marketing && chown -R 65532:65532 /app/runtime
+USER 65532:65532

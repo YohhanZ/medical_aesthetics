@@ -6,7 +6,7 @@ if ! "${compose[@]}" --profile setup run --rm --interactive=false bootstrap; the
     bash restore-previous.sh
     exit 1
 fi
-if ! "${compose[@]}" up -d --wait --wait-timeout 180 api worker; then
+if ! "${compose[@]}" up -d --wait --wait-timeout 180 api worker marketing-worker; then
     bash restore-previous.sh
     exit 1
 fi

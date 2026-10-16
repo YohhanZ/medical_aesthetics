@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { computed, markRaw, onBeforeUnmount, reactive, watch } from "vue";
+import RefinedSelect from "./RefinedSelect.vue";
+const outcomeOptions = [
+  { value: "resolved", label: "目前没有其他疑问" },
+  { value: "need_help", label: "希望门店继续沟通" },
+] as const;
 import {
   FollowupReview,
   followupLabels,
@@ -89,15 +94,13 @@ const date = (value: string) => new Date(value).toLocaleString("zh-CN");
       <template v-if="row.state === 'scheduled'">
         <p>可提前反馈。仅记录沟通需求，请勿提交病历、身份或治疗记录。</p>
         <label
-          >目前是否还有疑问<select
+          >目前是否还有疑问<RefinedSelect
             v-model="forms[row.id]!.result"
+            label="目前是否还有疑问"
+            :options="outcomeOptions"
             :disabled="disabled"
             @change="changed(row)"
-          >
-            <option value="resolved">目前没有其他疑问</option>
-            <option value="need_help">希望门店继续沟通</option>
-          </select></label
-        >
+        /></label>
         <label
           >回访反馈<textarea
             v-model="forms[row.id]!.feedback"

@@ -101,6 +101,10 @@ jobs:
           python -m pytest -q
           tests/test_consultation_agent.py
           tests/test_consultation_gateway.py
+          tests/test_customer_memory.py
+          tests/test_customer_login_gate.py
+          tests/test_customer_catalog.py
+          tests/test_marketing.py
 
 
   publish:

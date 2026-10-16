@@ -1,5 +1,7 @@
 # Agent 服务端（M1 基础 / M2 LangGraph / M3 预约申请 / M4 门店处理 / M5 到店咨询与回访）
 
+2026-10-15：已增加客户账号与跨会话偏好记忆，启动迁移门槛为 `013_customer_memory.sql`。使用、隔离与发布说明见 [客户账号与记忆](../docs/customer-memory.md)。
+
 当前更新（2026-10-12）：M4预约生命周期和M5到店咨询/站内回访已接入，启动迁移门槛012；历史各节保留对应批次的验收边界。最新本地步骤见本文M5第二批节，完整后端191项通过，结果见 docs/production-readiness.md。外部通知/CRM与生产运维仍未完成。
 
 具体演示咨询：新增data/demo_consultation.json 70条，有步骤、时长、虚构菜单价与公开来源科普；默认medical仍待审，仅显式非生产模拟 `MA_DEMO_MEDICAL_EDUCATION=true` 允许review_scope=demo_education的22条做独立模拟复核/发布。原25条待审不改变，生产拒绝该开关，模拟不是医学批准。导入/真实投影及`chat_quality_check --demo`复现见[演示说明](../docs/demo-consultation.md)。界面集中标明虚构场景，回答先解决实际问题。
