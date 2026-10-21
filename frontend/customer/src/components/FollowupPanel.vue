@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, markRaw, onBeforeUnmount, reactive, watch } from "vue";
-import RefinedSelect from "./RefinedSelect.vue";
+import RefinedSelect from "../../../shared/components/RefinedSelect.vue";
 const outcomeOptions = [
   { value: "resolved", label: "目前没有其他疑问" },
   { value: "need_help", label: "希望门店继续沟通" },
