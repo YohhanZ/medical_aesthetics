@@ -3,7 +3,7 @@ import { computed, onUnmounted, reactive, ref, watch } from "vue";
 import { MapPin } from "lucide-vue-next";
 import type { Conversation } from "../services/conversation";
 import { NearbyStores, distanceLabel } from "../services/nearby-stores";
-import RefinedSelect from "./RefinedSelect.vue";
+import RefinedSelect from "../../../shared/components/RefinedSelect.vue";
 
 const props = defineProps<{
   chat: Conversation;

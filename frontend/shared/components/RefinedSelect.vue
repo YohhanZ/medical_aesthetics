@@ -25,6 +25,7 @@ const uid = useId();
 const listId = `${uid}-options`;
 const trigger = ref<HTMLButtonElement | null>(null);
 const menu = ref<HTMLElement | null>(null);
+const teleportTarget = ref<HTMLElement | string>("body");
 const opened = ref(false);
 const active = ref(0);
 const placement = ref("below");
@@ -164,6 +165,8 @@ watch(
   },
 );
 onMounted(() => {
+  teleportTarget.value =
+    trigger.value?.closest<HTMLElement>('[role="dialog"]') ?? "body";
   document.addEventListener("pointerdown", outside);
   document.addEventListener("focusin", outside);
   window.addEventListener("resize", position);
@@ -204,7 +207,7 @@ onBeforeUnmount(() => {
       }}</span>
       <ChevronDown :size="15" :stroke-width="1.6" aria-hidden="true" />
     </button>
-    <Teleport to="body">
+    <Teleport :to="teleportTarget">
       <Transition name="select-popover">
         <div
           v-if="opened"

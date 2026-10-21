@@ -10,7 +10,7 @@ import { ApiError, errorText } from "../services/api";
 import AppointmentActions from "./AppointmentActions.vue";
 import CaseReviewPanel from "./CaseReviewPanel.vue";
 import FollowupPanel from "./FollowupPanel.vue";
-import RefinedSelect from "./RefinedSelect.vue";
+import RefinedSelect from "../../../shared/components/RefinedSelect.vue";
 const props = defineProps<{ chat: Conversation; api: BookingApi }>();
 const projectOptions = computed(() => [
   { value: "", label: "不确定项目，先咨询" },

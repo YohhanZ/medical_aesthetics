@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, reactive, ref, watch } from "vue";
+import { RefreshCw } from "lucide-vue-next";
+import RefinedSelect from "../../../shared/components/RefinedSelect.vue";
 import { can, currentStore, session, storeId } from "../state";
 import {
   AppointmentInbox,
@@ -9,6 +11,7 @@ import {
 } from "../services/appointments";
 import SidePanel from "./SidePanel.vue";
 import EmptyState from "./EmptyState.vue";
+import TablePagination from "./TablePagination.vue";
 const inbox = reactive(new AppointmentInbox(appointmentApi));
 const state = ref(""),
   offset = ref(0),
@@ -22,8 +25,25 @@ const state = ref(""),
   arrivalChecked = ref(false);
 const readable = computed(() => can("appointment_read"));
 const scope = computed(() => `${storeId.value}/${session.value?.token ?? ""}`);
+const stateOptions = [
+  { value: "", label: "全部预约" },
+  { value: "pending_store_confirmation", label: "待门店确认" },
+  { value: "confirmed", label: "已确认" },
+  { value: "declined", label: "未接受" },
+  { value: "cancelled", label: "已取消" },
+  { value: "arrived", label: "已到店" },
+];
+const reasonOptions = [
+  { value: "", label: "请选择暂无法接待的原因" },
+  ...Object.entries(reasonLabels).map(([value, label]) => ({ value, label })),
+];
 function load() {
   return inbox.load(state.value, offset.value);
+}
+function changePage(page: number) {
+  if (inbox.busy) return;
+  offset.value = (page - 1) * 25;
+  void load();
 }
 watch(
   scope,
@@ -94,30 +114,41 @@ async function decide(action: "confirm" | "decline") {
       用原请求核实处理结果
     </button>
   </div>
-  <section class="card">
-    <div class="table-toolbar">
-      <label
-        >申请状态
-        <select v-model="state" :disabled="inbox.busy">
-          <option value="">全部</option>
-          <option value="pending_store_confirmation">待确认</option>
-          <option value="confirmed">已确认</option>
-          <option value="declined">未接受</option>
-          <option value="cancelled">已取消</option>
-          <option value="arrived">已到店</option>
-        </select></label
-      ><button
-        class="button secondary"
+  <section class="card appointments-card">
+    <div class="table-toolbar appointments-toolbar">
+      <div class="appointments-filter">
+        <label for="appointment-state">申请状态</label>
+        <RefinedSelect
+          id="appointment-state"
+          v-model="state"
+          :options="stateOptions"
+          label="申请状态"
+          :disabled="inbox.busy || !readable"
+        />
+      </div>
+      <button
+        class="button secondary appointments-refresh"
         :disabled="inbox.busy || !readable"
         @click="load"
       >
-        刷新预约列表
+        <RefreshCw
+          :size="15"
+          :class="{ 'is-loading': inbox.busy }"
+          aria-hidden="true"
+        />
+        刷新列表
       </button>
     </div>
     <p v-if="!readable" class="notice">
       此账号没有当前门店的预约读取权限，请使用获明确授权的接待账号。
     </p>
-    <p v-else-if="inbox.busy" role="status">正在核实当前门店记录…</p>
+    <p
+      v-else-if="inbox.busy"
+      class="loading-state appointments-loading"
+      role="status"
+    >
+      正在核实当前门店记录…
+    </p>
     <div v-else-if="inbox.items.length" class="table-scroll">
       <table>
         <thead>
@@ -172,29 +203,13 @@ async function decide(action: "confirm" | "decline") {
       title="暂无符合条件的申请"
       description="客户确认提交后，申请将在当前授权门店显示。"
     />
-    <div v-if="readable && !inbox.busy" class="form-actions">
-      <span
-        >共 {{ inbox.total }} 条 · 第 {{ Math.floor(offset / 25) + 1 }} 页</span
-      ><button
-        class="text-button"
-        :disabled="offset === 0"
-        @click="
-          offset -= 25;
-          load();
-        "
-      >
-        上一页</button
-      ><button
-        class="text-button"
-        :disabled="offset + 25 >= inbox.total"
-        @click="
-          offset += 25;
-          load();
-        "
-      >
-        下一页
-      </button>
-    </div>
+    <TablePagination
+      v-if="readable && !inbox.busy"
+      :total="inbox.total"
+      :page="Math.floor(offset / 25) + 1"
+      :disabled="inbox.busy"
+      @change="changePage"
+    />
   </section>
   <SidePanel
     v-if="inbox.selected && !inbox.busy"
@@ -276,13 +291,13 @@ async function decide(action: "confirm" | "decline") {
           v-model="availability"
           type="checkbox"
         />已核实门店能在此时间接待</label
-      ><label
-        >暂无法接待原因<select v-model="reason">
-          <option value="">请选择</option>
-          <option v-for="(label, key) in reasonLabels" :key="key" :value="key">
-            {{ label }}
-          </option>
-        </select></label
+      ><label for="appointment-decline-reason"
+        >暂无法接待原因<RefinedSelect
+          id="appointment-decline-reason"
+          v-model="reason"
+          :options="reasonOptions"
+          label="暂无法接待原因"
+          :disabled="inbox.busy" /></label
       ><label class="checkbox-label"
         ><input
           v-model="checked"
@@ -390,3 +405,74 @@ async function decide(action: "confirm" | "decline") {
     </div>
   </SidePanel>
 </template>
+
+<style scoped>
+.appointments-filter {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.appointments-filter > label {
+  color: #7b877e;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.appointments-filter > .refined-select {
+  width: 210px;
+}
+.appointments-refresh {
+  min-height: 44px;
+  padding: 10px 15px;
+  border-radius: 12px;
+  background: #fff;
+  color: #49604f;
+}
+.appointments-refresh:not(:disabled):hover {
+  background: #f3f7f0;
+  border-color: #cbd9c5;
+}
+.appointments-refresh .is-loading {
+  animation: refresh-spin 1s linear infinite;
+}
+.appointments-loading {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+}
+@keyframes refresh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 680px) {
+  .appointments-toolbar {
+    gap: 12px;
+  }
+  .appointments-filter {
+    flex: 1;
+    gap: 10px;
+  }
+  .appointments-filter > .refined-select {
+    width: 100%;
+    min-width: 145px;
+  }
+  .appointments-refresh {
+    padding-inline: 12px;
+  }
+}
+@media (max-width: 420px) {
+  .appointments-filter {
+    width: 100%;
+    flex-basis: 100%;
+  }
+  .appointments-refresh {
+    margin-left: auto;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .appointments-refresh .is-loading {
+    animation: none;
+  }
+}
+</style>
