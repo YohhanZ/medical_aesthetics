@@ -107,6 +107,7 @@ jobs:
           tests/test_project_topics.py
           tests/test_foundation.py
           tests/test_marketing.py
+          tests/test_marketing_wan3.py
 
 
   publish:

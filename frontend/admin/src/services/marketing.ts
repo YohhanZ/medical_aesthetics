@@ -32,6 +32,7 @@ export interface MarketingOptions {
   video_ready: boolean;
   image_model: string;
   video_model: string;
+  video_workspace_required: boolean;
   daily_limit: number;
   projects: {
     id: string;
@@ -68,6 +69,7 @@ export const mediaErrors: Record<string, string> = {
   provider_task_failed:
     "供应商任务未成功，可能与额度、内容审核或服务状态有关。",
   provider_unconfigured: "接口尚未配置或已关闭。",
+  provider_model_unsupported: "此任务的模型暂未支持，请联系管理员核对配置。",
   submission_unknown: "提交结果未知，系统不会自动重复生成，避免重复消耗额度。",
   provider_response_invalid: "供应商返回格式异常，需核实原任务。",
   provider_poll_timeout: "等待时间较长，可核实原任务，不会重新提交生成。",

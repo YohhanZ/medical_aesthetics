@@ -42,7 +42,8 @@ const options = ref<MarketingOptions>({
   image_ready: false,
   video_ready: false,
   image_model: "Kwai-Kolors/Kolors",
-  video_model: "wan2.2-t2v-plus",
+  video_model: "wan3.0-video",
+  video_workspace_required: true,
   daily_limit: 10,
   projects: [],
 });
@@ -437,7 +438,8 @@ onBeforeUnmount(() => {
           <span class="mkt-dot" :class="{ off: !ready }"></span
           ><span
             >{{ kind === "image" ? "Kolors 图片服务" : "万相视频服务" }} ·
-            {{ ready ? "已配置" : "未配置" }}</span
+            {{ ready ? "已配置" : "未配置" }}
+            {{ kind === "video" ? ` · ${options.video_model}` : "" }}</span
           >
         </div>
         <button
@@ -464,7 +466,9 @@ onBeforeUnmount(() => {
             !ready
               ? kind === "image"
                 ? "尚未配置真实生成接口。右侧仍可预览并导出示例版式。"
-                : "视频接口尚未启用，可先编辑并导出配套文案。"
+                : options.video_workspace_required
+                  ? "视频接口尚未配置完整，请补充北京地域 API Key、视频开关和业务空间 ID。可先编辑并导出配套文案。"
+                  : "视频接口尚未启用，可先编辑并导出配套文案。"
               : `当前门店每日最多提交 ${options.daily_limit} 次；任务保存后可离开页面。`
           }}
         </p>

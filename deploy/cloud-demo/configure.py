@@ -52,6 +52,8 @@ def main() -> None:
         "MA_MARKETING_IMAGE_API_KEY": settings.marketing_image_api_key.get_secret_value(),
         "MA_MARKETING_VIDEO_API_KEY": settings.marketing_video_api_key.get_secret_value(),
         "MA_MARKETING_VIDEO_ENABLED": str(settings.marketing_video_enabled).lower(),
+        "MA_MARKETING_VIDEO_MODEL": settings.marketing_video_model,
+        "MA_MARKETING_VIDEO_WORKSPACE_ID": settings.marketing_video_workspace_id,
         "MA_MARKETING_DAILY_LIMIT": str(settings.marketing_daily_limit),
         "MA_MARKETING_MEDIA_ROOT": "/app/runtime/marketing",
         "MA_MARKETING_MAX_ASSET_MB": str(settings.marketing_max_asset_mb),

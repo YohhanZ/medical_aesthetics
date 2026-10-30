@@ -7,7 +7,7 @@
 - 无密钥也能使用：品牌介绍／日常护理／到店邀请模板、编辑文案、画面描述、三种版式、Canvas 海报预览、PNG 海报及 TXT 文案下载。示例图片复用项目已有 AI 场景素材，页面和导出图片都标注“示例排版／非实时生成”。不伪造生成任务。
 - 配置后：Kolors 真实生图、万相真实文生视频、持久任务、状态轮询、作品分页、排队取消、失败原任务核实、认证素材预览及下载。
 - 文案为本地模板草稿及已发布项目资料，不额外调用文字模型。海报中文、品牌名和说明独立排版，编辑无需重新生图。任务保存品牌、文案与标题；本地排版导出暂不回写为新的版本。
-- 万相固定 `wan2.2-t2v-plus`、480P、5 秒、开启 AI 水印；当前不含配音、烧录字幕或直发社交平台。文案单独导出供后期使用。
+- 万相默认 `wan3.0-video`，可配置为 `wan3.0-video-prime`；固定 480P、5 秒、无音轨并开启 AI 水印。当前不含配音、烧录字幕或直发社交平台。文案单独导出供后期使用。旧型号 `wan2.2-t2v-plus` 保留任务兼容，不将既有任务改成新模型。
 - 图文海报支持 3:4、1:1、16:9。Kolors 使用支持的竖版／方形规格，横版海报裁剪方形配图。视频比例为 9:16、1:1、16:9。
 
 ## 配置
@@ -18,12 +18,44 @@
 MA_MARKETING_IMAGE_API_KEY=你的硅基流动APIKey
 MA_MARKETING_VIDEO_API_KEY=你的阿里云百炼北京地域APIKey
 MA_MARKETING_VIDEO_ENABLED=false
+MA_MARKETING_VIDEO_MODEL=wan3.0-video
+MA_MARKETING_VIDEO_WORKSPACE_ID=你的北京业务空间ID
 MA_MARKETING_DAILY_LIMIT=10
 MA_MARKETING_MEDIA_ROOT=runtime/marketing
 MA_MARKETING_MAX_ASSET_MB=24
 ```
 
 生图模型为 `Kwai-Kolors/Kolors`。视频需确认模型权限、免费额度及供应商“免费额度用完即停”设置后，再显式设置 `MA_MARKETING_VIDEO_ENABLED=true`。每日次数是当前门店的应用限额，不是供应商免费额度查询，不能代替供应商止付设置。已有百炼 Key 如具备对应权限，可以显式填入视频配置，无需另建阿里云账号。
+
+Wan 3.0 要求北京地域 API Key 和对应的业务空间 ID。填写业务空间的 ID，不填显示名称或 URL；程序固定构造 `https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/api/v1`，不能通过配置将密钥发送到任意域名。未配置空间时接口报告未就绪，创建任务返回配置错误。请求使用 `resolution=480P`、`ratio` 和 `audio=false`；不能沿用旧模型的 `size` 参数。后台显示配置的模型与缺失空间提示。
+
+新任务持久保存创建时选定的模型；Worker 提交、轮询按任务模型处理。切换当前模型不会把已有任务改成新模型。业务空间和 API Key 是部署级配置，修改前应让在途任务结束；不要在任务执行期间切换业务空间或账号。
+
+模型支持多模态输入不代表本模块已实现上传图片；本次只接入文生视频。标准版与 prime 的供应商价格、免费额度分别按控制台确认，不能从“加速版”名称推断更便宜。
+
+## 既有云演示环境配置（Wan 3.0 适配后）
+
+2026-10-30 已录制云端旧版模板排版和视频设置，生成接口当时未配置。Wan 3.0 适配属于后续代码变更，需要先发布新 API 镜像；仅改旧服务器环境变量不会自动升级代码。本次不执行真实生成。
+
+在 `/home/ubuntu/medical-aesthetics-demo` 中备份后编辑 `runtime/api.env` 和 `runtime/worker.env`，两处保持相同的视频密钥、模型、空间、开关与限额。媒体路径继续使用容器内 `/app/runtime/marketing`，不要替换为本机相对目录。已有部署不要重新运行 `configure.py`，避免重建业务密钥。
+
+```dotenv
+MA_MARKETING_IMAGE_API_KEY=硅基流动密钥
+MA_MARKETING_VIDEO_API_KEY=百炼北京密钥
+MA_MARKETING_VIDEO_MODEL=wan3.0-video
+MA_MARKETING_VIDEO_WORKSPACE_ID=实际北京业务空间ID
+MA_MARKETING_VIDEO_ENABLED=false
+MA_MARKETING_DAILY_LIMIT=3
+```
+
+新镜像验证与额度确认后，再将两处视频开关改为 `true`。保留发布覆盖文件重建 API 与营销 Worker，使 `env_file` 重新读取：
+
+```bash
+docker compose --env-file runtime/compose.env -f compose.yml -f compose.release.yml \
+  up -d --no-deps --force-recreate api marketing-worker
+```
+
+“已配置”只代表本地配置齐全，不代表供应商鉴权、额度、任务和素材下载已经实测成功。
 
 配置后重启 API 与营销 worker。独立终端启动 worker：
 
@@ -53,7 +85,7 @@ API 沿用 `python -m uvicorn app.main:app --host 127.0.0.1 --port 8001`；后�
 
 ## 部署
 
-只更新本机，未部署云端。本机已先备份 `ma_m1` 再应用迁移 014。部署前备份业务库并执行迁移，API 启动检查此迁移。
+原营销模块已部署至云演示，但生成接口尚未配置。Wan 3.0 适配的发布状态以本次交付记录为准；本批无新增数据库迁移，原营销表仍使用迁移 014。
 
 Compose 模板新增 `marketing-worker`，与 API 使用同一新镜像。共享 `marketing` named volume：worker 可写，API 只读；Dockerfile 初始化目录所属 UID/GID 为 65532。发布覆盖文件必须同时给 `api`、`worker`、**`marketing-worker`** 指定同一新版本，不能让新 worker 使用旧标签。
 
@@ -65,8 +97,11 @@ API 与营销 worker 都需上述配置。`configure.py` 支持为新环境生�
 
 - [硅基流动图片生成 API](https://api-docs.siliconflow.cn/docs/api/images-generations-post)
 - [万相 2.1–2.6 文生视频 API](https://help.aliyun.com/zh/model-studio/legacy-wan-text-to-video-api-reference)
+- [万相 3.0 视频生成 API](https://help.aliyun.com/zh/model-studio/wan3-video-generation-api-reference)
 - [百炼免费额度与用完即停](https://help.aliyun.com/zh/model-studio/new-free-quota)
 
 未提供供应商密钥，真实生成尚未验收。自动测试使用独立测试库、模拟 HTTP 和素材，不消耗真实额度。
 
 本机验证：后台前端 34 项、营销后端 11 项测试通过；额外登录门槛回归 5 项通过。构建、Ruff、mypy 通过。浏览器实测模板编辑、竖版／横版 PNG 预览、示例海报下载和图片导出检查、手机单列布局，以及未配置视频时禁用真实生成。
+
+2026-10-30 Wan 3.0 适配验证：独立 `ma_m1_test` 的营销集成与模拟接口合同共 27 项通过；覆盖标准版／prime 的三种比例、480P／5秒／无声／水印、同空间提交与轮询、缺空间拒绝、密钥目标域名约束、旧任务模型保留以及超时不重提。后台 34 项测试和 TypeScript／Vite cloud-demo 构建通过，后端类型检查 45 源文件通过。本次没有真实供应商生成调用，也没有将适配发布到云端。
