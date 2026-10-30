@@ -25,6 +25,7 @@ def configured(settings: Settings, tmp_path: Path) -> Settings:
             "marketing_image_api_key": SecretStr("synthetic-image-key"),
             "marketing_video_api_key": SecretStr("synthetic-video-key"),
             "marketing_video_enabled": True,
+            "marketing_video_workspace_id": "llm-synthetic",
             "marketing_media_root": str(tmp_path),
         }
     )
@@ -49,6 +50,8 @@ def test_disabled_provider_and_staff_scope(client: TestClient) -> None:
     author = staff_headers(client)
     options = client.get(BASE + "/options", headers=author)
     assert options.status_code == 200 and options.json()["image_ready"] is False
+    assert options.json()["video_model"] == "wan3.0-video"
+    assert options.json()["video_workspace_required"] is True
     assert "api_key" not in json.dumps(options.json())
     assert client.post(BASE + "/jobs", headers=author, json=body()).status_code == 409
     assert client.post(BASE + "/jobs", headers=author, json=body("video")).status_code == 409
@@ -57,6 +60,15 @@ def test_disabled_provider_and_staff_scope(client: TestClient) -> None:
     visitor_headers(client)
     assert client.get(BASE + "/jobs").status_code == 401
     assert client.get(BASE.replace(STORE, OTHER_STORE) + "/jobs", headers=author).status_code == 403
+
+
+def test_wan3_missing_workspace_is_not_ready(configured: Settings) -> None:
+    incomplete = configured.model_copy(update={"marketing_video_workspace_id": ""})
+    with TestClient(create_app(incomplete)) as client:
+        auth = staff_headers(client)
+        options = client.get(BASE + "/options", headers=auth).json()
+        assert options["video_ready"] is False and options["video_workspace_required"] is True
+        assert client.post(BASE + "/jobs", headers=auth, json=body("video")).status_code == 409
 
 
 def test_idempotency_daily_limit_and_video_confirmation(configured: Settings) -> None:
@@ -98,6 +110,7 @@ class FakeMedia(MediaGateway):
         )
         self.submissions = 0
         self.polls = 0
+        self.poll_models: list[str] = []
         self.unknown = False
         self.task = str(uuid4())
 
@@ -111,9 +124,10 @@ class FakeMedia(MediaGateway):
             else {"task": self.task}
         )
 
-    def poll(self, task: str) -> dict[str, str]:
+    def poll(self, task: str, model: str = "wan2.2-t2v-plus") -> dict[str, str]:
         assert task == self.task
         self.polls += 1
+        self.poll_models.append(model)
         return (
             {}
             if self.polls == 1
@@ -146,14 +160,17 @@ def test_image_worker_persists_asset_and_authenticates_download(configured: Sett
 
 def test_video_poll_survives_worker_restart_without_resubmission(configured: Settings) -> None:
     gateway = FakeMedia(configured)
-    with TestClient(create_app(configured)) as client:
+    selected = configured.model_copy(update={"marketing_video_model": "wan3.0-video-prime"})
+    with TestClient(create_app(selected)) as client:
         auth = staff_headers(client)
         job = client.post(BASE + "/jobs", headers=auth, json=body("video")).json()
+        assert job["model"] == "wan3.0-video-prime"
         assert MarketingWorker(configured, gateway).run_once()["status"] == "running"
         with transaction(configured.database_url) as repo:
             repo.execute("UPDATE marketing_job SET available_at=now() WHERE id=%s", (job["id"],))
         assert MarketingWorker(configured, gateway).run_once()["status"] == "succeeded"
         assert gateway.submissions == 1 and gateway.polls == 2
+        assert gateway.poll_models == ["wan3.0-video-prime", "wan3.0-video-prime"]
         result = client.get(BASE + f"/jobs/{job['id']}", headers=auth).json()
         assert result["state"] == "succeeded" and "synthetic-video-key" not in json.dumps(result)
 

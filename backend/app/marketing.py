@@ -13,7 +13,6 @@ from app.domain import Actor, DomainError, Repository
 from app.staff_booking import StaffBookingService
 
 IMAGE_MODEL = "Kwai-Kolors/Kolors"
-VIDEO_MODEL = "wan2.2-t2v-plus"
 
 
 class MarketingInput(BaseModel):
@@ -69,10 +68,11 @@ class MarketingService:
         )
         return {
             "image_ready": bool(self.settings.marketing_image_api_key.get_secret_value()),
-            "video_ready": self.settings.marketing_video_enabled
-            and bool(self.settings.marketing_video_api_key.get_secret_value()),
+            "video_ready": self.settings.marketing_video_ready,
             "image_model": IMAGE_MODEL,
-            "video_model": VIDEO_MODEL,
+            "video_model": self.settings.marketing_video_model,
+            "video_workspace_required": self.settings.marketing_video_model != "wan2.2-t2v-plus"
+            and not self.settings.marketing_video_workspace_id,
             "daily_limit": self.settings.marketing_daily_limit,
             "projects": [
                 {
@@ -133,10 +133,7 @@ class MarketingService:
             return public_job(existing)
         if data.kind == "image" and not self.settings.marketing_image_api_key.get_secret_value():
             raise DomainError("marketing_image_unconfigured", 409)
-        if data.kind == "video" and not (
-            self.settings.marketing_video_enabled
-            and self.settings.marketing_video_api_key.get_secret_value()
-        ):
+        if data.kind == "video" and not self.settings.marketing_video_ready:
             raise DomainError("marketing_video_unconfigured", 409)
         if data.kind == "video" and not data.video_cost_acknowledged:
             raise DomainError("marketing_video_cost_required", 422)
@@ -152,7 +149,7 @@ class MarketingService:
         ):
             raise DomainError("project_unavailable", 409)
         job_id = str(uuid4())
-        model = IMAGE_MODEL if data.kind == "image" else VIDEO_MODEL
+        model = IMAGE_MODEL if data.kind == "image" else self.settings.marketing_video_model
         self.repo.execute(
             "INSERT INTO marketing_job(id,tenant_id,store_id,staff_id,request_key,request_hash,"
             "kind,brand,title,prompt,caption,aspect,project_id,simulated,model) "

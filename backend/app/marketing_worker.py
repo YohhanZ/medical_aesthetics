@@ -25,6 +25,17 @@ class MediaGateway:
         self.settings = settings
         self.client = client or httpx.Client(timeout=90, trust_env=False, follow_redirects=False)
 
+    def _video_base_url(self, model: str) -> str:
+        if model == "wan2.2-t2v-plus":
+            return "https://dashscope.aliyuncs.com/api/v1"
+        if model not in ("wan3.0-video", "wan3.0-video-prime"):
+            raise MediaError("provider_model_unsupported")
+        workspace = self.settings.marketing_video_workspace_id
+        if not workspace:
+            raise MediaError("provider_unconfigured")
+        # Only a validated DNS label is configurable; keys cannot be sent to arbitrary hosts.
+        return f"https://{workspace}.cn-beijing.maas.aliyuncs.com/api/v1"
+
     def _json(self, response: httpx.Response) -> dict[str, Any]:
         if response.status_code >= 400:
             try:
@@ -82,9 +93,31 @@ class MediaGateway:
                     )
                 )
                 return {"url": str(data["images"][0]["url"])}
+            base_url = self._video_base_url(row["model"])
+            parameters: dict[str, Any] = {
+                "duration": 5,
+                "watermark": True,
+                "prompt_extend": False,
+            }
+            if row["model"] == "wan2.2-t2v-plus":
+                parameters["size"] = {
+                    "square": "624*624",
+                    "portrait": "480*832",
+                    "landscape": "832*480",
+                }[row["aspect"]]
+            else:
+                parameters.update(
+                    {
+                        "resolution": "480P",
+                        "ratio": {"square": "1:1", "portrait": "9:16", "landscape": "16:9"}[
+                            row["aspect"]
+                        ],
+                        "audio": False,
+                    }
+                )
             data = self._json(
                 self.client.post(
-                    "https://dashscope.aliyuncs.com/api/v1/services/aigc/video-generation/video-synthesis",
+                    base_url + "/services/aigc/video-generation/video-synthesis",
                     headers={
                         "Authorization": "Bearer "
                         + self.settings.marketing_video_api_key.get_secret_value(),
@@ -93,16 +126,7 @@ class MediaGateway:
                     json={
                         "model": row["model"],
                         "input": {"prompt": prompt},
-                        "parameters": {
-                            "size": {
-                                "square": "624*624",
-                                "portrait": "480*832",
-                                "landscape": "832*480",
-                            }[row["aspect"]],
-                            "duration": 5,
-                            "watermark": True,
-                            "prompt_extend": False,
-                        },
+                        "parameters": parameters,
                     },
                 )
             )
@@ -113,11 +137,11 @@ class MediaGateway:
         except (KeyError, IndexError, TypeError, ValueError):
             raise MediaError("provider_response_invalid", True) from None
 
-    def poll(self, task: str) -> dict[str, str]:
+    def poll(self, task: str, model: str = "wan2.2-t2v-plus") -> dict[str, str]:
         try:
             data = self._json(
                 self.client.get(
-                    "https://dashscope.aliyuncs.com/api/v1/tasks/" + str(UUID(task)),
+                    self._video_base_url(model) + "/tasks/" + str(UUID(task)),
                     headers={
                         "Authorization": "Bearer "
                         + self.settings.marketing_video_api_key.get_secret_value()
@@ -289,7 +313,7 @@ class MarketingWorker:
                     )
                 row["state"] = "running"
             if not row["provider_asset_url"] and row["provider_task_id"]:
-                result = self.gateway.poll(row["provider_task_id"])
+                result = self.gateway.poll(row["provider_task_id"], row["model"])
                 row["provider_asset_url"] = result.get("url")
                 if row["provider_asset_url"]:
                     with transaction(self.settings.database_url) as repo:

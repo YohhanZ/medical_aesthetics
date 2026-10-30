@@ -50,6 +50,12 @@ class Settings(BaseSettings):
     marketing_image_api_key: SecretStr = SecretStr("")
     marketing_video_api_key: SecretStr = SecretStr("")
     marketing_video_enabled: bool = False
+    marketing_video_model: Literal["wan3.0-video", "wan3.0-video-prime", "wan2.2-t2v-plus"] = (
+        "wan3.0-video"
+    )
+    marketing_video_workspace_id: str = Field(
+        default="", max_length=63, pattern=r"^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)?$"
+    )
     marketing_daily_limit: int = Field(default=10, ge=1, le=100)
     marketing_media_root: str = "runtime/marketing"
     marketing_max_asset_mb: int = Field(default=24, ge=1, le=100)
@@ -72,6 +78,17 @@ class Settings(BaseSettings):
     milvus_write_token: SecretStr = SecretStr("")
     milvus_admin_token: SecretStr = SecretStr("")
     milvus_timeout: float = Field(default=5.0, ge=1, le=30)
+
+    @property
+    def marketing_video_ready(self) -> bool:
+        return (
+            self.marketing_video_enabled
+            and bool(self.marketing_video_api_key.get_secret_value())
+            and (
+                self.marketing_video_model == "wan2.2-t2v-plus"
+                or bool(self.marketing_video_workspace_id)
+            )
+        )
 
     @field_validator("model_base_url", mode="before")
     @classmethod

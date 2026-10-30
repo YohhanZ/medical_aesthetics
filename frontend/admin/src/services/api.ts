@@ -54,7 +54,7 @@ export async function request<T>(
 }
 const descriptions: Record<string, string> = {
   marketing_image_unconfigured: "Kolors 生图接口未配置，请在服务端配置密钥。",
-  marketing_video_unconfigured: "万相视频接口尚未启用，请完成服务端配置。",
+  marketing_video_unconfigured: "请检查万相视频密钥、视频开关及对应的北京业务空间配置。",
   marketing_video_cost_required: "请先确认本次视频生成会消耗供应商额度。",
   marketing_daily_limit: "当前门店今天的生成次数已达上限。",
   marketing_key_conflict: "原请求内容不一致，请核实作品库，勿重复提交。",
