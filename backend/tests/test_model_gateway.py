@@ -24,19 +24,27 @@ def config(text: str) -> Settings:
         "https://dashscope.aliyuncs.com/compatible-mode/v1/",
     ],
 )
+@pytest.mark.parametrize("model", ["qwen3.7-plus", "qwen3.8-27b"])
 def test_llm_environment_aliases_normalize_url_and_hide_key(
-    monkeypatch: pytest.MonkeyPatch, url: str
+    monkeypatch: pytest.MonkeyPatch, url: str, model: str
 ) -> None:
-    monkeypatch.setenv("LLM_MODEL", "qwen3.7-plus")
+    monkeypatch.setenv("LLM_MODEL", model)
     monkeypatch.setenv("LLM_API_KEY", "synthetic-alias-key")
     monkeypatch.setenv("LLM_URL", url)
     monkeypatch.setenv("MA_MODEL_API_KEY", "synthetic-old-key")
     settings = Settings(_env_file=None, database_url="postgresql://unused")
     assert settings.model_api_key.get_secret_value() == "synthetic-alias-key"
-    assert settings.chat_model == "qwen3.7-plus"
+    assert settings.chat_model == model
     assert settings.model_base_url == "https://dashscope.aliyuncs.com/compatible-mode/v1"
     assert settings.embedding_model == "text-embedding-v4"
     assert "synthetic-alias-key" not in repr(settings)
+
+
+def test_unknown_chat_model_is_rejected_before_a_request() -> None:
+    from pydantic import ValidationError
+
+    with pytest.raises(ValidationError):
+        Settings(_env_file=None, database_url="postgresql://unused", LLM_MODEL="unverified-model")
 
 
 @pytest.mark.parametrize("url", ["http://dashscope.aliyuncs.com", "https://untrusted.example/v1"])
@@ -140,7 +148,8 @@ def test_transient_retry_recovers() -> None:
     assert len(calls) == 2 and len(vector) == 256
 
 
-def test_chat_probe_is_gated_and_has_bounded_nonstreaming_payload() -> None:
+@pytest.mark.parametrize("model", ["qwen3.7-plus", "qwen3.8-27b"])
+def test_chat_probe_is_gated_and_has_bounded_nonstreaming_payload(model: str) -> None:
     requests: list[httpx.Request] = []
 
     def serve(request: httpx.Request) -> httpx.Response:
@@ -148,10 +157,11 @@ def test_chat_probe_is_gated_and_has_bounded_nonstreaming_payload() -> None:
         return httpx.Response(200, json={"choices": [{"message": {"content": "连接成功"}}]})
 
     with httpx.Client(transport=httpx.MockTransport(serve)) as client:
-        gateway = QwenEmbeddingGateway(config("固定合成检查"), client)
+        settings = config("固定合成检查").model_copy(update={"chat_model": model})
+        gateway = QwenEmbeddingGateway(settings, client)
         assert gateway.probe_chat("固定合成检查") == {
             "status": "connected",
-            "model": "qwen3.7-plus",
+            "model": model,
         }
         with pytest.raises(GatewayError) as failure:
             gateway.probe_chat("未授权内容")
@@ -160,6 +170,7 @@ def test_chat_probe_is_gated_and_has_bounded_nonstreaming_payload() -> None:
     payload = json.loads(requests[0].content)
     assert requests[0].url.path.endswith("/chat/completions")
     assert payload["stream"] is False and payload["enable_thinking"] is False
+    assert payload["model"] == model
     assert payload["max_tokens"] == 32
 
 

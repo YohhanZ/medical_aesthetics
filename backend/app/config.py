@@ -43,7 +43,7 @@ class Settings(BaseSettings):
     model_api_key: SecretStr = Field(
         default=SecretStr(""), validation_alias=AliasChoices("LLM_API_KEY", "MA_MODEL_API_KEY")
     )
-    chat_model: Literal["qwen3.7-plus"] = Field(
+    chat_model: Literal["qwen3.7-plus", "qwen3.8-27b"] = Field(
         default="qwen3.7-plus", validation_alias=AliasChoices("LLM_MODEL", "MA_CHAT_MODEL")
     )
     model_use_env_proxy: bool = True
