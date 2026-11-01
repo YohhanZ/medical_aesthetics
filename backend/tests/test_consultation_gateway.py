@@ -40,13 +40,16 @@ def test_quote_candidates_are_bounded_exact_source_substrings() -> None:
     assert "1280" in quote_candidates(long_scene)[-1]
 
 
-def gateway(client: httpx.Client, reader: PublicReader) -> QwenConsultationGateway:
+def gateway(
+    client: httpx.Client, reader: PublicReader, model: str = "qwen3.7-plus"
+) -> QwenConsultationGateway:
     settings = Settings(
         _env_file=None,
         database_url="postgresql://unused",
         environment="test",
         model_api_key="test-only-not-a-real-key",
         model_export_hashes=[],
+        LLM_MODEL=model,
     )
     actor = Actor(str(uuid4()), str(uuid4()), str(uuid4()), "visitor", "test")
     return QwenConsultationGateway(settings, reader, actor, time.monotonic() + 30, client)
@@ -84,7 +87,10 @@ def test_emotional_current_question_is_projected_and_emotional_dialogue_is_exclu
     assert json.loads(sent)["previous_public_dialogue"] == []
 
 
-def test_live_public_question_and_followup_are_redacted_and_use_current_evidence() -> None:
+@pytest.mark.parametrize("model", ["qwen3.7-plus", "qwen3.8-27b"])
+def test_live_public_question_and_followup_are_redacted_and_use_current_evidence(
+    model: str,
+) -> None:
     reader = PublicReader()
     requests: list[httpx.Request] = []
 
@@ -101,7 +107,7 @@ def test_live_public_question_and_followup_are_redacted_and_use_current_evidence
         return httpx.Response(200, json={"choices": [{"message": {"content": json.dumps(draft)}}]})
 
     with httpx.Client(transport=httpx.MockTransport(respond)) as client:
-        service = gateway(client, reader)
+        service = gateway(client, reader, model)
         assert len(service.embed("到店咨询流程，请联系13800138000")) == 256
         service.answer(
             "那需要准备什么？邮箱sample@example.test",
@@ -115,7 +121,8 @@ def test_live_public_question_and_followup_are_redacted_and_use_current_evidence
     assert "caller-forged-evidence" not in str(body)
     assert "sample@example.test" not in str(body) and "13800138000" not in str(requests[0].content)
     assert body["stream"] is False and body["response_format"] == {"type": "json_object"}
-    assert body["model"] == "qwen3.7-plus" and body["max_tokens"] == 900
+    assert body["model"] == model and body["max_tokens"] == 900
+    assert body["enable_thinking"] is False
 
 
 @pytest.mark.parametrize(
